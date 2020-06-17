@@ -1,1 +1,39 @@
-<p>login works!</p>
+<div class="breadcrumb">
+    <div class="container">
+        <a class="breadcrumb-item" href="">Home</a>
+        <span class="breadcrumb-item active">Login</span>
+    </div>
+</div>
+<section class="static about-sec">
+    <div class="container">
+        <h1>My Account / Login</h1>
+        <p>Đăng nhập để được trải nghiệm nhiều hơn!</p>
+        <div class="form">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="row ">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input type="email" formControlName="email" class="form-control" placeholder="Enter Your Email" required>
+                            <span class="required-star">*</span>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input type="password" formControlName="password" class="form-control" placeholder="Enter Password" required>
+                            <span class="required-star">*</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-12">
+                        <div class="form-group">
+                            <button [disabled]="loading" class="btn btn-primary">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Login
+                          </button>
+                            <h5>Don't have account? <a href="register">REgister here</a></h5>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

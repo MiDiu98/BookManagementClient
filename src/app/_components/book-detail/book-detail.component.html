@@ -1,0 +1,97 @@
+<div class="breadcrumb">
+    <div class="container">
+        <a class="breadcrumb-item" href="index.html">Home</a>
+        <span class="breadcrumb-item active">Terms and Condition</span>
+    </div>
+</div>
+<section class="product-sec">
+    <div class="container">
+        <h1>{{ book?.title }}</h1>
+        <div class="row" *ngIf="book">
+            <div class="col-md-5 slider-sec">
+                <!-- main slider carousel -->
+                <div id="myCarousel" class="carousel slide">
+                    <img src="../../../assets/images/product1.jpg" class="img-fluid">
+                </div>
+                <!--/main slider carousel-->
+            </div>
+            <div class="col-md-6 slider-content">
+                <div class="row">
+                    <ul>
+                        <li>
+                            <span class="name">Tác giả</span><span class="clm">:</span>
+                            <span class="price final">{{book.author}}</span>
+                        </li>
+                        <li>
+                            <span class="name">Ngày tạo</span><span class="clm">:  </span> {{book.createAt | date: 'short'}}
+                        </li>
+                        <li>
+                            <span class="name">Cập nhật</span><span class="clm">:  </span> {{book.updateAt | date: 'short'}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <p>{{book.description}}...</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!--Comments-->
+        <div class="col-md-9">
+            <div class="card card-comments mb-3 wow fadeIn">
+                <div class="card-header font-weight-bold">3 comments</div>
+                <div class="card-body">
+
+                    <div class="media d-block d-md-flex mt-4">
+                        <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                            <h5 class="mt-0 font-weight-bold">
+                                nameUser
+                            </h5>
+                            content
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--/.Comments-->
+
+            <!--Reply-->
+            <div class="card mb-3 wow fadeIn">
+                <div class="card-header font-weight-bold">Leave a reply</div>
+                <div class="card-body">
+
+                    <!-- Default form reply -->
+                    <form>
+
+                        <!-- Comment -->
+                        <div class="form-group">
+                            <label for="replyFormComment">Your comment</label>
+                            <textarea class="form-control" id="replyFormComment" rows="5"></textarea>
+                        </div>
+
+                        <!-- Name -->
+                        <label for="replyFormName">Your name</label>
+                        <input type="email" id="replyFormName" class="form-control">
+
+                        <br>
+
+                        <!-- Email -->
+                        <label for="replyFormEmail">Your e-mail</label>
+                        <input type="email" id="replyFormEmail" class="form-control">
+
+
+                        <div class="text-center mt-4">
+                            <button class="btn btn-info btn-md" type="submit">Post</button>
+                        </div>
+                    </form>
+                    <!-- Default form reply -->
+
+
+                </div>
+            </div>
+            <!--/.Reply-->
+        </div>
+    </div>
+</section>

@@ -6,14 +6,15 @@ import { UserComponent } from './_components/user/user.component';
 import { AboutComponent } from './_components/about/about.component';
 import { LoginComponent } from './_components/login/login.component';
 import { RegisterComponent } from './_components/register/register.component';
-
+import { BookDetailComponent } from './_components/book-detail/book-detail.component';
 
 const routes: Routes = [
   { path: '',      component: HomeComponent },
   { path: 'users',      component: UserComponent },
   { path: 'about',   component: AboutComponent },
   { path: 'login',     component: LoginComponent },
-  { path: 'register',     component: RegisterComponent }
+  { path: 'register',     component: RegisterComponent },
+  { path: 'books/:bookId',     component: BookDetailComponent }
 ];
 
 @NgModule({
