@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  users: User[];
+  users: User[] = [];
   result: User[] = [];
 
   constructor(
@@ -23,12 +23,14 @@ export class UserComponent implements OnInit {
   private getAllUser() {
     this.userService.getAllUser()
       .pipe(first())
-      .subscribe((data: User[]) => {
+      .subscribe((data) => {
         console.log(data);
+        this.users = data;
         for (let index = 0; index < 5; index++) {
           const element = data[index];
           this.result.push(element);
         }
+        console.log(this.users);
       });
   }
 
