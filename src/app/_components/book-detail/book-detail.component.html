@@ -41,19 +41,21 @@
 
         <!--Comments-->
         <div class="col-md-9">
+            <!--Comments-->
             <div class="card card-comments mb-3 wow fadeIn">
-                <div class="card-header font-weight-bold">3 comments</div>
+                <div class="card-header font-weight-bold">{{comments.length}} comments</div>
                 <div class="card-body">
-
-                    <div class="media d-block d-md-flex mt-4">
+                    <div class="media d-block d-md-flex mt-3" *ngFor="let comment of comments">
+                        <img class="d-flex mb-3 mx-auto " src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg" alt="Generic placeholder image" width="80px">
                         <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                            <h5 class="mt-0 font-weight-bold">
-                                nameUser
-                            </h5>
-                            content
+                            <h5 class="mt-0 font-weight-bold">{{comment.author}} </h5>
+                            <p style="color: gray; font-family: 'Courier New', Courier, monospace; font-size: 11px;">
+                                {{comment.updateAt | date: 'short'}} {{comment.createAt == comment.updateAt? "":"- Đã cập nhật"}}
+                            </p>
+                            {{comment.message}}
                         </div>
+                        <hr>
                     </div>
-
                 </div>
             </div>
             <!--/.Comments-->
@@ -62,34 +64,18 @@
             <div class="card mb-3 wow fadeIn">
                 <div class="card-header font-weight-bold">Leave a reply</div>
                 <div class="card-body">
-
                     <!-- Default form reply -->
-                    <form>
-
+                    <form [formGroup]="commentForm" (ngSubmit)="postComment()">
                         <!-- Comment -->
                         <div class="form-group">
                             <label for="replyFormComment">Your comment</label>
-                            <textarea class="form-control" id="replyFormComment" rows="5"></textarea>
+                            <textarea formControlName="message" class="form-control" id="replyFormComment" rows="5"></textarea>
                         </div>
-
-                        <!-- Name -->
-                        <label for="replyFormName">Your name</label>
-                        <input type="email" id="replyFormName" class="form-control">
-
-                        <br>
-
-                        <!-- Email -->
-                        <label for="replyFormEmail">Your e-mail</label>
-                        <input type="email" id="replyFormEmail" class="form-control">
-
-
                         <div class="text-center mt-4">
-                            <button class="btn btn-info btn-md" type="submit">Post</button>
+                            <button class="btn btn-info btn-md">Post</button>
                         </div>
                     </form>
                     <!-- Default form reply -->
-
-
                 </div>
             </div>
             <!--/.Reply-->

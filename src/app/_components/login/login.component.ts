@@ -5,7 +5,6 @@ import { first } from 'rxjs/operators';
 import { AlertifyService } from '../../_services/alertify.service';
 
 import { AuthenticationService } from 'src/app/_services/authentication.service';
-import alertify from 'dist/bookstore/vendor-es2015';
 
 @Component({
   selector: 'app-login',

@@ -1,3 +1,4 @@
+import { BasicAuthHttpInterceptorService } from './_services/basic-auth-http-interceptor.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,7 +34,7 @@ import { BookDetailComponent } from './_components/book-detail/book-detail.compo
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

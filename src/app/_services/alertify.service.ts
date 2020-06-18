@@ -9,6 +9,7 @@ export class AlertifyService {
   constructor() { }
 ​
   confirm(message: string, okCallback: () => any) {
+    alertify.set('notifier','position', 'top-center');
     alertify.confirm(message, (e: any) => {
       if (e) {
         okCallback();
@@ -19,20 +20,20 @@ export class AlertifyService {
   success(message: string) {
     alertify.set('notifier','position', 'top-center');
     alertify.success(message);
-    //alertify.success(message);
   }
   ​
   error(message: string) {
     alertify.set('notifier','position', 'top-center');
     alertify.error(message);
-    //alertify.error(message);
   }
   ​
   warning(message: string) {
+    alertify.set('notifier','position', 'top-center');
     alertify.warning(message);
   }
   ​
   message(message: string) {
+    alertify.set('notifier','position', 'top-center');
     alertify.message(message);
   }
 }
