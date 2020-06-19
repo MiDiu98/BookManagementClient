@@ -20,7 +20,8 @@ export class BookDetailComponent implements OnInit {
   comments: Comment[] = [];
   commentForm: FormGroup;
   currentUser: Login;
-  isLogin = false;
+  isUpdate = false;
+  commentCurrent: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,15 +29,8 @@ export class BookDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private bookService: BookService,
     private commentService: CommentService,
-    private authenticationService: AuthenticationService,
     private alertify: AlertifyService
-    ) {
-      this.authenticationService.currentUser.subscribe(x => {
-        this.currentUser = x;
-        this.isLogin = true;
-      }
-    );
-    }
+    ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -79,17 +73,57 @@ export class BookDetailComponent implements OnInit {
       return;
     }
 
-    if (this.isLogin === false) {
-      console.log('Login!');
-      this.alertify.message('Đăng nhập để bình luận');
-    }
-
     this.commentService.postComment(this.bookId, this.f.message.value).subscribe(
-      (data) => {
-        console.log(data);
+      data => {
+        this.alertify.success('Bạn vừa thêm bình luận!');
         this.getAllComment(this.bookId);
+      },
+      error => {
+        this.alertify.warning('Đăng nhập để bình luận!');
       }
     )
+  }
+
+  editButtonClick(commentId: number) {
+    this.commentService.getCommentById(commentId).subscribe(
+      data => {
+        console.log(data);
+        this.f.message.setValue(data.message);
+        this.isUpdate = true;
+        this.commentCurrent = commentId;
+      }
+    )
+  }
+
+  deleteButtonClick(commentId: number) {
+    this.deleteComment(commentId);
+  }
+
+  updateComment() {
+    this.commentService.updateComment(this.commentCurrent, this.f.message.value).subscribe(
+      data => {
+        console.log(data);
+        this.getAllComment(this.bookId);
+        this.f.message.setValue('');
+        this.isUpdate = false;
+      },
+      error => {
+        this.alertify.error('Bạn không có quyền chỉnh sửa hoặc chưa đăng nhập!');
+        this.f.message.setValue('');
+        this.isUpdate = false;
+      }
+    )
+  }
+
+  deleteComment(commentId: number) {
+    this.commentService.deleteComment(commentId).subscribe(
+      data => {
+        this.getAllComment(this.bookId);
+      },
+      error => {
+        this.alertify.error('Bạn không có quyền xóa hoặc chưa đăng nhập!');
+      }
+    );
   }
 
 }

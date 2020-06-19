@@ -54,6 +54,12 @@
                             </p>
                             {{comment.message}}
                         </div>
+                        <button mat-raised-button type="button" (click)="editButtonClick(comment.id)" matTooltip="Edit Task" class="btn btn-primary btn-sm btn-just-icon">
+                          <i class="material-icons">edit</i>
+                        </button>
+                        <button mat-raised-button type="button" (click)="deleteButtonClick(comment.id)" matTooltip="Remove" class="btn btn-danger btn-sm btn-just-icon">
+                          <i class="material-icons">delete</i>
+                        </button>
                         <hr>
                     </div>
                 </div>
@@ -72,7 +78,8 @@
                             <textarea formControlName="message" class="form-control" id="replyFormComment" rows="5"></textarea>
                         </div>
                         <div class="text-center mt-4">
-                            <button class="btn btn-info btn-md">Post</button>
+                            <button class="btn btn-info btn-md" *ngIf="!isUpdate">Post</button>
+                            <button type="button" (click)="updateComment()" class="btn btn-warning btn-md" *ngIf="isUpdate">Update</button>
                         </div>
                     </form>
                     <!-- Default form reply -->
