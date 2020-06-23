@@ -12,7 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAllUser(): Observable<User[]> {
-    return this.http.get<any>(Constant.USER_URL);
+    return this.http.get<any>(Constant.USER_URL + '?enabled=true');
   }
 
 }

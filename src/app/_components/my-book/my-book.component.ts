@@ -1,6 +1,8 @@
+import { AlertifyService } from './../../_services/alertify.service';
 import { Book } from './../../_models/Book';
 import { BookService } from './../../_services/book.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-book',
@@ -11,7 +13,9 @@ export class MyBookComponent implements OnInit {
   myBooks: Book[] = [];
 
   constructor(
-    private bookService: BookService
+    private bookService: BookService,
+    private router: Router,
+    private alertify: AlertifyService
   ) { }
 
   ngOnInit(): void {
@@ -26,4 +30,23 @@ export class MyBookComponent implements OnInit {
       }
     )
   }
+
+  public updateBook(bookId: number) {
+    this.router.navigate(['/update/' + bookId]);
+  }
+
+  public deleteBook(bookId: number) {
+    this.alertify.confirm('Bạn có chắc muốn xóa không?', () => {
+      this.bookService.deleteBook(bookId).subscribe(
+        response => {
+          this.alertify.success('Xóa thành công');
+          this.getMyBook();
+        },
+        error => {
+          this.alertify.error('Xóa không thành công');
+        }
+      )
+    });
+  }
+
 }

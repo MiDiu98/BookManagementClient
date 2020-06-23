@@ -15,6 +15,9 @@ import { LoginComponent } from './_components/login/login.component';
 import { AboutComponent } from './_components/about/about.component';
 import { RegisterComponent } from './_components/register/register.component';
 import { BookDetailComponent } from './_components/book-detail/book-detail.component';
+import { MyBookComponent } from './_components/my-book/my-book.component';
+import { NewBookComponent } from './_components/new-book/new-book.component';
+import { UpdateBookComponent } from './_components/update-book/update-book.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { BookDetailComponent } from './_components/book-detail/book-detail.compo
     LoginComponent,
     AboutComponent,
     RegisterComponent,
-    BookDetailComponent
+    BookDetailComponent,
+    MyBookComponent,
+    NewBookComponent,
+    UpdateBookComponent
   ],
   imports: [
     BrowserModule,

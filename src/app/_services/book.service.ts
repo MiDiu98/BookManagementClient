@@ -23,10 +23,26 @@ export class BookService {
   }
 
   getBookEnable() {
-    return this.http.get<any>(Constant.BOOK_URL + '/enable?pageNo=0&pageSize=4&sortBy=title&order=asc');
+    return this.http.get<any>(Constant.BOOK_URL + '/enable?pageNo=0&pageSize=8&sortBy=title&order=asc');
   }
 
   getBookById(bookId: number): Observable<Book> {
     return this.http.get<any>(Constant.BOOK_URL + '/' + bookId);
+  }
+
+  getMyBook() {
+    return this.http.get<any>(Constant.BOOK_URL + '/my-books');
+  }
+
+  createNewBook(title: string, author: string, description: string, image: string) {
+    return this.http.post<any>(Constant.BOOK_URL, {title, author, description, image});
+  }
+
+  updateBook(bookId: number, title: string, author: string, description: string, image: string) {
+    return this.http.put<any>(Constant.BOOK_URL + '/' + bookId, {title, author, description, image});
+  }
+
+  deleteBook(bookId: number) {
+    return this.http.delete<any>(Constant.BOOK_URL + '/' + bookId);
   }
 }
