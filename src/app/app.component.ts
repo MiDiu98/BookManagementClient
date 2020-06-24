@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgModuleFactoryLoader } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from './_services/authentication.service';
@@ -13,14 +13,25 @@ export class AppComponent {
   title = 'bookstore';
   currentUser: Login;
   isLogin = false;
+  isAdmin = false;
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
       this.authenticationService.currentUser.subscribe(x => {
-          this.currentUser = x;
-          this.isLogin = true;
+          if (x != null) {
+            this.currentUser = x;
+            this.isLogin = true;
+
+            const jwt = x.token;
+            const jwtData = jwt.split('.')[1];
+            const decodedJwtJsonData = window.atob(jwtData);
+
+            if (JSON.stringify(decodedJwtJsonData).match('(.*)ROLE_ADMIN(.*)') != null) {
+              this.isAdmin = true;
+            }
+          }
         }
       );
   }
@@ -29,5 +40,4 @@ export class AppComponent {
       this.authenticationService.logout();
       this.router.navigate(['/login']);
   }
-
 }
