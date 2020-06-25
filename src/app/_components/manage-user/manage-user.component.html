@@ -29,6 +29,9 @@
                                     Email
                                 </th>
                                 <th>
+                                    Enabled
+                                </th>
+                                <th>
                                     Firstname
                                 </th>
                                 <th>
@@ -41,7 +44,7 @@
                                     Roles
                                 </th>
                                 <th>
-                                    Enabled
+                                    Is Admin?
                                 </th>
                             </thead>
                             <tbody *ngFor="let user of enabledUsers">
@@ -51,6 +54,16 @@
                                     </td>
                                     <td>
                                         {{user.email}}
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input id="activeCheckbox" type="checkbox" value="" checked (change)="onDisabled(user.id, user, $event)">
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
                                     </td>
                                     <td>
                                         {{user.firstname}}
@@ -67,11 +80,12 @@
                                     <td>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                  <input id="activeCheckbox" class="form-check-input" type="checkbox" value="" checked (change)="onDisabled(user.id, user, $event)">
-                                                  <span class="form-check-sign">
-                                                      <span class="check"></span>
-                                                  </span>
-                                              </label>
+                                              <input id="activeCheckbox center" type="checkbox" value="" *ngIf="isAdmin(user)" checked (change)="updateRole(user.id, user, $event)">
+                                              <input id="activeCheckbox center" type="checkbox" value="" *ngIf="!isAdmin(user)" (change)="updateRole(user.id, user, $event)">
+                                              <span class="form-check-sign">
+                                                  <span class="check"></span>
+                                              </span>
+                                          </label>
                                         </div>
                                     </td>
                                 </tr>
@@ -106,6 +120,9 @@
                                     Email
                                 </th>
                                 <th>
+                                    Enabled
+                                </th>
+                                <th>
                                     Firstname
                                 </th>
                                 <th>
@@ -117,9 +134,6 @@
                                 <th>
                                     Roles
                                 </th>
-                                <th>
-                                    Enabled
-                                </th>
                             </thead>
                             <tbody *ngFor="let user of disabledUsers">
                                 <tr>
@@ -128,6 +142,16 @@
                                     </td>
                                     <td>
                                         {{user.email}}
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input id="activeCheckbox" type="checkbox" value="" (change)="onEnabled(user.id, user, $event)">
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
                                     </td>
                                     <td>
                                         {{user.firstname}}
@@ -141,16 +165,7 @@
                                     <td>
                                         {{user.roles}}
                                     </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                  <input id="activeCheckbox" class="form-check-input" type="checkbox" value="" (change)="onEnabled(user.id, user, $event)">
-                                                  <span class="form-check-sign">
-                                                      <span class="check"></span>
-                                                  </span>
-                                              </label>
-                                        </div>
-                                    </td>
+
                                 </tr>
                             </tbody>
                         </table>

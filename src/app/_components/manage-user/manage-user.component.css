@@ -1,0 +1,6 @@
+.form-check-input {
+    text-align: center;
+    /* center checkbox horizontally */
+    vertical-align: middle !important;
+    /* center checkbox vertically */
+}

@@ -9,7 +9,7 @@ export class AlertifyService {
   constructor() { }
 ​
   confirm(message: string, okCallback: () => any) {
-    alertify.set('notifier','position', 'top-center');
+    alertify.set('notifier', 'position', 'top-center');
     alertify.confirm(message, (e: any) => {
       if (e) {
         okCallback();

@@ -19,8 +19,7 @@ export class UserService {
     return this.http.get<any>(Constant.USER_URL + '/admin?enabled=' + enabled);
   }
 
-  public updateUserByAdmin(userId: number, user: User, enabled: boolean) {
-    user.enable = enabled;
+  public updateUserByAdmin(userId: number, user: User) {
     return this.http.put<any>(Constant.USER_URL + '/admin/' + userId, user);
   }
 

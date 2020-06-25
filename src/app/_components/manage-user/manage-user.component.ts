@@ -42,7 +42,8 @@ export class ManageUserComponent implements OnInit {
   onDisabled(userId: number, user: User, event) {
       const checked = event.target.checked;
       if (!checked) {
-        this.userService.updateUserByAdmin(userId, user, false).subscribe(
+        user.enable = false;
+        this.userService.updateUserByAdmin(userId, user).subscribe(
           data => {
             this.alertifyService.success('Cập nhật trạng thái thành công');
             this.getEnabledUser();
@@ -58,7 +59,8 @@ export class ManageUserComponent implements OnInit {
     onEnabled(userId: number, user: User, event) {
       const checked = event.target.checked;
       if (checked) {
-        this.userService.updateUserByAdmin(userId, user, true).subscribe(
+        user.enable = true;
+        this.userService.updateUserByAdmin(userId, user).subscribe(
           data => {
             this.alertifyService.success('Cập nhật trạng thái thành công');
             this.getEnabledUser();
@@ -69,6 +71,47 @@ export class ManageUserComponent implements OnInit {
           }
         )
       }
+    }
+
+    public updateRole(userId: number, user: User, event) {
+      const checked = event.target.checked;
+      if (checked) {
+        this.alertifyService.confirm('Bạn có chắc muốn thay đổi quyền không?', () => {
+          user.roles = ['ROLE_ADMIN', 'ROLE_USER'];
+          this.userService.updateUserByAdmin(userId, user).subscribe(
+            data => {
+              this.alertifyService.success('Cập nhật trạng thái thành công');
+              this.getEnabledUser();
+            },
+            error => {
+              this.alertifyService.error('Cập nhật trạng thái không thành công');
+            }
+          );
+        });
+        this.getEnabledUser();
+      } else {
+        this.alertifyService.confirm('Bạn có chắc muốn thay đổi quyền không?', () => {
+          user.roles = ['ROLE_USER'];
+          this.userService.updateUserByAdmin(userId, user).subscribe(
+            data => {
+              this.alertifyService.success('Cập nhật trạng thái thành công');
+              this.getEnabledUser();
+            },
+            error => {
+              this.alertifyService.error('Cập nhật trạng thái không thành công');
+            }
+          );
+        });
+        this.getEnabledUser();
+      }
+    }
+
+    public isAdmin(user: User): boolean {
+      if (JSON.stringify(user.roles).match('(.*)ROLE_ADMIN(.*)') != null) {
+          return true;
+      }
+
+      return false;
     }
 
 }
