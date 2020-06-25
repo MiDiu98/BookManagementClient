@@ -1,0 +1,186 @@
+<style>
+    .btn-just-icon {
+        border-width: 0px !important;
+    }
+</style>
+<div class="main-content">
+    <div class="container-fluid">
+
+        <!-- __________________________________ All Enabled user  ____________________________ -->
+        <div class="col-md-12">
+            <div class="card card-plain">
+                <div class="card-header card-header-danger">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4 class="card-title mt-0">Enabled Book List</h4>
+                            <p class="card-category"> Here is list book is enabled</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="height:50px;width:90px" (click)="showEnabledBook = !showEnabledBook">Show</button>
+                    </div>
+                </div>
+                <div class="card-body" *ngIf="showEnabledBook">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class=" text-primary">
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    Author
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    CreateAt
+                                </th>
+                                <th>
+                                    UpdateAt
+                                </th>
+                                <th>
+                                    Image
+                                </th>
+                                <th>
+                                    UserId
+                                </th>
+                                <th>
+                                    Enabled
+                                </th>
+                            </thead>
+                            <tbody *ngFor="let book of enabledBooks">
+                                <tr>
+                                    <td>
+                                        {{book.id}}
+                                    </td>
+                                    <td>
+                                        {{book.title}}
+                                    </td>
+                                    <td>
+                                        {{book.author}}
+                                    </td>
+                                    <td>
+                                        {{book.description}}
+                                    </td>
+                                    <td>
+                                        {{book.createAt | date: 'short'}}
+                                    </td>
+                                    <td>
+                                        {{book.updateAt | date: 'short'}}
+                                    </td>
+                                    <td>
+                                        <img src="{{book.image}}" alt="">
+                                    </td>
+                                    <td>
+                                        {{book.userId}}
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input id="activeCheckbox" class="form-check-input" type="checkbox" value="" checked (change)="onDisabled(book.id, book, $event)">
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+        <!-- __________________________________ All Disabled user  ____________________________ -->
+        <div class="col-md-12">
+            <div class="card card-plain">
+                <div class="card-header card-header-danger">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4 class="card-title mt-0">Disabled Book List</h4>
+                            <p class="card-category"> Here is list book is disabled</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="height:50px;width:90px" (click)="showDisabledBook = !showDisabledBook">Show</button>
+                    </div>
+                </div>
+                <div class="card-body" *ngIf="showDisabledBook">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class=" text-primary">
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    Author
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    CreateAt
+                                </th>
+                                <th>
+                                    UpdateAt
+                                </th>
+                                <th>
+                                    Image
+                                </th>
+                                <th>
+                                    UserId
+                                </th>
+                                <th>
+                                    Enabled
+                                </th>
+                            </thead>
+                            <tbody *ngFor="let book of disabledBooks">
+                                <tr>
+                                    <td>
+                                        {{book.id}}
+                                    </td>
+                                    <td>
+                                        {{book.title}}
+                                    </td>
+                                    <td>
+                                        {{book.author}}
+                                    </td>
+                                    <td>
+                                        {{book.description}}
+                                    </td>
+                                    <td>
+                                        {{book.createAt | date: 'short'}}
+                                    </td>
+                                    <td>
+                                        {{book.updateAt | date: 'short'}}
+                                    </td>
+                                    <td>
+                                        <img src="{{book.image}}" alt="">
+                                    </td>
+                                    <td>
+                                        {{book.userId}}
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input id="activeCheckbox" class="form-check-input" type="checkbox" value="" (change)="onEnabled(book.id, book, $event)">
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>

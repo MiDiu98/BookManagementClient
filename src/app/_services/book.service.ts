@@ -18,31 +18,39 @@ export class BookService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  getBookNew() {
+  public getBookNew() {
     return this.http.get<any>(Constant.BOOK_URL + '/enable?pageNo=0&pageSize=4&sortBy=updateAt&order=desc');
   }
 
-  getBookEnable() {
+  public getBookEnable() {
     return this.http.get<any>(Constant.BOOK_URL + '/enable?pageNo=0&pageSize=8&sortBy=title&order=asc');
   }
 
-  getBookById(bookId: number): Observable<Book> {
+  public getBookByAdmin(enabled: boolean) {
+    return this.http.get<any>(Constant.BOOK_URL + '/admin?enabled=' + enabled);
+  }
+
+  public getBookById(bookId: number): Observable<Book> {
     return this.http.get<any>(Constant.BOOK_URL + '/' + bookId);
   }
 
-  getMyBook() {
+  public getMyBook() {
     return this.http.get<any>(Constant.BOOK_URL + '/my-books');
   }
 
-  createNewBook(title: string, author: string, description: string, image: string) {
+  public createNewBook(title: string, author: string, description: string, image: string) {
     return this.http.post<any>(Constant.BOOK_URL, {title, author, description, image});
   }
 
-  updateBook(bookId: number, title: string, author: string, description: string, image: string) {
+  public updateBook(bookId: number, title: string, author: string, description: string, image: string) {
     return this.http.put<any>(Constant.BOOK_URL + '/' + bookId, {title, author, description, image});
   }
 
-  deleteBook(bookId: number) {
+  public deleteBook(bookId: number) {
     return this.http.delete<any>(Constant.BOOK_URL + '/' + bookId);
+  }
+
+  public updateBookByAdmin(bookId: number, book: Book) {
+    return this.http.put<any>(Constant.BOOK_URL + '/admin/' + bookId, book);
   }
 }
