@@ -11,8 +11,17 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getAllUser(): Observable<User[]> {
+  public getEnabledUser(): Observable<User[]> {
     return this.http.get<any>(Constant.USER_URL + '/enabled');
+  }
+
+  public getUserByAdmin(enabled: boolean) {
+    return this.http.get<any>(Constant.USER_URL + '/admin?enabled=' + enabled);
+  }
+
+  public updateUserByAdmin(userId: number, user: User, enabled: boolean) {
+    user.enable = enabled;
+    return this.http.put<any>(Constant.USER_URL + '/admin/' + userId, user);
   }
 
 }

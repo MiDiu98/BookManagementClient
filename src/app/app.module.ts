@@ -18,6 +18,8 @@ import { BookDetailComponent } from './_components/book-detail/book-detail.compo
 import { MyBookComponent } from './_components/my-book/my-book.component';
 import { NewBookComponent } from './_components/new-book/new-book.component';
 import { UpdateBookComponent } from './_components/update-book/update-book.component';
+import { ManageUserComponent } from './_components/manage-user/manage-user.component';
+import { ManageBookComponent } from './_components/manage-book/manage-book.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { UpdateBookComponent } from './_components/update-book/update-book.compo
     BookDetailComponent,
     MyBookComponent,
     NewBookComponent,
-    UpdateBookComponent
+    UpdateBookComponent,
+    ManageUserComponent,
+    ManageBookComponent
   ],
   imports: [
     BrowserModule,

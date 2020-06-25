@@ -1,0 +1,162 @@
+<style>
+    .btn-just-icon {
+        border-width: 0px !important;
+    }
+</style>
+<div class="main-content">
+    <div class="container-fluid">
+
+        <!-- __________________________________ All Enabled user  ____________________________ -->
+        <div class="col-md-12">
+            <div class="card card-plain">
+                <div class="card-header card-header-danger">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4 class="card-title mt-0">Enabled User List</h4>
+                            <p class="card-category"> Here is list user is enabled</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="height:50px;width:90px" (click)="showActiveUser = !showActiveUser">Show</button>
+                    </div>
+                </div>
+                <div class="card-body" *ngIf="showActiveUser">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class=" text-primary">
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Firstname
+                                </th>
+                                <th>
+                                    Lastname
+                                </th>
+                                <th>
+                                    Avatar
+                                </th>
+                                <th>
+                                    Roles
+                                </th>
+                                <th>
+                                    Enabled
+                                </th>
+                            </thead>
+                            <tbody *ngFor="let user of enabledUsers">
+                                <tr>
+                                    <td>
+                                        {{user.id}}
+                                    </td>
+                                    <td>
+                                        {{user.email}}
+                                    </td>
+                                    <td>
+                                        {{user.firstname}}
+                                    </td>
+                                    <td>
+                                        {{user.lastname}}
+                                    </td>
+                                    <td>
+                                        {{user.avatar}}
+                                    </td>
+                                    <td>
+                                        {{user.roles}}
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                  <input id="activeCheckbox" class="form-check-input" type="checkbox" value="" checked (change)="onDisabled(user.id, user, $event)">
+                                                  <span class="form-check-sign">
+                                                      <span class="check"></span>
+                                                  </span>
+                                              </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+        <!-- __________________________________ All Disabled user  ____________________________ -->
+        <div class="col-md-12">
+            <div class="card card-plain">
+                <div class="card-header card-header-danger">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4 class="card-title mt-0">Disabled User List</h4>
+                            <p class="card-category"> Here is list user is disabled</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" style="height:50px;width:90px" (click)="showDisabledUser = !showDisabledUser">Show</button>
+                    </div>
+                </div>
+                <div class="card-body" *ngIf="showDisabledUser">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class=" text-primary">
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Firstname
+                                </th>
+                                <th>
+                                    Lastname
+                                </th>
+                                <th>
+                                    Avatar
+                                </th>
+                                <th>
+                                    Roles
+                                </th>
+                                <th>
+                                    Enabled
+                                </th>
+                            </thead>
+                            <tbody *ngFor="let user of disabledUsers">
+                                <tr>
+                                    <td>
+                                        {{user.id}}
+                                    </td>
+                                    <td>
+                                        {{user.email}}
+                                    </td>
+                                    <td>
+                                        {{user.firstname}}
+                                    </td>
+                                    <td>
+                                        {{user.lastname}}
+                                    </td>
+                                    <td>
+                                        {{user.avatar}}
+                                    </td>
+                                    <td>
+                                        {{user.roles}}
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                  <input id="activeCheckbox" class="form-check-input" type="checkbox" value="" (change)="onEnabled(user.id, user, $event)">
+                                                  <span class="form-check-sign">
+                                                      <span class="check"></span>
+                                                  </span>
+                                              </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>

@@ -17,11 +17,11 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllUser();
+    this.getEnabledUser();
   }
 
-  private getAllUser() {
-    this.userService.getAllUser()
+  private getEnabledUser() {
+    this.userService.getEnabledUser()
       .pipe(first())
       .subscribe((data) => {
         console.log(data);

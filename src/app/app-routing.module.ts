@@ -1,3 +1,5 @@
+import { ManageUserComponent } from './_components/manage-user/manage-user.component';
+import { ManageBookComponent } from './_components/manage-book/manage-book.component';
 import { UpdateBookComponent } from './_components/update-book/update-book.component';
 import { NewBookComponent } from './_components/new-book/new-book.component';
 import { NgModule } from '@angular/core';
@@ -20,7 +22,9 @@ const routes: Routes = [
   { path: 'books/:bookId',     component: BookDetailComponent },
   { path: 'mybook',     component: MyBookComponent },
   { path: 'new',     component: NewBookComponent },
-  { path: 'update/:bookId',     component: UpdateBookComponent }
+  { path: 'update/:bookId',     component: UpdateBookComponent },
+  { path: 'manage-user',     component: ManageUserComponent },
+  { path: 'manage-book',     component: ManageBookComponent }
 ];
 
 @NgModule({
