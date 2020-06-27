@@ -1,13 +1,11 @@
-import { AlertifyService } from './../../_services/alertify.service';
-import { Login } from './../../_models/Login';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Comment } from './../../_models/comment.model';
-import { CommentService } from './../../_services/comment.service';
-import { BookService } from './../../_services/book.service';
-import { Book } from './../../_models/Book';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Book } from 'src/app/shared/models/book.model';
+import { Login } from 'src/app/shared/models/Login';
+import { BookService } from 'src/app/shared/services/book.service';
+import { CommentService } from 'src/app/shared/services/comment.service';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
 
 @Component({
   selector: 'app-book-detail',

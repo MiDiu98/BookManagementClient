@@ -1,8 +1,7 @@
 import { Component, NgModuleFactoryLoader } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { AuthenticationService } from './_services/authentication.service';
-import { Login } from './_models/Login';
+import { Login } from './shared/models/Login';
+import { AuthenticationService } from './shared/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -38,6 +37,6 @@ export class AppComponent {
 
   logout() {
       this.authenticationService.logout();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/authentication/login']);
   }
 }

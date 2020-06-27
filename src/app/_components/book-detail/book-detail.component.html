@@ -48,7 +48,7 @@
                     <div class="media d-block d-md-flex mt-3" *ngFor="let comment of comments">
                         <img class="d-flex mb-3 mx-auto " src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg" alt="Generic placeholder image" width="80px">
                         <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                            <h5 class="mt-0 font-weight-bold">{{comment.author}} </h5>
+                            <h5 class="mt-0 font-weight-bold">{{comment.fullname}} </h5>
                             <p style="color: gray; font-family: 'Courier New', Courier, monospace; font-size: 11px;">
                                 {{comment.updateAt | date: 'short'}} {{comment.createAt == comment.updateAt? "":"- Đã cập nhật"}}
                             </p>

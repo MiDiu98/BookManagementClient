@@ -1,4 +1,4 @@
-import { BasicAuthHttpInterceptorService } from './_services/basic-auth-http-interceptor.service';
+import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,40 +9,23 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './_components/home/home.component';
-import { UserComponent } from './_components/user/user.component';
-import { LoginComponent } from './_components/login/login.component';
-import { AboutComponent } from './_components/about/about.component';
-import { RegisterComponent } from './_components/register/register.component';
 import { BookDetailComponent } from './_components/book-detail/book-detail.component';
-import { MyBookComponent } from './_components/my-book/my-book.component';
-import { NewBookComponent } from './_components/new-book/new-book.component';
 import { UpdateBookComponent } from './_components/update-book/update-book.component';
-import { ManageUserComponent } from './_components/manage-user/manage-user.component';
-import { ManageBookComponent } from './_components/manage-book/manage-book.component';
+import { BasicAuthHttpInterceptorService } from './shared/services/basic-auth-http-interceptor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    UserComponent,
-    LoginComponent,
-    AboutComponent,
-    RegisterComponent,
     BookDetailComponent,
-    MyBookComponent,
-    NewBookComponent,
     UpdateBookComponent,
-    ManageUserComponent,
-    ManageBookComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
+    SharedModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true }],
   bootstrap: [AppComponent]

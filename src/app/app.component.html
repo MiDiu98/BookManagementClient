@@ -25,33 +25,33 @@
                             <a href="" class="nav-link">Home</a>
                         </li>
                         <li class="navbar-item">
-                            <a href="users" class="nav-link">User</a>
-                        </li>
-                        <li class="navbar-item" *ngIf="currentUser">
-                            <a href="mybook" class="nav-link">My Book</a>
+                            <a [routerLink]="['/users']" routerLinkActive="router-link-active" class="nav-link">User</a>
                         </li>
                         <li class="navbar-item dropdown" *ngIf="isAdmin">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Admin
-                          </a>
+                          Manage
+                        </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/manage-user">Manage User</a>
-                                <a class="dropdown-item" href="/manage-book">Manage Book</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="/admin/manage-user">User</a>
+                                <a class="dropdown-item" href="/admin/manage-book">Book</a>
+                            </div>
+                        </li>
+                        <li class="navbar-item dropdown" *ngIf="currentUser">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          My Account
+                        </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item">Profile</a>
+                                <a class="dropdown-item" [routerLink]="['/my-account/my-books']" routerLinkActive="router-link-active">My Books</a>
                             </div>
                         </li>
                         <li class="navbar-item" *ngIf="!currentUser">
-                            <a href="login" class="nav-link">Login</a>
+                            <a [routerLink]="['/authentication/login']" routerLinkActive="router-link-active" class="nav-link">Login</a>
                         </li>
                         <li class="navbar-item" *ngIf="currentUser">
-                            <a href="login" class="nav-link" (click)="logout()">Logout</a>
+                            <a class="nav-link" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true">Logout</i></a>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
-                        <span class="fa fa-search"></span>
-                    </form>
                 </div>
             </nav>
         </div>

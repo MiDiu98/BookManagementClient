@@ -1,10 +1,10 @@
-import { Book } from './../../_models/Book';
-import { BookService } from './../../_services/book.service';
 import { Component, OnInit } from '@angular/core';
-import { AlertifyService } from './../../_services/alertify.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { Book } from 'src/app/shared/models/book.model';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
+import { BookService } from 'src/app/shared/services/book.service';
 
 @Component({
   selector: 'app-update-book',
@@ -25,6 +25,7 @@ export class UpdateBookComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.initForm();
     this.route.params.subscribe(
       (params: Params) => {
         this.bookId = params.bookId;
@@ -34,6 +35,15 @@ export class UpdateBookComponent implements OnInit {
   }
 
   get f() {return this.bookForm.controls; }
+
+  private initForm() {
+    this.bookForm = this.formBuilder.group({
+      title: [null, Validators.required],
+      author: [null, Validators.required],
+      description: [null, Validators.required],
+      image: [null, Validators.required],
+    });
+  }
 
   onSubmit() {
 
@@ -63,11 +73,11 @@ export class UpdateBookComponent implements OnInit {
       (data: Book) => {
         console.log(data);
         this.book = data;
-        this.bookForm = this.formBuilder.group({
-          title: [this.book.title, Validators.required],
-          author: [this.book.author, Validators.required],
-          description: [this.book.description, Validators.required],
-          image: [this.book.image, Validators.required],
+        this.bookForm.setValue({
+          title: this.book.title,
+          author: this.book.author,
+          description: this.book.description,
+          image: this.book.image
         });
       }
     )
