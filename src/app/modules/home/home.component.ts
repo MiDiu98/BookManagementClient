@@ -11,16 +11,15 @@ import { BookService } from 'src/app/shared/services/book.service';
 })
 
 export class HomeComponent implements OnInit {
-  bookNew: Book[] = [];
+  lastestBook: Book[] = [];
   books: Book[] = [];
   searchForm: FormGroup;
   isSearch = false;
 
   // For Pagination
-  currentPage = 1;
-  startPage = 1;
-  endPage = 1;
-  totalRecords = 0;
+  public currentPage: number;
+  public startPage = 0;
+  public endPage: number;
 
   constructor(
     private bookService: BookService,
@@ -28,14 +27,12 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('11111');
-
     this.searchForm = this.formBuilder.group({
       title: [''],
       author: ['']
     });
     this.getBookEnabled();
-    this.getBookNew();
+    this.getLastestBook();
   }
 
   // convinience getter for easy access to form fields
@@ -47,16 +44,18 @@ export class HomeComponent implements OnInit {
           .subscribe(
             data => {
               console.log(data);
-              this.books = data;
+              this.books = data.booksDto;
+              this.currentPage = data.currentPage;
+              this.endPage = data.totalPages - 1;
             }
           );
   }
 
-  public getBookNew() {
+  public getLastestBook() {
     this.bookService.getBookNew().subscribe(
       data => {
         console.log(data);
-        this.bookNew = data;
+        this.lastestBook = data.booksDto;
       }
     )
   }
@@ -65,52 +64,44 @@ export class HomeComponent implements OnInit {
     this.bookService.searchBookByTitleOrAuthor(this.f.title.value, this.f.author.value).subscribe(
       response => {
           this.books = response;
-          this.bookNew = [];
+          this.lastestBook = [];
       }
     )
   }
 
   public getNextPage() {
-    // this.bookService.getAll(this.currentPage + 1).subscribe(
-    //   response => {
-    //     this.users = response.Data;
-    //     this.totalRecords = response.TotalRecords;
-    //     this.endPage = Math.floor(this.totalRecords / 5) + (this.totalRecords % 5 === 0 ? 0 : 1);
-    //     this.currentPage++;
-    //   }
-    // );
+    this.bookService.getBookEnable(this.currentPage + 1).subscribe(
+      response => {
+        this.books = response.booksDto;
+        this.currentPage = response.currentPage;
+      }
+    );
 }
 
 public getPrePage() {
-  // this.bookService.getAll(this.currentPage - 1).subscribe(
-  //   response => {
-  //     this.users = response.Data;
-  //     this.totalRecords = response.TotalRecords;
-  //     this.endPage = Math.floor(this.totalRecords / 5) + (this.totalRecords % 5 === 0 ? 0 : 1);
-  //     this.currentPage--;
-  //   }
-  // );
+  this.bookService.getBookEnable(this.currentPage - 1).subscribe(
+    response => {
+      this.books = response.booksDto;
+      this.currentPage = response.currentPage;
+    }
+  );
 }
 
 public getStartPage() {
-  // this.bookService.getAll(this.startPage).subscribe(
-  //   response => {
-  //     this.users = response.Data;
-  //     this.totalRecords = response.TotalRecords;
-  //     this.endPage = Math.floor(this.totalRecords / 5) + (this.totalRecords % 5 === 0 ? 0 : 1);
-  //     this.currentPage = this.startPage;
-  //   }
-  // );
+  this.bookService.getBookEnable(this.startPage).subscribe(
+    response => {
+      this.books = response.booksDto;
+      this.currentPage = response.currentPage;
+    }
+  );
 }
 
 public getEndPage() {
-  // this.bookService.getAll(this.endPage).subscribe(
-  //   response => {
-  //     this.users = response.Data;
-  //     this.totalRecords = response.TotalRecords;
-  //     this.endPage = Math.floor(this.totalRecords / 5) + (this.totalRecords % 5 === 0 ? 0 : 1);
-  //     this.currentPage = this.endPage;
-  //   }
-  // );
+  this.bookService.getBookEnable(this.endPage).subscribe(
+    response => {
+      this.books = response.booksDto;
+      this.currentPage = response.currentPage;
+    }
+  );
 }
 }

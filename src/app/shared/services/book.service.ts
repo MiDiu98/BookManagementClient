@@ -22,8 +22,8 @@ export class BookService {
     return this.http.get<any>(Constant.BOOK_URL + '/enable?pageNo=0&pageSize=4&sortBy=updateAt&order=desc');
   }
 
-  public getBookEnable() {
-    return this.http.get<any>(Constant.BOOK_URL + '/enable?pageNo=0&pageSize=8&sortBy=title&order=asc');
+  public getBookEnable(pageNo: number = 0, pageSize: number = 4, sortBy: string = 'title', order: string = 'asc') {
+    return this.http.get<any>(Constant.BOOK_URL + `/enable?pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${sortBy}&order=${order}`);
   }
 
   public getBookByAdmin(enabled: boolean) {
@@ -48,6 +48,10 @@ export class BookService {
 
   public deleteBook(bookId: number) {
     return this.http.delete<any>(Constant.BOOK_URL + '/' + bookId);
+  }
+
+  public deleteBookByAdmin(bookId: number) {
+    return this.http.delete<any>(Constant.BOOK_URL + '/admin/' + bookId);
   }
 
   public updateBookByAdmin(bookId: number, book: Book) {
