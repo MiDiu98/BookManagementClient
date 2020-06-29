@@ -23,4 +23,12 @@ export class UserService {
     return this.http.put<any>(Constant.USER_URL + '/admin/' + userId, user);
   }
 
+  public delete(userId: number) {
+    return this.http.delete<any>(Constant.USER_URL + '/' + userId);
+  }
+
+  public deleteByAdmin(userId: number) {
+    return this.http.delete<any>(Constant.USER_URL + '/admin/' + userId);
+  }
+
 }

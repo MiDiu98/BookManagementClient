@@ -1,8 +1,8 @@
 import { environment } from 'src/environments/environment.prod';
 
 export class Constant {
-  public static URL_API = environment.backendIP + ":" + environment.backendPort;
-  public static PREFIX = "api";
+  public static URL_API = environment.backendIP + ':' + environment.backendPort;
+  public static PREFIX = 'api';
   //public static URL_API = "https://bookmanagement9892.herokuapp.com";
 
   public static COMMON_URL = [Constant.URL_API, Constant.PREFIX].join('/');

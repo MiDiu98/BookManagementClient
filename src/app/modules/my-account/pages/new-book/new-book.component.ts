@@ -21,6 +21,12 @@ export class NewBookComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.bookForm = this.formBuilder.group({
+      title: [null, Validators.required],
+      author: [null, Validators.required],
+      description: [null, Validators.required],
+      image: [null, Validators.required],
+    });
   }
 
   get f() {return this.bookForm.controls; }
@@ -45,30 +51,8 @@ export class NewBookComponent implements OnInit {
       error => {
         this.alertify.error('Tạo mới sách không thành công, vui lòng thử lại!');
       }
-    )
+    );
   }
-
-  // private updateBook() {
-  // this.bookService.updateBook(this.bookId, this.f.title.value, this.f.author.value, this.f.description.value, this.f.image.value).subscribe(
-  //     response => {
-  //       console.log(response);
-  //       this.alertify.success('Cập nhật thành công!');
-  //       this.router.navigate(['/books/' + response.id]);
-  //     },
-  //     error => {
-  //       this.alertify.error('Cập nhật không thành công, vui lòng thử lại!');
-  //     }
-  //   )
-  // }
-
-  // private getBookById(bookId: number) {
-  //   this.bookService.getBookById(bookId).subscribe(
-  //     (data: Book) => {
-  //       console.log(data);
-  //       this.book = data;
-  //     }
-  //   )
-  // }
 
   public onSubmitForm(value: any) {
     console.log('value', value);

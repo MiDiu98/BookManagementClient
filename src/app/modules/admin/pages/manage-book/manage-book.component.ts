@@ -44,12 +44,12 @@ export class ManageBookComponent implements OnInit {
         book.enabled = false;
         this.bookService.updateBookByAdmin(bookId, book).subscribe(
           data => {
-            this.alertifyService.success('Cập nhật trạng thái thành công');
+            this.alertifyService.success('Update status successful');
             this.getEnabledBook();
             this.getDisabledBook();
           },
           error => {
-            this.alertifyService.error('Cập nhật trạng thái không thành công');
+            this.alertifyService.error('Update status fail');
           }
         )
       }
@@ -61,15 +61,29 @@ export class ManageBookComponent implements OnInit {
         book.enabled = true;
         this.bookService.updateBookByAdmin(bookId, book).subscribe(
           data => {
-            this.alertifyService.success('Cập nhật trạng thái thành công');
+            this.alertifyService.success('Update status successful');
             this.getEnabledBook();
             this.getDisabledBook();
           },
           error => {
-            this.alertifyService.error('Cập nhật trạng thái không thành công');
+            this.alertifyService.error('Update status fail');
           }
         )
       }
+    }
+
+    public deleteBook(bookId: number) {
+      this.alertifyService.confirm('Delete this book, are you sure?', () => {
+        this.bookService.deleteBookByAdmin(bookId).subscribe(
+          response => {
+            this.alertifyService.success('Deleted');
+            this.getDisabledBook();
+          },
+          error => {
+            this.alertifyService.error('Delete fail');
+          }
+        )
+      });
     }
 
 }

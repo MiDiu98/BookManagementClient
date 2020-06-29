@@ -114,4 +114,17 @@ export class ManageUserComponent implements OnInit {
       return false;
     }
 
+    public deleteUser(userId: number) {
+      this.alertifyService.confirm('Delete this user, are you sure?', () => {
+        this.userService.deleteByAdmin(userId).subscribe(
+          response => {
+            this.alertifyService.success('Deleted');
+            this.getDisabledUser();
+          },
+          error => {
+            this.alertifyService.error('Delete fail');
+          }
+        );
+      });
+    }
 }

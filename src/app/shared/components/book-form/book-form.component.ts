@@ -8,8 +8,9 @@ import { EventEmitter } from 'protractor';
   styleUrls: ['./book-form.component.css']
 })
 export class BookFormComponent implements OnInit {
-  @Input() form: FormGroup;
-  @Output() submitEmitter = new EventEmitter();
+  // @Input() form: FormGroup;
+  // @Output() submitEmitter = new EventEmitter();
+  form: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder
@@ -36,7 +37,7 @@ export class BookFormComponent implements OnInit {
       return;
     }
 
-    this.submitEmitter.emit('book-form -shared');
+    //this.submitEmitter.emit('book-form -shared');
     console.log(this.f.title.value, this.f.author.value, this.f.description.value, this.f.image.value);
   }
 
