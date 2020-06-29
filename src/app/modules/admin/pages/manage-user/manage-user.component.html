@@ -22,19 +22,19 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class=" text-primary">
-                                <th>
+                                <th (click)="getEnabledUser('id')">
                                     ID
                                 </th>
-                                <th>
+                                <th (click)="getEnabledUser('email')">
                                     Email
                                 </th>
                                 <th>
                                     Enabled
                                 </th>
-                                <th>
+                                <th (click)="getEnabledUser('firstName')">
                                     Firstname
                                 </th>
-                                <th>
+                                <th (click)="getEnabledUser('lastName')">
                                     Lastname
                                 </th>
                                 <th>
@@ -113,19 +113,19 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class=" text-primary">
-                                <th>
+                                <th (click)="getDisabledUser('id')">
                                     ID
                                 </th>
-                                <th>
+                                <th (click)="getDisabledUser('email')">
                                     Email
                                 </th>
                                 <th>
                                     Enabled
                                 </th>
-                                <th>
+                                <th (click)="getDisabledUser('firstName')">
                                     Firstname
                                 </th>
-                                <th>
+                                <th (click)="getDisabledUser('lastName')">
                                     Lastname
                                 </th>
                                 <th>

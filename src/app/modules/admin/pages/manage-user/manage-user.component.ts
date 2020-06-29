@@ -14,6 +14,7 @@ export class ManageUserComponent implements OnInit {
   disabledUsers: User[] = [];
   showActiveUser = false;
   showDisabledUser = true;
+  sortOrder = true;   // true: asc, false: desc
 
   constructor(
     private userService: UserService,
@@ -23,19 +24,21 @@ export class ManageUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getEnabledUser();
-    this.getDisabledUser();
+    this.getEnabledUser('id');
+    this.getDisabledUser('id');
   }
 
-  getDisabledUser() {
-    this.userService.getUserByAdmin(false).subscribe(response => {
+  getDisabledUser(sortBy: string) {
+    this.userService.getUserByAdmin(false, sortBy, this.sortOrder ? 'asc' : 'desc').subscribe(response => {
       this.disabledUsers = response;
+      this.sortOrder = !this.sortOrder;
     })
   }
 
-  getEnabledUser() {
-    this.userService.getUserByAdmin(true).subscribe(response => {
+  getEnabledUser(sortBy: string) {
+    this.userService.getUserByAdmin(true, sortBy, this.sortOrder ? 'asc' : 'desc').subscribe(response => {
       this.enabledUsers = response;
+      this.sortOrder = !this.sortOrder;
     });
   }
 
@@ -46,8 +49,8 @@ export class ManageUserComponent implements OnInit {
         this.userService.updateUserByAdmin(userId, user).subscribe(
           data => {
             this.alertifyService.success('Cập nhật trạng thái thành công');
-            this.getEnabledUser();
-            this.getDisabledUser();
+            this.getEnabledUser('id');
+            this.getDisabledUser('id');
           },
           error => {
             this.alertifyService.error('Cập nhật trạng thái không thành công');
@@ -63,8 +66,8 @@ export class ManageUserComponent implements OnInit {
         this.userService.updateUserByAdmin(userId, user).subscribe(
           data => {
             this.alertifyService.success('Cập nhật trạng thái thành công');
-            this.getEnabledUser();
-            this.getDisabledUser();
+            this.getEnabledUser('id');
+            this.getDisabledUser('id');
           },
           error => {
             this.alertifyService.error('Cập nhật trạng thái không thành công');
@@ -81,28 +84,28 @@ export class ManageUserComponent implements OnInit {
           this.userService.updateUserByAdmin(userId, user).subscribe(
             data => {
               this.alertifyService.success('Cập nhật trạng thái thành công');
-              this.getEnabledUser();
+              this.getEnabledUser('id');
             },
             error => {
               this.alertifyService.error('Cập nhật trạng thái không thành công');
             }
           );
         });
-        this.getEnabledUser();
+        this.getEnabledUser('id');
       } else {
         this.alertifyService.confirm('Bạn có chắc muốn thay đổi quyền không?', () => {
           user.roles = ['ROLE_USER'];
           this.userService.updateUserByAdmin(userId, user).subscribe(
             data => {
               this.alertifyService.success('Cập nhật trạng thái thành công');
-              this.getEnabledUser();
+              this.getEnabledUser('id');
             },
             error => {
               this.alertifyService.error('Cập nhật trạng thái không thành công');
             }
           );
         });
-        this.getEnabledUser();
+        this.getEnabledUser('id');
       }
     }
 
@@ -119,7 +122,7 @@ export class ManageUserComponent implements OnInit {
         this.userService.deleteByAdmin(userId).subscribe(
           response => {
             this.alertifyService.success('Deleted');
-            this.getDisabledUser();
+            this.getDisabledUser('id');
           },
           error => {
             this.alertifyService.error('Delete fail');

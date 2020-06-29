@@ -15,8 +15,8 @@ export class UserService {
     return this.http.get<any>(Constant.USER_URL + '/enabled');
   }
 
-  public getUserByAdmin(enabled: boolean) {
-    return this.http.get<any>(Constant.USER_URL + '/admin?enabled=' + enabled);
+  public getUserByAdmin(enabled: boolean, sortBy: string = 'id', order: string = 'asc') {
+    return this.http.get<any>(Constant.USER_URL + `/admin?enabled=${enabled}&sortBy=${sortBy}&order=${order}`);
   }
 
   public updateUserByAdmin(userId: number, user: User) {

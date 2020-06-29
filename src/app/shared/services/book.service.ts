@@ -26,8 +26,8 @@ export class BookService {
     return this.http.get<any>(Constant.BOOK_URL + `/enable?pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${sortBy}&order=${order}`);
   }
 
-  public getBookByAdmin(enabled: boolean) {
-    return this.http.get<any>(Constant.BOOK_URL + '/admin?enabled=' + enabled);
+  public getBookByAdmin(enabled: boolean, sortBy: string = 'id', order: string = 'asc') {
+    return this.http.get<any>(Constant.BOOK_URL + `/admin?enabled=${enabled}&sortBy=${sortBy}&order=${order}`);
   }
 
   public getBookById(bookId: number): Observable<Book> {

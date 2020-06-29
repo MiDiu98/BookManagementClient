@@ -13,6 +13,7 @@ export class ManageBookComponent implements OnInit {
   disabledBooks: Book[] = [];
   showEnabledBook = false;
   showDisabledBook = true;
+  sortOrder = true;
 
   constructor(
     private bookService: BookService,
@@ -22,19 +23,21 @@ export class ManageBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getEnabledBook();
-    this.getDisabledBook();
+    this.getEnabledBook('id');
+    this.getDisabledBook('id');
   }
 
-  getDisabledBook() {
-    this.bookService.getBookByAdmin(false).subscribe(response => {
+  getDisabledBook(sortBy: string) {
+    this.bookService.getBookByAdmin(false, sortBy, this.sortOrder ? 'asc' : 'desc').subscribe(response => {
       this.disabledBooks = response;
+      this.sortOrder = !this.sortOrder;
     })
   }
 
-  getEnabledBook() {
-    this.bookService.getBookByAdmin(true).subscribe(response => {
+  getEnabledBook(sortBy: string) {
+    this.bookService.getBookByAdmin(true, sortBy, this.sortOrder ? 'asc' : 'desc').subscribe(response => {
       this.enabledBooks = response;
+      this.sortOrder = !this.sortOrder;
     });
   }
 
@@ -45,8 +48,8 @@ export class ManageBookComponent implements OnInit {
         this.bookService.updateBookByAdmin(bookId, book).subscribe(
           data => {
             this.alertifyService.success('Update status successful');
-            this.getEnabledBook();
-            this.getDisabledBook();
+            this.getEnabledBook('id');
+            this.getDisabledBook('id');
           },
           error => {
             this.alertifyService.error('Update status fail');
@@ -62,8 +65,8 @@ export class ManageBookComponent implements OnInit {
         this.bookService.updateBookByAdmin(bookId, book).subscribe(
           data => {
             this.alertifyService.success('Update status successful');
-            this.getEnabledBook();
-            this.getDisabledBook();
+            this.getEnabledBook('id');
+            this.getDisabledBook('id');
           },
           error => {
             this.alertifyService.error('Update status fail');
@@ -77,7 +80,7 @@ export class ManageBookComponent implements OnInit {
         this.bookService.deleteBookByAdmin(bookId).subscribe(
           response => {
             this.alertifyService.success('Deleted');
-            this.getDisabledBook();
+            this.getDisabledBook('id');
           },
           error => {
             this.alertifyService.error('Delete fail');

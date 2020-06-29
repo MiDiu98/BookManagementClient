@@ -6,7 +6,7 @@
 <div class="main-content">
     <div class="container-fluid">
 
-        <!-- __________________________________ All Enabled user  ____________________________ -->
+        <!-- __________________________________ All Enabled book  ____________________________ -->
         <div class="col-md-12">
             <div class="card card-plain">
                 <div class="card-header card-header-danger">
@@ -22,28 +22,28 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class=" text-primary">
-                                <th>
+                                <th (click)="getEnabledBook('id')">
                                     ID
                                 </th>
-                                <th>
+                                <th (click)="getEnabledBook('title')">
                                     Title
                                 </th>
-                                <th>
+                                <th (click)="getEnabledBook('author')">
                                     Author
                                 </th>
                                 <th>
                                     Description
                                 </th>
-                                <th>
+                                <th (click)="getEnabledBook('createAt')">
                                     CreateAt
                                 </th>
-                                <th>
+                                <th (click)="getEnabledBook('updateAt')">
                                     UpdateAt
                                 </th>
                                 <th>
                                     Image
                                 </th>
-                                <th>
+                                <th (click)="getEnabledBook('userId')">
                                     UserId
                                 </th>
                                 <th>
@@ -111,28 +111,28 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class=" text-primary">
-                                <th>
+                                <th (click)="getDisabledBook('id')">
                                     ID
                                 </th>
-                                <th>
+                                <th (click)="getDisabledBook('title')">
                                     Title
                                 </th>
-                                <th>
+                                <th (click)="getDisabledBook('author')">
                                     Author
                                 </th>
                                 <th>
                                     Description
                                 </th>
-                                <th>
+                                <th (click)="getDisabledBook('createAt')">
                                     CreateAt
                                 </th>
-                                <th>
+                                <th (click)="getDisabledBook('updateAt')">
                                     UpdateAt
                                 </th>
                                 <th>
                                     Image
                                 </th>
-                                <th>
+                                <th (click)="getDisabledBook('userId')">
                                     UserId
                                 </th>
                                 <th>
