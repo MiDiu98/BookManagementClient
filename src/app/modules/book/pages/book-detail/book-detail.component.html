@@ -81,7 +81,7 @@
                             <textarea formControlName="message" class="form-control" id="replyFormComment" rows="5"></textarea>
                         </div>
                         <div class="text-center mt-4">
-                            <button class="btn btn-info btn-md" *ngIf="!isUpdate">Post</button>
+                            <button class="btn btn-info btn-md" *ngIf="!isUpdate">Comment</button>
                             <button type="button" (click)="updateComment()" class="btn btn-warning btn-md" *ngIf="isUpdate">Update</button>
                         </div>
                     </form>
@@ -89,6 +89,10 @@
                 </div>
             </div>
             <!--/.Reply-->
+
+            <div *ngIf="!isLogin">
+                <app-login-modal></app-login-modal>
+            </div>
         </div>
     </div>
 </section>

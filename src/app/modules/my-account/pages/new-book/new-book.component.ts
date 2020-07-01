@@ -45,11 +45,11 @@ export class NewBookComponent implements OnInit {
     this.bookService.createNewBook(this.f.title.value, this.f.author.value, this.f.description.value, this.f.image.value).subscribe(
       response => {
         console.log(response);
-        this.alertify.success('Đã tạo mới một cuốn sách!');
+        this.alertify.success('Create book successful!');
         this.router.navigate(['/books/' + response.id]);
       },
       error => {
-        this.alertify.error('Tạo mới sách không thành công, vui lòng thử lại!');
+        this.alertify.error('Fail to create the book, please try again!');
       }
     );
   }

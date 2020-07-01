@@ -17,7 +17,8 @@ export class RegisterComponent implements OnInit {
   returnUrl: string;
   status = false;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+      private formBuilder: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
       private authenticationService: AuthenticationService,
@@ -51,12 +52,12 @@ export class RegisterComponent implements OnInit {
               .pipe(first())
               .subscribe(
                   data => {
-                      this.alertify.success("Đăng kí thành công!");
+                      this.alertify.success('Register successful!');
                       this.router.navigate(['/login']);
                       this.status = true;
                   },
                   error => {
-                      this.alertify.error("Email đã được sử dụng để đăng kí!");
+                      this.alertify.error('Email is used to register!');
                       this.loading = false;
                       this.status = true;
                   });

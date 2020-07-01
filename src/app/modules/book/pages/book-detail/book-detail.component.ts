@@ -6,6 +6,7 @@ import { Login } from 'src/app/shared/models/Login';
 import { BookService } from 'src/app/shared/services/book.service';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
+import { Comment } from 'src/app/shared/models/comment.model';
 
 @Component({
   selector: 'app-book-detail',
@@ -20,10 +21,10 @@ export class BookDetailComponent implements OnInit {
   currentUser: Login;
   isUpdate = false;
   commentCurrent: number;
+  isLogin = true;
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
     private route: ActivatedRoute,
     private bookService: BookService,
     private commentService: CommentService,
@@ -47,7 +48,6 @@ export class BookDetailComponent implements OnInit {
   getBookById(bookId: number) {
     this.bookService.getBookById(bookId).subscribe(
       (data: Book) => {
-        console.log(data);
         this.book = data;
       }
     )
@@ -56,7 +56,6 @@ export class BookDetailComponent implements OnInit {
   getAllComment(bookId: number) {
     this.commentService.getAllComment(bookId).subscribe(
       (data) => {
-        console.log(data);
         this.comments = data;
       }
     )
@@ -67,50 +66,57 @@ export class BookDetailComponent implements OnInit {
   postComment() {
     // stop here if form is invalid
     if (this.commentForm.invalid) {
-      console.log('Invalid!');
+      this.alertContentInvalid();
       return;
     }
 
     this.commentService.postComment(this.bookId, this.f.message.value).subscribe(
       data => {
-        this.alertify.success('Bạn vừa thêm bình luận!');
+        this.alertify.success('You just add a comment!');
         this.getAllComment(this.bookId);
+        this.f.message.setValue('');
       },
       error => {
-        this.alertify.warning('Đăng nhập để bình luận!');
+        this.alertify.warning('You must login to comment!');
+        this.isLogin = false;
       }
-    )
+    );
   }
 
   editButtonClick(commentId: number) {
     this.commentService.getCommentById(commentId).subscribe(
       data => {
-        console.log(data);
         this.f.message.setValue(data.message);
         this.isUpdate = true;
         this.commentCurrent = commentId;
       }
-    )
+    );
   }
 
   deleteButtonClick(commentId: number) {
-    this.deleteComment(commentId);
+    this.alertify.confirm('Delete this comment, are you sure?', () => {
+      this.deleteComment(commentId);
+    });
   }
 
   updateComment() {
+    if (this.commentForm.invalid) {
+      this.alertContentInvalid();
+      return;
+    }
+
     this.commentService.updateComment(this.commentCurrent, this.f.message.value).subscribe(
       data => {
-        console.log(data);
         this.getAllComment(this.bookId);
         this.f.message.setValue('');
         this.isUpdate = false;
       },
       error => {
-        this.alertify.error('Bạn không có quyền chỉnh sửa hoặc chưa đăng nhập!');
-        this.f.message.setValue('');
+        this.alertify.error('You do not have edit access or have not login yet!');
         this.isUpdate = false;
+        this.isLogin = false;
       }
-    )
+    );
   }
 
   deleteComment(commentId: number) {
@@ -119,9 +125,14 @@ export class BookDetailComponent implements OnInit {
         this.getAllComment(this.bookId);
       },
       error => {
-        this.alertify.error('Bạn không có quyền xóa hoặc chưa đăng nhập!');
+        this.alertify.error('You do not have delete access or have not login yet!');
+        this.isLogin = false;
       }
     );
+  }
+
+  private alertContentInvalid() {
+    this.alertify.error('You have not written comment!');
   }
 
 }

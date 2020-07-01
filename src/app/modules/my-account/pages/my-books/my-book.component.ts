@@ -32,18 +32,18 @@ export class MyBookComponent implements OnInit {
   }
 
   public updateBook(bookId: number) {
-    this.router.navigate(['/update/' + bookId]);
+    this.router.navigate(['/my-account/update-book/' + bookId]);
   }
 
   public deleteBook(bookId: number) {
-    this.alertify.confirm('Bạn có chắc muốn xóa không?', () => {
+    this.alertify.confirm('Delete this book, are you sure?', () => {
       this.bookService.deleteBook(bookId).subscribe(
         response => {
-          this.alertify.success('Xóa thành công');
+          this.alertify.success('Deleted');
           this.getMyBook();
         },
         error => {
-          this.alertify.error('Xóa không thành công');
+          this.alertify.error('Delete fail');
         }
       )
     });

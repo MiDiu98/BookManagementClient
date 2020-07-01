@@ -9,15 +9,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BookDetailComponent } from './_components/book-detail/book-detail.component';
-import { UpdateBookComponent } from './_components/update-book/update-book.component';
 import { BasicAuthHttpInterceptorService } from './shared/services/basic-auth-http-interceptor.service';
+import * as bootstrap from 'bootstrap';
+import * as $ from 'jquery';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookDetailComponent,
-    UpdateBookComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private alertify: AlertifyService
   ) {
-    // redirect to home if already logged in
+
     if (this.authenticationService.currentUserValue) {
         this.router.navigate(['/']);
     }
@@ -53,10 +53,10 @@ export class LoginComponent implements OnInit {
           .pipe(first())
           .subscribe(
               data => {
-                this.alertify.success("Đăng nhập thành công!");
+                this.alertify.success('Login successful!');
                 this.router.navigate([this.returnUrl]); },
               error => {
-                this.alertify.error("Email hoặc mật khẩu sai!");
+                this.alertify.error('Email or Password is incorrect!');
                 this.loading = false;
               });
   }

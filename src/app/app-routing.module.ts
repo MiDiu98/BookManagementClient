@@ -1,8 +1,6 @@
-import { UpdateBookComponent } from './_components/update-book/update-book.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { BookDetailComponent } from './_components/book-detail/book-detail.component';
 
 const routes: Routes = [
   {
@@ -30,8 +28,10 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
   },
-  { path: 'books/:bookId',     component: BookDetailComponent },
-  { path: 'update/:bookId',     component: UpdateBookComponent }
+  {
+    path: 'books',
+    loadChildren: () => import('./modules/book/book.module').then(m => m.BookModule)
+  },
 ];
 
 @NgModule({

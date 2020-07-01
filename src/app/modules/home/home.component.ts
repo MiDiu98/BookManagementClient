@@ -11,7 +11,7 @@ import { BookService } from 'src/app/shared/services/book.service';
 })
 
 export class HomeComponent implements OnInit {
-  lastestBook: Book[] = [];
+  latestBook: Book[] = [];
   books: Book[] = [];
   searchForm: FormGroup;
   isSearch = false;
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
     this.bookService.getBookNew().subscribe(
       data => {
         console.log(data);
-        this.lastestBook = data.booksDto;
+        this.latestBook = data.booksDto;
       }
     )
   }
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
     this.bookService.searchBookByTitleOrAuthor(this.f.title.value, this.f.author.value).subscribe(
       response => {
           this.books = response;
-          this.lastestBook = [];
+          this.latestBook = [];
       }
     )
   }

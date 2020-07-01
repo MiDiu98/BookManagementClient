@@ -59,11 +59,11 @@ export class UpdateBookComponent implements OnInit {
   this.bookService.updateBook(this.bookId, this.f.title.value, this.f.author.value, this.f.description.value, this.f.image.value).subscribe(
       response => {
         console.log(response);
-        this.alertify.success('Cập nhật thành công!');
+        this.alertify.success('Update successful!');
         this.router.navigate(['/books/' + response.id]);
       },
       error => {
-        this.alertify.error('Cập nhật không thành công, vui lòng thử lại!');
+        this.alertify.error('Update fail, please try again!');
       }
     )
   }
