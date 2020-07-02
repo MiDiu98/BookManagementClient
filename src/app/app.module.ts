@@ -4,18 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BasicAuthHttpInterceptorService } from './shared/services/basic-auth-http-interceptor.service';
-import * as bootstrap from 'bootstrap';
-import * as $ from 'jquery';
+import { DialogBodyComponent } from './_components/dialog-body/dialog-body.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    DialogBodyComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,9 +23,10 @@ import * as $ from 'jquery';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogBodyComponent]
 })
 export class AppModule { }

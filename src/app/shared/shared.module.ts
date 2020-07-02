@@ -10,7 +10,7 @@ const modules = [
 
 @NgModule({
   declarations: [
-     BookFormComponent
+     BookFormComponent,
   ],
   imports: [
     CommonModule,
