@@ -9,13 +9,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BasicAuthHttpInterceptorService } from './shared/services/basic-auth-http-interceptor.service';
-import { DialogBodyComponent } from './_components/dialog-body/dialog-body.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogBodyComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,10 +22,11 @@ import { DialogBodyComponent } from './_components/dialog-body/dialog-body.compo
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
+    MatDialogModule,
     SharedModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true }],
   bootstrap: [AppComponent],
-  entryComponents: [DialogBodyComponent]
+  entryComponents: []
 })
 export class AppModule { }

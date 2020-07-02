@@ -3,7 +3,12 @@ import { Component, NgModuleFactoryLoader } from '@angular/core';
 import { Router } from '@angular/router';
 import { Login } from './shared/models/Login';
 import { AuthenticationService } from './shared/services/authentication.service';
-import { DialogBodyComponent } from './_components/dialog-body/dialog-body.component';
+
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -16,6 +21,9 @@ export class AppComponent {
   isLogin = false;
   isAdmin = false;
   titleModal = 'Example Angular 8 Material Dialog';
+
+  name: string;
+  animal: string;
 
   constructor(
     public dialog: MatDialog,
@@ -42,8 +50,5 @@ export class AppComponent {
   logout() {
       this.authenticationService.logout();
       this.router.navigate(['/authentication/login']);
-  }
-
-  openDialog() {
   }
 }
