@@ -22,28 +22,28 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class=" text-primary">
-                                <th (click)="getEnabledBook('id')">
+                                <th (click)="getEnabledBook(currentEnabledBookPage,'id')">
                                     ID
                                 </th>
-                                <th (click)="getEnabledBook('title')">
+                                <th (click)="getEnabledBook(currentEnabledBookPage ,'title')">
                                     Title
                                 </th>
-                                <th (click)="getEnabledBook('author')">
+                                <th (click)="getEnabledBook(currentEnabledBookPage ,'author')">
                                     Author
                                 </th>
                                 <th>
                                     Description
                                 </th>
-                                <th (click)="getEnabledBook('createAt')">
+                                <th (click)="getEnabledBook(currentEnabledBookPage ,'createAt')">
                                     CreateAt
                                 </th>
-                                <th (click)="getEnabledBook('updateAt')">
+                                <th (click)="getEnabledBook(currentEnabledBookPage ,'updateAt')">
                                     UpdateAt
                                 </th>
                                 <th>
                                     Image
                                 </th>
-                                <th (click)="getEnabledBook('userId')">
+                                <th (click)="getEnabledBook(currentEnabledBookPage ,'userId')">
                                     UserId
                                 </th>
                                 <th>
@@ -89,6 +89,20 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <nav aria-label="Page navigation example" style="margin-top: 30px;">
+                            <ul class="pagination" style="width: max-content; margin: auto;">
+                                <li class="page-item {{currentEnabledBookPage===startEnabledPage? 'disabled':''}}"><a class="page-link" (click)="getStartEnabledPage()">Start</a></li>
+                                <li class="page-item {{currentEnabledBookPage===startEnabledPage? 'disabled':''}}">
+                                    <a class="page-link" (click)="getPrevEnabledPage()">
+                                        << Prev</a>
+                                </li>
+                                <li class="page-item"><a class="page-link">...</a></li>
+                                <li class="page-item active"><a class="page-link">{{currentEnabledBookPage + 1}}</a></li>
+                                <li class="page-item"><a class="page-link">...</a></li>
+                                <li class="page-item {{currentEnabledBookPage===endEnabledPage? 'disabled':''}}"><a class="page-link" (click)="getNextEnabledPage()">Next >></a></li>
+                                <li class="page-item {{currentEnabledBookPage===endEnabledPage? 'disabled':''}}"><a class="page-link" (click)="getEndEnabledPage()">End</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -111,28 +125,28 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class=" text-primary">
-                                <th (click)="getDisabledBook('id')">
+                                <th (click)="getDisabledBook(currentDisabledBookPage,'id')">
                                     ID
                                 </th>
-                                <th (click)="getDisabledBook('title')">
+                                <th (click)="getDisabledBook(currentDisabledBookPage,'title')">
                                     Title
                                 </th>
-                                <th (click)="getDisabledBook('author')">
+                                <th (click)="getDisabledBook(currentDisabledBookPage,'author')">
                                     Author
                                 </th>
                                 <th>
                                     Description
                                 </th>
-                                <th (click)="getDisabledBook('createAt')">
+                                <th (click)="getDisabledBook(currentDisabledBookPage,'createAt')">
                                     CreateAt
                                 </th>
-                                <th (click)="getDisabledBook('updateAt')">
+                                <th (click)="getDisabledBook(currentDisabledBookPage,'updateAt')">
                                     UpdateAt
                                 </th>
                                 <th>
                                     Image
                                 </th>
-                                <th (click)="getDisabledBook('userId')">
+                                <th (click)="getDisabledBook(currentDisabledBookPage,'userId')">
                                     UserId
                                 </th>
                                 <th>
@@ -188,6 +202,20 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <nav aria-label="Page navigation example" style="margin-top: 30px;">
+                            <ul class="pagination" style="width: max-content; margin: auto;">
+                                <li class="page-item {{currentDisabledBookPage===startDisabledPage? 'disabled':''}}"><a class="page-link" (click)="getStartDisabledPage()">Start</a></li>
+                                <li class="page-item {{currentDisabledBookPage===startDisabledPage? 'disabled':''}}">
+                                    <a class="page-link" (click)="getPrevDisabledPage()">
+                                        << Prev</a>
+                                </li>
+                                <li class="page-item"><a class="page-link">...</a></li>
+                                <li class="page-item active"><a class="page-link">{{currentDisabledBookPage + 1}}</a></li>
+                                <li class="page-item"><a class="page-link">...</a></li>
+                                <li class="page-item {{currentDisabledBookPage===endDisabledPage? 'disabled':''}}"><a class="page-link" (click)="getNextDisabledPage()">Next >></a></li>
+                                <li class="page-item {{currentDisabledBookPage===endDisabledPage? 'disabled':''}}"><a class="page-link" (click)="getEndDisabledPage()">End</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

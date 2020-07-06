@@ -26,8 +26,8 @@ export class BookService {
     return this.http.get<any>(Constant.BOOK_URL + `/enable?pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${sortBy}&order=${order}`);
   }
 
-  public getBookByAdmin(enabled: boolean, sortBy: string = 'id', order: string = 'asc') {
-    return this.http.get<any>(Constant.BOOK_URL + `/admin?enabled=${enabled}&sortBy=${sortBy}&order=${order}`);
+  public getBookByAdmin(enabled: boolean, pageNo: number = 0, pageSize: number = 4, sortBy: string = 'id', order: string = 'asc') {
+    return this.http.get<any>(Constant.ADMIN_BOOK_URL + `?enabled=${enabled}&pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${sortBy}&order=${order}`);
   }
 
   public getBookById(bookId: number): Observable<Book> {
@@ -51,11 +51,11 @@ export class BookService {
   }
 
   public deleteBookByAdmin(bookId: number) {
-    return this.http.delete<any>(Constant.BOOK_URL + '/admin/' + bookId);
+    return this.http.delete<any>(Constant.ADMIN_BOOK_URL + '/' + bookId);
   }
 
   public updateBookByAdmin(bookId: number, book: Book) {
-    return this.http.put<any>(Constant.BOOK_URL + '/admin/' + bookId, book);
+    return this.http.put<any>(Constant.ADMIN_BOOK_URL + '/' + bookId, book);
   }
 
   public searchBookByTitleOrAuthor(title: string, author: string) {

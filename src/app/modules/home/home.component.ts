@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
     );
 }
 
-public getPrePage() {
+public getPrevPage() {
   this.bookService.getBookEnable(this.currentPage - 1).subscribe(
     response => {
       this.books = response.booksDto;

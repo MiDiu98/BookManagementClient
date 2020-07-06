@@ -5,6 +5,16 @@
 </style>
 <div class="main-content">
     <div class="container-fluid">
+        <div class="col-md-12">
+            <mat-form-field style="width: 300px;">
+                <mat-label>How many records in one page?</mat-label>
+                <mat-select [(value)]="pageSize">
+                    <mat-option value=4> 4 records</mat-option>
+                    <mat-option value=20> 20 records</mat-option>
+                    <mat-option value=50> 50 records</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
         <!-- __________________________________ All Enabled user  ____________________________ -->
         <div class="col-md-12">
@@ -15,26 +25,26 @@
                             <h4 class="card-title mt-0">Enabled User List</h4>
                             <p class="card-category"> Here is list user is enabled</p>
                         </div>
-                        <button class="btn btn-primary btn-sm" style="height:50px;width:90px" (click)="showActiveUser = !showActiveUser">Show</button>
+                        <button class="btn btn-primary btn-sm" style="height:50px;width:90px" (click)="showActiveUser = !showActiveUser; getEnabledUser(currentEnabledUserPage, this.pageSize, 'id')">Show</button>
                     </div>
                 </div>
                 <div class="card-body" *ngIf="showActiveUser">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class=" text-primary">
-                                <th (click)="getEnabledUser('id')">
+                                <th (click)="getEnabledUser(currentEnabledUserPage, this.pageSize, 'id')">
                                     ID
                                 </th>
-                                <th (click)="getEnabledUser('email')">
+                                <th (click)="getEnabledUser(currentEnabledUserPage, this.pageSize, 'email')">
                                     Email
                                 </th>
                                 <th>
                                     Enabled
                                 </th>
-                                <th (click)="getEnabledUser('firstName')">
+                                <th (click)="getEnabledUser(currentEnabledUserPage, this.pageSize, 'firstName')">
                                     Firstname
                                 </th>
-                                <th (click)="getEnabledUser('lastName')">
+                                <th (click)="getEnabledUser(currentEnabledUserPage, this.pageSize, 'lastName')">
                                     Lastname
                                 </th>
                                 <th>
@@ -91,6 +101,20 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <nav aria-label="Page navigation example" style="margin-top: 30px;">
+                            <ul class="pagination" style="width: max-content; margin: auto;">
+                                <li class="page-item {{currentEnabledUserPage===startEnabledPage? 'disabled':''}}"><a class="page-link" (click)="getStartEnabledPage()">Start</a></li>
+                                <li class="page-item {{currentEnabledUserPage===startEnabledPage? 'disabled':''}}">
+                                    <a class="page-link" (click)="getPrevEnabledPage()">
+                                        << Prev</a>
+                                </li>
+                                <li class="page-item"><a class="page-link">...</a></li>
+                                <li class="page-item active"><a class="page-link">{{currentEnabledUserPage + 1}}</a></li>
+                                <li class="page-item"><a class="page-link">...</a></li>
+                                <li class="page-item {{currentEnabledUserPage===endEnabledPage? 'disabled':''}}"><a class="page-link" (click)="getNextEnabledPage()">Next >></a></li>
+                                <li class="page-item {{currentEnabledUserPage===endEnabledPage? 'disabled':''}}"><a class="page-link" (click)="getEndEnabledPage()">End</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -106,26 +130,26 @@
                             <h4 class="card-title mt-0">Disabled User List</h4>
                             <p class="card-category"> Here is list user is disabled</p>
                         </div>
-                        <button class="btn btn-primary btn-sm" style="height:50px;width:90px" (click)="showDisabledUser = !showDisabledUser">Show</button>
+                        <button class="btn btn-primary btn-sm" style="height:50px;width:90px" (click)="showDisabledUser = !showDisabledUser; getDisabledUser(currentDisabledUserPage, this.pageSize, 'id')">Show</button>
                     </div>
                 </div>
                 <div class="card-body" *ngIf="showDisabledUser">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class=" text-primary">
-                                <th (click)="getDisabledUser('id')">
+                                <th (click)="getDisabledUser(currentDisabledUserPage, this.pageSize, 'id')">
                                     ID
                                 </th>
-                                <th (click)="getDisabledUser('email')">
+                                <th (click)="getDisabledUser(currentDisabledUserPage, this.pageSize, 'email')">
                                     Email
                                 </th>
                                 <th>
                                     Enabled
                                 </th>
-                                <th (click)="getDisabledUser('firstName')">
+                                <th (click)="getDisabledUser(currentDisabledUserPage, this.pageSize, 'firstName')">
                                     Firstname
                                 </th>
-                                <th (click)="getDisabledUser('lastName')">
+                                <th (click)="getDisabledUser(currentDisabledUserPage, this.pageSize, 'lastName')">
                                     Lastname
                                 </th>
                                 <th>
@@ -178,6 +202,20 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <nav aria-label="Page navigation example" style="margin-top: 30px;">
+                            <ul class="pagination" style="width: max-content; margin: auto;">
+                                <li class="page-item {{currentDisabledUserPage===startDisabledPage? 'disabled':''}}"><a class="page-link" (click)="getStartDisabledPage()">Start</a></li>
+                                <li class="page-item {{currentDisabledUserPage===startDisabledPage? 'disabled':''}}">
+                                    <a class="page-link" (click)="getPrevDisabledPage()">
+                                        << Prev</a>
+                                </li>
+                                <li class="page-item"><a class="page-link">...</a></li>
+                                <li class="page-item active"><a class="page-link">{{currentDisabledUserPage + 1}}</a></li>
+                                <li class="page-item"><a class="page-link">...</a></li>
+                                <li class="page-item {{currentDisabledUserPage===endDisabledPage? 'disabled':''}}"><a class="page-link" (click)="getNextDisabledPage()">Next >></a></li>
+                                <li class="page-item {{currentDisabledUserPage===endDisabledPage? 'disabled':''}}"><a class="page-link" (click)="getEndDisabledPage()">End</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

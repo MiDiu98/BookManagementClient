@@ -1,0 +1,7 @@
+.required {
+    position: initial;
+    top: -5px;
+    right: 3px;
+    font-size: 19px;
+    color: red;
+}

@@ -11,6 +11,10 @@ export class Constant {
 
   public static REGISTER_URL = [Constant.URL_API, Constant.PREFIX, 'auth', 'register'].join('/');
 
+  public static ADMIN_BOOK_URL = [Constant.URL_API, Constant.PREFIX, 'admin', 'books'].join('/');
+
+  public static ADMIN_USER_URL = [Constant.URL_API, Constant.PREFIX, 'admin',  'users'].join('/');
+
   public static BOOK_URL = [Constant.URL_API, Constant.PREFIX, 'books'].join('/');
 
   public static USER_URL = [Constant.URL_API, Constant.PREFIX, 'users'].join('/');

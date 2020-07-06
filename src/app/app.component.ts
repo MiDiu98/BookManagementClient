@@ -35,13 +35,11 @@ export class AppComponent {
             this.currentUser = x;
             this.isLogin = true;
 
-            const jwt = x.token;
-            const jwtData = jwt.split('.')[1];
-            const decodedJwtJsonData = window.atob(jwtData);
-
-            if (JSON.stringify(decodedJwtJsonData).match('(.*)ROLE_ADMIN(.*)') != null) {
-              this.isAdmin = true;
-            }
+            (this.currentUser.roles).forEach(element => {
+              if (element.match(`ROLE_ADMIN`)) {
+                this.isAdmin = true;
+              }
+            });
           }
         }
       );
@@ -49,6 +47,7 @@ export class AppComponent {
 
   logout() {
       this.authenticationService.logout();
-      this.router.navigate(['/authentication/login']);
+      this.router.navigate(['/']);
+      location.reload();
   }
 }

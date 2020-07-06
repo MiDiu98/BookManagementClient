@@ -7,6 +7,14 @@ import { BookService } from 'src/app/shared/services/book.service';
 import { CommentService } from 'src/app/shared/services/comment.service';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { Comment } from 'src/app/shared/models/comment.model';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginModalComponent } from '../../components/login-modal/login-modal.component';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
+
+export interface LoginData {
+  email: string;
+  password: string;
+}
 
 @Component({
   selector: 'app-book-detail',
@@ -14,6 +22,11 @@ import { Comment } from 'src/app/shared/models/comment.model';
   styleUrls: ['./book-detail.component.css']
 })
 export class BookDetailComponent implements OnInit {
+
+  // for example MatDialog
+  animal: string;
+  name: string;
+
   bookId = 0;
   book: Book;
   comments: Comment[] = [];
@@ -28,7 +41,9 @@ export class BookDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private bookService: BookService,
     private commentService: CommentService,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    public dialog: MatDialog,
+    private authenticationService: AuthenticationService
     ) { }
 
   ngOnInit(): void {
@@ -45,12 +60,32 @@ export class BookDetailComponent implements OnInit {
     this.getAllComment(this.bookId);
   }
 
+  /*      Login modal      */
+  openLoginModal(): void {
+    const dialogRef = this.dialog.open(LoginModalComponent, {
+      width: '500px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.authenticationService.login(result.email, result.password)
+          .subscribe(
+              data => {
+                this.alertify.success('Login successful!');
+              },
+              error => {
+                this.alertify.error('Email or Password is incorrect!');
+              });
+    });
+  }
+
   getBookById(bookId: number) {
     this.bookService.getBookById(bookId).subscribe(
       (data: Book) => {
         this.book = data;
       }
-    )
+    );
   }
 
   getAllComment(bookId: number) {
@@ -77,8 +112,9 @@ export class BookDetailComponent implements OnInit {
         this.f.message.setValue('');
       },
       error => {
-        this.alertify.warning('You must login to comment!');
+        this.alertify.warning(`Length is over 255 characters or You aren't login!`);
         this.isLogin = false;
+        this.openLoginModal();
       }
     );
   }

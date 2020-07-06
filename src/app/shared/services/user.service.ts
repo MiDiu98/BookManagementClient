@@ -15,12 +15,12 @@ export class UserService {
     return this.http.get<any>(Constant.USER_URL + '/enabled');
   }
 
-  public getUserByAdmin(enabled: boolean, sortBy: string = 'id', order: string = 'asc') {
-    return this.http.get<any>(Constant.USER_URL + `/admin?enabled=${enabled}&sortBy=${sortBy}&order=${order}`);
+  public getUserByAdmin(enabled: boolean, pageNo: number = 0, pageSize: number = 4, sortBy: string = 'id', order: string = 'asc') {
+    return this.http.get<any>(Constant.ADMIN_USER_URL + `?enabled=${enabled}&pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${sortBy}&order=${order}`);
   }
 
   public updateUserByAdmin(userId: number, user: User) {
-    return this.http.put<any>(Constant.USER_URL + '/admin/' + userId, user);
+    return this.http.put<any>(Constant.ADMIN_USER_URL + '/' + userId, user);
   }
 
   public delete(userId: number) {
@@ -28,7 +28,7 @@ export class UserService {
   }
 
   public deleteByAdmin(userId: number) {
-    return this.http.delete<any>(Constant.USER_URL + '/admin/' + userId);
+    return this.http.delete<any>(Constant.ADMIN_USER_URL + '/' + userId);
   }
 
 }

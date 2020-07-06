@@ -9,41 +9,37 @@
 
 <section class="static about-sec">
     <div class="container">
-        <h1>Tạo mới sách</h1>
-        <p>Cuốn sách mới của bạn!</p>
+        <h1>Create A New Book</h1>
+        <p>Your new book!</p>
         <div class="form">
             <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
                 <div class="col-md-7">
                     <div class="form-group">
-                        <label for="title">Title</label>
+                        <label for="title">Title<span class="required-star"> *</span></label>
                         <input type="text" formControlName="title" class="form-control" placeholder="Enter book's title" required>
-                        <span class="required-star">*</span>
                     </div>
                 </div>
                 <div class="col-md-7">
                     <div class="form-group">
-                        <label for="author">Author</label>
+                        <label for="author">Author<span class="required-star"> *</span></label>
                         <input type="text" formControlName="author" class="form-control" placeholder="Enter book's author" required>
-                        <span class="required-star">*</span>
                     </div>
                 </div>
                 <div class="col-md-7">
                     <div class="form-group">
-                        <label for="description">Description</label>
+                        <label for="description">Description<span class="required-star"> *</span></label>
                         <textarea type="text" formControlName="description" class="form-control" placeholder="Enter description for book" required></textarea>
-                        <span class="required-star">*</span>
                     </div>
                 </div>
                 <div class="col-md-7">
                     <div class="form-group">
-                        <label for="image">Image</label>
+                        <label for="image">Image<span class="required-star"> *</span></label>
                         <input type="text" formControlName="image" class="form-control" placeholder="Url of book's image" required>
-                        <span class="required-star">*</span>
                     </div>
                 </div>
                 <div class="col-md-7">
                     <div class="form-group">
-                        <button class="btn btn-primary">Tạo</button>
+                        <button class="btn btn-primary">Create</button>
                     </div>
                 </div>
             </form>

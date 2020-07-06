@@ -1,7 +1,9 @@
+import { Constant } from './../../../../shared/constants/Constant';
 import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/shared/models/book.model';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { BookService } from 'src/app/shared/services/book.service';
+import { OrderEnum } from 'src/app/shared/enums/sort.enum';
 
 @Component({
   selector: 'app-manage-book',
@@ -9,11 +11,23 @@ import { BookService } from 'src/app/shared/services/book.service';
   styleUrls: ['./manage-book.component.css']
 })
 export class ManageBookComponent implements OnInit {
+
   enabledBooks: Book[] = [];
   disabledBooks: Book[] = [];
   showEnabledBook = false;
   showDisabledBook = true;
+  sortBy = 'id';
   sortOrder = true;
+
+  // Pagination disabled book
+  currentDisabledBookPage = 0;
+  public startDisabledPage = 0;
+  public endDisabledPage: number;
+
+  // Pagination enabld book
+  currentEnabledBookPage = 0;
+  public startEnabledPage = 0;
+  public endEnabledPage: number;
 
   constructor(
     private bookService: BookService,
@@ -23,21 +37,25 @@ export class ManageBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getEnabledBook('id');
-    this.getDisabledBook('id');
+    this.getEnabledBook(0, 'id');
+    this.getDisabledBook(0, 'id');
   }
 
-  getDisabledBook(sortBy: string) {
-    this.bookService.getBookByAdmin(false, sortBy, this.sortOrder ? 'asc' : 'desc').subscribe(response => {
-      this.disabledBooks = response;
-      this.sortOrder = !this.sortOrder;
-    })
+  getDisabledBook(pageNo: number = 0, sortBy: string) {
+    this.sortBy = sortBy;
+    this.bookService.getBookByAdmin(false, pageNo, 4, sortBy, this.sortOrder ? OrderEnum.ASC : OrderEnum.DESC).subscribe(response => {
+      this.disabledBooks = response.booksDto;
+      this.currentDisabledBookPage = response.currentPage;
+      this.endDisabledPage = response.totalPages - 1;
+    });
   }
 
-  getEnabledBook(sortBy: string) {
-    this.bookService.getBookByAdmin(true, sortBy, this.sortOrder ? 'asc' : 'desc').subscribe(response => {
-      this.enabledBooks = response;
-      this.sortOrder = !this.sortOrder;
+  getEnabledBook(pageNo: number = 0, sortBy: string) {
+    this.sortBy = sortBy;
+    this.bookService.getBookByAdmin(true, pageNo, 4, sortBy, this.sortOrder ? OrderEnum.ASC : OrderEnum.DESC).subscribe(response => {
+      this.enabledBooks = response.booksDto;
+      this.currentEnabledBookPage = response.currentPage;
+      this.endEnabledPage = response.totalPages - 1;
     });
   }
 
@@ -48,8 +66,8 @@ export class ManageBookComponent implements OnInit {
         this.bookService.updateBookByAdmin(bookId, book).subscribe(
           data => {
             this.alertifyService.success('Update status successful');
-            this.getEnabledBook('id');
-            this.getDisabledBook('id');
+            this.getEnabledBook(this.currentEnabledBookPage, this.sortBy);
+            this.getDisabledBook(this.currentDisabledBookPage, this.sortBy);
           },
           error => {
             this.alertifyService.error('Update status fail');
@@ -65,8 +83,8 @@ export class ManageBookComponent implements OnInit {
         this.bookService.updateBookByAdmin(bookId, book).subscribe(
           data => {
             this.alertifyService.success('Update status successful');
-            this.getEnabledBook('id');
-            this.getDisabledBook('id');
+            this.getEnabledBook(this.currentEnabledBookPage, this.sortBy);
+            this.getDisabledBook(this.currentDisabledBookPage, this.sortBy);
           },
           error => {
             this.alertifyService.error('Update status fail');
@@ -80,7 +98,7 @@ export class ManageBookComponent implements OnInit {
         this.bookService.deleteBookByAdmin(bookId).subscribe(
           response => {
             this.alertifyService.success('Deleted');
-            this.getDisabledBook('id');
+            this.getDisabledBook(this.currentDisabledBookPage, this.sortBy);
           },
           error => {
             this.alertifyService.error('Delete fail');
@@ -89,4 +107,39 @@ export class ManageBookComponent implements OnInit {
       });
     }
 
+  // Pagination for enabled books
+
+  public getNextEnabledPage() {
+      this.getEnabledBook(this.currentEnabledBookPage + 1, this.sortBy);
+  }
+
+  public getPrevEnabledPage() {
+    this.getEnabledBook(this.currentEnabledBookPage - 1, this.sortBy);
+  }
+
+  public getStartEnabledPage() {
+    this.getEnabledBook(this.startEnabledPage, this.sortBy);
+  }
+
+  public getEndEnabledPage() {
+    this.getEnabledBook(this.endEnabledPage, this.sortBy);
+  }
+
+  // Pagination for disabled books
+
+  public getNextDisabledPage() {
+    this.getDisabledBook(this.currentDisabledBookPage + 1, this.sortBy);
+}
+
+public getPrevDisabledPage() {
+  this.getDisabledBook(this.currentDisabledBookPage - 1, this.sortBy);
+}
+
+public getStartDisabledPage() {
+  this.getDisabledBook(this.startDisabledPage, this.sortBy);
+}
+
+public getEndDisabledPage() {
+  this.getDisabledBook(this.endDisabledPage, this.sortBy);
+}
 }
