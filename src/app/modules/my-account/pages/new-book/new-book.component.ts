@@ -4,6 +4,8 @@ import { first } from 'rxjs/operators';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { BookService } from 'src/app/shared/services/book.service';
 import { Router } from '@angular/router';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 @Component({
   selector: 'app-new-book',
@@ -11,7 +13,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-book.component.css']
 })
 export class NewBookComponent implements OnInit {
-  bookForm: FormGroup;
+  public bookForm: FormGroup;
+  public Editor = ClassicEditor;
+  public onReady( editor ) {
+      editor.ui.getEditableElement().parentElement.insertBefore(
+          editor.ui.view.toolbar.element,
+          editor.ui.getEditableElement()
+      );
+  }
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,6 +51,13 @@ export class NewBookComponent implements OnInit {
   }
 
   private createBook() {
+    if (this.bookForm.invalid) {
+      this.alertify.error(`You don't add enough all fields required`);
+      return;
+    } else {
+      console.log(this.f.title.value, this.f.author.value, this.f.description.value, this.f.image.value);
+    }
+
     this.bookService.createNewBook(this.f.title.value, this.f.author.value, this.f.description.value, this.f.image.value).subscribe(
       response => {
         console.log(response);

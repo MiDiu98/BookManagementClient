@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private alertify: AlertifyService
   ) {
-
     if (this.authenticationService.currentUserValue) {
         this.router.navigate(['/']);
     }

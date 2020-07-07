@@ -30,6 +30,10 @@ export class BookService {
     return this.http.get<any>(Constant.ADMIN_BOOK_URL + `?enabled=${enabled}&pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${sortBy}&order=${order}`);
   }
 
+  public getMyBookById(bookId: number): Observable<Book> {
+    return this.http.get<any>(Constant.BOOK_URL + '/my-books/' + bookId);
+  }
+
   public getBookById(bookId: number): Observable<Book> {
     return this.http.get<any>(Constant.BOOK_URL + '/' + bookId);
   }

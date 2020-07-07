@@ -3,6 +3,7 @@ import { Component, NgModuleFactoryLoader } from '@angular/core';
 import { Router } from '@angular/router';
 import { Login } from './shared/models/Login';
 import { AuthenticationService } from './shared/services/authentication.service';
+import { delay } from 'rxjs/operators';
 
 
 export interface DialogData {
@@ -47,7 +48,6 @@ export class AppComponent {
 
   logout() {
       this.authenticationService.logout();
-      this.router.navigate(['/']);
-      location.reload();
+      location.replace('/');
   }
 }

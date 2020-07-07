@@ -2,7 +2,6 @@
     <div class="container">
         <div class="row">
             <a class="breadcrumb-item" href="index.html">Home</a>
-            <a class="breadcrumb-item" href="/my-account/my-books">My books</a>
             <span class="breadcrumb-item active">Book Detail</span>
         </div>
     </div>
@@ -11,7 +10,7 @@
     <div class="container">
         <h1>{{ book?.title }}</h1>
         <div class="row" *ngIf="book">
-            <div class="col-md-5 slider-sec">
+            <div class="col-md-6 slider-sec">
                 <!-- main slider carousel -->
                 <div id="myCarousel" class="carousel slide">
                     <img src="{{book.image}}" class="img-fluid">
@@ -35,7 +34,7 @@
                     </ul>
                 </div>
                 <div class="row">
-                    <p>{{book.description}}...</p>
+                    <div [innerHTML]="book.description">...</div>
                 </div>
             </div>
         </div>
@@ -49,11 +48,12 @@
                 <div class="card-header font-weight-bold">{{comments.length}} comments</div>
                 <div class="card-body">
                     <div class="media d-block d-md-flex mt-3" *ngFor="let comment of comments">
-                        <img class="d-flex mb-3 mx-auto " src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg" alt="Generic placeholder image" width="80px">
+                        <!-- <img class="d-flex mb-3 mx-auto " src="comment.avatarUser !== null? comment.avatarUser : https://www.securityindustry.org/wp-content/uploads/sites/3/2018/05/noimage.png" alt="Generic placeholder image" width="80px"> -->
+                        <img class="d-flex mb-3 mx-auto rounded-circle" src="{{comment.avatarUser}}" alt="Generic placeholder image" width="70px" height="70px">
                         <div class="media-body text-center text-md-left ml-md-3 ml-0">
                             <h5 class="mt-0 font-weight-bold">{{comment.fullname}} </h5>
                             <p style="color: gray; font-family: 'Courier New', Courier, monospace; font-size: 11px;">
-                                {{comment.updateAt | date: 'short'}} {{comment.createAt == comment.updateAt? "":"- Đã cập nhật"}}
+                                {{comment.updateAt | date: 'short'}} {{comment.createAt == comment.updateAt? "":"- Updated"}}
                             </p>
                             {{comment.message}}
                         </div>

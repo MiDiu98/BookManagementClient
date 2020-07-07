@@ -12,16 +12,15 @@
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="col-md-5">
                     <div class="form-group">
-                        <label for="lastname">Email  </label>
+                        <label for="lastname">Email<span class="required-star"> *</span></label>
                         <input type="email" formControlName="email" class="form-control" placeholder="Enter Your Email" required>
-                        <span class="required-star">*</span>
+
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
-                        <label for="lastname">Password  </label>
+                        <label for="lastname">Password<span class="required-star"> *</span></label>
                         <input type="password" formControlName="password" class="form-control" placeholder="Enter Password" required>
-                        <span class="required-star">*</span>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-12">

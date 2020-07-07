@@ -81,7 +81,7 @@ export class BookDetailComponent implements OnInit {
   }
 
   getBookById(bookId: number) {
-    this.bookService.getBookById(bookId).subscribe(
+    this.bookService.getMyBookById(bookId).subscribe(
       (data: Book) => {
         this.book = data;
       }
@@ -91,7 +91,9 @@ export class BookDetailComponent implements OnInit {
   getAllComment(bookId: number) {
     this.commentService.getAllComment(bookId).subscribe(
       (data) => {
+        console.log(data);
         this.comments = data;
+        console.log(this.comments);
       }
     )
   }

@@ -15,6 +15,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -33,7 +36,8 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    CKEditorModule
   ],
   exports:  [
     MatFormFieldModule,

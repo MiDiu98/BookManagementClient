@@ -5,6 +5,8 @@ import { first } from 'rxjs/operators';
 import { Book } from 'src/app/shared/models/book.model';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { BookService } from 'src/app/shared/services/book.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 @Component({
   selector: 'app-update-book',
@@ -15,6 +17,13 @@ export class UpdateBookComponent implements OnInit {
   bookForm: FormGroup;
   bookId = 0;
   book: Book;
+  public Editor = ClassicEditor;
+  public onReady( editor ) {
+      editor.ui.getEditableElement().parentElement.insertBefore(
+          editor.ui.view.toolbar.element,
+          editor.ui.getEditableElement()
+      );
+  }
 
   constructor(
     private formBuilder: FormBuilder,

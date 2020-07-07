@@ -28,7 +28,7 @@
                 <div class="col-md-7">
                     <div class="form-group">
                         <label for="description">Description<span class="required-star"> *</span></label>
-                        <textarea type="text" formControlName="description" class="form-control" placeholder="Enter description for book" required></textarea>
+                        <ckeditor [editor]="Editor" data="<p>Hello, world!</p>" (ready)="onReady($event)" formControlName="description" required></ckeditor>
                     </div>
                 </div>
                 <div class="col-md-7">
