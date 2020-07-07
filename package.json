@@ -29,6 +29,7 @@
         "@types/jquery": "^3.5.0",
         "alertifyjs": "^1.13.1",
         "bootstrap": "^4.5.0",
+        "bootstrap-toggle": "^2.2.2",
         "jquery": "^3.5.1",
         "popper.js": "^1.16.0",
         "rxjs": "~6.5.4",

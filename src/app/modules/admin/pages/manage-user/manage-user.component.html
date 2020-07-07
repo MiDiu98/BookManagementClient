@@ -16,35 +16,35 @@
             </mat-form-field>
         </div>
 
-        <!-- __________________________________ All Enabled user  ____________________________ -->
+        <!-- __________________________________ All user  ____________________________ -->
         <div class="col-md-12">
             <div class="card card-plain">
                 <div class="card-header card-header-danger">
                     <div class="row">
                         <div class="col-md-10">
-                            <h4 class="card-title mt-0">Enabled User List</h4>
-                            <p class="card-category"> Here is list user is enabled</p>
+                            <h4 class="card-title mt-0">All Users</h4>
+                            <p class="card-category"> Here is all users</p>
                         </div>
-                        <button class="btn btn-primary btn-sm" style="height:50px;width:90px" (click)="showActiveUser = !showActiveUser; getEnabledUser(currentEnabledUserPage, this.pageSize, 'id')">Show</button>
+                        <!-- <button class="btn btn-primary btn-sm" style="height:50px;width:90px" (click)="showActiveUser = !showActiveUser; getEnabledUser(currentEnabledUserPage, this.pageSize, 'id')">Show</button> -->
                     </div>
                 </div>
-                <div class="card-body" *ngIf="showActiveUser">
+                <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class=" text-primary">
-                                <th (click)="getEnabledUser(currentEnabledUserPage, this.pageSize, 'id')">
+                                <th>
                                     ID
                                 </th>
-                                <th (click)="getEnabledUser(currentEnabledUserPage, this.pageSize, 'email')">
+                                <th>
                                     Email
                                 </th>
                                 <th>
                                     Enabled
                                 </th>
-                                <th (click)="getEnabledUser(currentEnabledUserPage, this.pageSize, 'firstName')">
+                                <th>
                                     Firstname
                                 </th>
-                                <th (click)="getEnabledUser(currentEnabledUserPage, this.pageSize, 'lastName')">
+                                <th>
                                     Lastname
                                 </th>
                                 <th>
@@ -57,7 +57,7 @@
                                     Is Admin?
                                 </th>
                             </thead>
-                            <tbody *ngFor="let user of enabledUsers">
+                            <tbody *ngFor="let user of users">
                                 <tr>
                                     <td>
                                         {{user.id}}
@@ -66,14 +66,13 @@
                                         {{user.email}}
                                     </td>
                                     <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input id="activeCheckbox" type="checkbox" value="" checked (change)="onDisabled(user.id, user, $event)">
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
+                                        <button type="button" class="btn btn-success btn-md btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                        <div class="handle"></div>
+                                      </button>
+                                        <!-- <mat-button-toggle-group appearance="legacy" name="enabled" aria-label="Font Style">
+                                            <mat-button-toggle aria-checked="true" value="false">Off</mat-button-toggle>
+                                            <mat-button-toggle value="true">On</mat-button-toggle>
+                                        </mat-button-toggle-group> -->
                                     </td>
                                     <td>
                                         {{user.firstName}}
@@ -82,26 +81,26 @@
                                         {{user.lastName}}
                                     </td>
                                     <td>
-                                        {{user.avatar}}
+                                        <img src="{{user.avatar}}" alt="no image" width="50px" height="50px">
                                     </td>
                                     <td>
                                         {{user.roles}}
                                     </td>
                                     <td>
                                         <div class="form-check">
-                                            <label class="form-check-label">
+                                            <!-- <label class="form-check-label">
                                               <input id="activeCheckbox center" type="checkbox" value="" *ngIf="isAdmin(user)" checked (change)="updateRole(user.id, user, $event)">
                                               <input id="activeCheckbox center" type="checkbox" value="" *ngIf="!isAdmin(user)" (change)="updateRole(user.id, user, $event)">
                                               <span class="form-check-sign">
                                                   <span class="check"></span>
                                               </span>
-                                          </label>
+                                          </label> -->
                                         </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <nav aria-label="Page navigation example" style="margin-top: 30px;">
+                        <!-- <nav aria-label="Page navigation example" style="margin-top: 30px;">
                             <ul class="pagination" style="width: max-content; margin: auto;">
                                 <li class="page-item {{currentEnabledUserPage===startEnabledPage? 'disabled':''}}"><a class="page-link" (click)="getStartEnabledPage()">Start</a></li>
                                 <li class="page-item {{currentEnabledUserPage===startEnabledPage? 'disabled':''}}">
@@ -114,111 +113,11 @@
                                 <li class="page-item {{currentEnabledUserPage===endEnabledPage? 'disabled':''}}"><a class="page-link" (click)="getNextEnabledPage()">Next >></a></li>
                                 <li class="page-item {{currentEnabledUserPage===endEnabledPage? 'disabled':''}}"><a class="page-link" (click)="getEndEnabledPage()">End</a></li>
                             </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <hr>
-        </div>
-
-        <!-- __________________________________ All Disabled user  ____________________________ -->
-        <div class="col-md-12">
-            <div class="card card-plain">
-                <div class="card-header card-header-danger">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <h4 class="card-title mt-0">Disabled User List</h4>
-                            <p class="card-category"> Here is list user is disabled</p>
-                        </div>
-                        <button class="btn btn-primary btn-sm" style="height:50px;width:90px" (click)="showDisabledUser = !showDisabledUser; getDisabledUser(currentDisabledUserPage, this.pageSize, 'id')">Show</button>
-                    </div>
-                </div>
-                <div class="card-body" *ngIf="showDisabledUser">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class=" text-primary">
-                                <th (click)="getDisabledUser(currentDisabledUserPage, this.pageSize, 'id')">
-                                    ID
-                                </th>
-                                <th (click)="getDisabledUser(currentDisabledUserPage, this.pageSize, 'email')">
-                                    Email
-                                </th>
-                                <th>
-                                    Enabled
-                                </th>
-                                <th (click)="getDisabledUser(currentDisabledUserPage, this.pageSize, 'firstName')">
-                                    Firstname
-                                </th>
-                                <th (click)="getDisabledUser(currentDisabledUserPage, this.pageSize, 'lastName')">
-                                    Lastname
-                                </th>
-                                <th>
-                                    Avatar
-                                </th>
-                                <th>
-                                    Roles
-                                </th>
-                                <th>
-                                    Delete
-                                </th>
-                            </thead>
-                            <tbody *ngFor="let user of disabledUsers">
-                                <tr>
-                                    <td>
-                                        {{user.id}}
-                                    </td>
-                                    <td>
-                                        {{user.email}}
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input id="activeCheckbox" type="checkbox" value="" (change)="onEnabled(user.id, user, $event)">
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        {{user.firstName}}
-                                    </td>
-                                    <td>
-                                        {{user.lastName}}
-                                    </td>
-                                    <td>
-                                        {{user.avatar}}
-                                    </td>
-                                    <td>
-                                        {{user.roles}}
-                                    </td>
-                                    <td>
-                                        <svg style="color: darkred; font-size: medium;;" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg" (click)="deleteUser(user.id)">
-                                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                        <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
-                                        <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
-                                      </svg>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <nav aria-label="Page navigation example" style="margin-top: 30px;">
-                            <ul class="pagination" style="width: max-content; margin: auto;">
-                                <li class="page-item {{currentDisabledUserPage===startDisabledPage? 'disabled':''}}"><a class="page-link" (click)="getStartDisabledPage()">Start</a></li>
-                                <li class="page-item {{currentDisabledUserPage===startDisabledPage? 'disabled':''}}">
-                                    <a class="page-link" (click)="getPrevDisabledPage()">
-                                        << Prev</a>
-                                </li>
-                                <li class="page-item"><a class="page-link">...</a></li>
-                                <li class="page-item active"><a class="page-link">{{currentDisabledUserPage + 1}}</a></li>
-                                <li class="page-item"><a class="page-link">...</a></li>
-                                <li class="page-item {{currentDisabledUserPage===endDisabledPage? 'disabled':''}}"><a class="page-link" (click)="getNextDisabledPage()">Next >></a></li>
-                                <li class="page-item {{currentDisabledUserPage===endDisabledPage? 'disabled':''}}"><a class="page-link" (click)="getEndDisabledPage()">End</a></li>
-                            </ul>
-                        </nav>
+                        </nav> -->
                     </div>
                 </div>
             </div>
             <hr>
         </div>
     </div>
+</div>

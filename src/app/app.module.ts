@@ -37,7 +37,9 @@ import {MatTableModule} from '@angular/material/table';
     MatInputModule,
     MatButtonModule,
     MatButtonToggleModule,
-    CKEditorModule
+    CKEditorModule,
+    MatSortModule,
+    MatTableModule,
   ],
   exports:  [
     MatFormFieldModule,

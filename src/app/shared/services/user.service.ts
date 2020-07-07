@@ -15,8 +15,12 @@ export class UserService {
     return this.http.get<any>(Constant.USER_URL + '/enabled');
   }
 
+  public getAllUser(pageNo: number = 0, pageSize: number = 4, sortBy: string = 'id', order: string = 'asc') {
+    return this.http.get<any>(Constant.ADMIN_USER_URL);
+  }
+
   public getUserByAdmin(enabled: boolean, pageNo: number = 0, pageSize: number = 4, sortBy: string = 'id', order: string = 'asc') {
-    return this.http.get<any>(Constant.ADMIN_USER_URL + `?enabled=${enabled}&pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${sortBy}&order=${order}`);
+    return this.http.get<any>(Constant.ADMIN_USER_URL + `/status?enabled=${enabled}&pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${sortBy}&order=${order}`);
   }
 
   public updateUserByAdmin(userId: number, user: User) {

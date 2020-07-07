@@ -62,7 +62,7 @@
                                         {{book.author}}
                                     </td>
                                     <td>
-                                        {{book.description}}
+                                        {{book.description.substring(0, 200)}}
                                     </td>
                                     <td>
                                         {{book.createAt | date: 'short'}}
@@ -168,7 +168,7 @@
                                         {{book.author}}
                                     </td>
                                     <td>
-                                        {{book.description}}
+                                        {{book.description.substring(0, 200)}}
                                     </td>
                                     <td>
                                         {{book.createAt | date: 'short'}}

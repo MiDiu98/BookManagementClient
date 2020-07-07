@@ -6,6 +6,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatSortModule} from '@angular/material/sort';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { AdminRoutingModule } from './admin-routing.module';
 
@@ -20,6 +22,8 @@ import { AdminRoutingModule } from './admin-routing.module';
     AdminRoutingModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatSortModule,
+    MatButtonToggleModule
   ],
   exports:  [
     MatSelectModule,
