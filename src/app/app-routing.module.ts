@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {
@@ -19,12 +19,12 @@ const routes: Routes = [
   },
   {
     path: 'my-account',
-    canActivate: [AuthenticationService],
+   // canActivate: [AuthenticationService],
     loadChildren: () => import('./modules/my-account/my-account.module').then(m => m.MyAccountModule)
   },
   {
     path: 'admin',
-    canActivate: [AuthenticationService],
+   // canActivate: [AuthenticationService],
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
   },
   {

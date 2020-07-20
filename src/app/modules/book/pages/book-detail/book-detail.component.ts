@@ -44,14 +44,15 @@ export class BookDetailComponent implements OnInit {
     private alertify: AlertifyService,
     public dialog: MatDialog,
     private authenticationService: AuthenticationService
-    ) { }
+    ) {
+      this.route.params.subscribe(
+        (params: Params) => {
+          this.bookId = params.bookId;
+        }
+      );
+     }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.bookId = params.bookId;
-      }
-    );
     this.commentForm = this.formBuilder.group({
       message: ['', Validators.required]
     });
@@ -81,9 +82,11 @@ export class BookDetailComponent implements OnInit {
   }
 
   getBookById(bookId: number) {
-    this.bookService.getMyBookById(bookId).subscribe(
+    this.bookService.getBookById(bookId).subscribe(
       (data: Book) => {
+        console.log(data);
         this.book = data;
+        console.log(this.book);
       }
     );
   }
