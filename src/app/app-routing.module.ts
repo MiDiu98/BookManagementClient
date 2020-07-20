@@ -1,3 +1,4 @@
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -18,10 +19,12 @@ const routes: Routes = [
   },
   {
     path: 'my-account',
+    canActivate: [AuthenticationService],
     loadChildren: () => import('./modules/my-account/my-account.module').then(m => m.MyAccountModule)
   },
   {
     path: 'admin',
+    canActivate: [AuthenticationService],
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
   },
   {
