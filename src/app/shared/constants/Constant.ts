@@ -15,7 +15,7 @@ export class Constant {
 
   public static ADMIN_USER_URL = [Constant.URL_API, Constant.PREFIX, 'admin',  'users'].join('/');
 
-  public static BOOK_URL = [Constant.URL_API, Constant.PREFIX, 'books'].join('/');
+  public static BOOK_URL = [Constant.URL_API, Constant.PREFIX, 'products'].join('/');
 
   public static USER_URL = [Constant.URL_API, Constant.PREFIX, 'users'].join('/');
 

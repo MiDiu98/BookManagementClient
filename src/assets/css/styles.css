@@ -136,7 +136,8 @@ img {
 /* layouts */
 
 header .header-top {
-    background: #fcba68;
+    /* background: #fcba68; */
+    background: #100b5ac9;
     color: #fff;
     padding: 7px 0 7px;
 }

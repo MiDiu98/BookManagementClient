@@ -45,8 +45,8 @@ export class HomeComponent implements OnInit {
             data => {
               console.log(data);
               this.books = data.booksDto;
-              this.currentPage = data.currentPage;
-              this.endPage = data.totalPages - 1;
+              // this.currentPage = data.currentPage;
+              // this.endPage = data.totalPages - 1;
             }
           );
   }

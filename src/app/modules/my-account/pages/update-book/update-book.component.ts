@@ -83,8 +83,8 @@ export class UpdateBookComponent implements OnInit {
         console.log(data);
         this.book = data;
         this.bookForm.setValue({
-          title: this.book.title,
-          author: this.book.author,
+          title: this.book.name,
+          author: this.book.supplier,
           description: this.book.description,
           image: this.book.image
         });
