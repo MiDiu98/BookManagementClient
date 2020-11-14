@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   backendIP: 'http://localhost',
-  backendPort: '8090',
+  backendPort: '8092',
 };

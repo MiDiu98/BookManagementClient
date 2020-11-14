@@ -6,7 +6,7 @@ import { Constant } from '../constants/Constant';
 @Injectable({
   providedIn: 'root'
 })
-export class CommentService {
+export class ReviewService {
 
   constructor(
     private http: HttpClient) { }

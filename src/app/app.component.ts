@@ -1,10 +1,8 @@
 import { MatDialog } from '@angular/material/dialog';
 import { Component, NgModuleFactoryLoader } from '@angular/core';
 import { Router } from '@angular/router';
-import { Login } from './shared/models/Login';
+import { Login } from './shared/models/login.model';
 import { AuthenticationService } from './shared/services/authentication.service';
-import { delay } from 'rxjs/operators';
-
 
 export interface DialogData {
   animal: string;
@@ -31,19 +29,19 @@ export class AppComponent {
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
-      this.authenticationService.currentUser.subscribe(x => {
-          if (x != null) {
-            this.currentUser = x;
-            this.isLogin = true;
+      // this.authenticationService.currentUser.subscribe(x => {
+      //     if (x != null) {
+      //       this.currentUser = x;
+      //       this.isLogin = true;
 
-            (this.currentUser.roles).forEach(element => {
-              if (element.match(`ROLE_ADMIN`)) {
-                this.isAdmin = true;
-              }
-            });
-          }
-        }
-      );
+      //       (this.currentUser.roles).forEach(element => {
+      //         if (element.match(`ROLE_ADMIN`)) {
+      //           this.isAdmin = true;
+      //         }
+      //       });
+      //     }
+      //   }
+      // );
   }
 
   logout() {

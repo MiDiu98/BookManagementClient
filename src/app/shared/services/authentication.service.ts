@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Login } from '../models/Login';
+import { Login } from '../models/login.model';
 import { Constant } from '../constants/Constant';
 
 @Injectable({

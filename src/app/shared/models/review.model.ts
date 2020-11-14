@@ -1,4 +1,4 @@
-export class Comment {
+export class Review {
   id: number;
   content: string;
   rating: string;

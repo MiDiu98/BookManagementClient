@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 import { LocalStorageEnum } from '../enums/local-storage.enum';
-import { Login } from '../models/Login';
+import { Account } from '../models/account.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BasicAuthHttpInterceptorService implements HttpInterceptor {
-  private currentUser: Login;
+  private currentUser: Account;
 
   constructor() { }
 
