@@ -6,31 +6,18 @@ import { AppComponent } from './app.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '',
     pathMatch: 'full'
   },
   {
-    path: 'home',
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+    path: '',
+    loadChildren: () => import('./modules/client/client.module').then(m => m.ClientModule)
   },
-  {
-    path: 'authentication',
-    loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
-  },
-  {
-    path: 'my-account',
-   // canActivate: [AuthenticationService],
-    loadChildren: () => import('./modules/my-account/my-account.module').then(m => m.MyAccountModule)
-  },
-  {
-    path: 'admin',
-   // canActivate: [AuthenticationService],
-    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
-  },
-  {
-    path: 'books',
-    loadChildren: () => import('./modules/book/book.module').then(m => m.BookModule)
-  },
+  // {
+  //   path: 'admin',
+  //  // canActivate: [AuthenticationService],
+  //   loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
+  // },
 ];
 
 @NgModule({

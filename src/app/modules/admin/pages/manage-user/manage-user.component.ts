@@ -32,21 +32,21 @@ export class ManageUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllUser(this.currentEnabledUserPage, this.pageSize, this.sortBy);
+    // this.getAllUser(this.currentEnabledUserPage, this.pageSize, this.sortBy);
   }
 
-  getAllUser(pageNo: number = 0, pageSize: number = 10, sortBy: string) {
-    this.sortBy = sortBy;
-    this.userService.getAllUser(pageNo, pageSize, sortBy, this.sortOrder ? OrderEnum.ASC : OrderEnum.DESC).subscribe(response => {
-      this.users = response.usersDto;
-      this.currentEnabledUserPage = response.currentPage;
-      this.endEnabledPage = response.totalPages - 1;
-    });
-  }
+  // getAllUser(pageNo: number = 0, pageSize: number = 10, sortBy: string) {
+  //   this.sortBy = sortBy;
+  //   this.userService.getAllUser(pageNo, pageSize, sortBy, this.sortOrder ? OrderEnum.ASC : OrderEnum.DESC).subscribe(response => {
+  //     this.users = response.usersDto;
+  //     this.currentEnabledUserPage = response.currentPage;
+  //     this.endEnabledPage = response.totalPages - 1;
+  //   });
+  // }
 
-  showEnabled($event) {
-    console.log(this.enabled);
-  }
+  // showEnabled($event) {
+  //   console.log(this.enabled);
+  // }
 
   // onDisabled(userId: number, user: User, event) {
   //     const checked = event.target.checked;
@@ -115,26 +115,26 @@ export class ManageUserComponent implements OnInit {
     //   }
     // }
 
-    public isAdmin(user: User): boolean {
-      if (JSON.stringify(user.roles).match('(.*)ROLE_ADMIN(.*)') != null) {
-          return true;
-      }
+    // public isAdmin(user: User): boolean {
+    //   if (JSON.stringify(user.roles).match('(.*)ROLE_ADMIN(.*)') != null) {
+    //       return true;
+    //   }
 
-      return false;
-    }
+    //   return false;
+    // }
 
-    public deleteUser(userId: number) {
-      this.alertifyService.confirm('Delete this user, are you sure?', () => {
-        this.userService.deleteByAdmin(userId).subscribe(
-          response => {
-            this.alertifyService.success('Deleted');
-          },
-          error => {
-            this.alertifyService.error('Delete fail');
-          }
-        );
-      });
-    }
+    // public deleteUser(userId: number) {
+    //   this.alertifyService.confirm('Delete this user, are you sure?', () => {
+    //     this.userService.deleteByAdmin(userId).subscribe(
+    //       response => {
+    //         this.alertifyService.success('Deleted');
+    //       },
+    //       error => {
+    //         this.alertifyService.error('Delete fail');
+    //       }
+    //     );
+    //   });
+    // }
 
       // Pagination for enabled Users
 

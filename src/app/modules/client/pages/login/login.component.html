@@ -1,0 +1,55 @@
+<div class="breadcrumb">
+  <div class="container">
+    <a class="breadcrumb-item" href="">Home</a>
+    <span class="breadcrumb-item active">Login</span>
+  </div>
+</div>
+<section class="static about-sec">
+  <div class="container">
+    <h1>My Account / Login</h1>
+    <p>Login to discover the sperate feature only for you!</p>
+    <div class="form">
+      <div [formGroup]="loginForm">
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="email">Email<span class="required-star"> *</span></label>
+            <input id="email" type="email" formControlName="email" class="form-control" placeholder="Enter Your Email" required>
+            <div *ngIf="f.email.invalid && (f.email.errors.dirty || f.email.errors.touched)" class="alert alert-danger">
+              <div *ngIf="f.email.errors.required">
+                Email is required.
+              </div>
+              <div *ngIf="f.email.errors.pattern">
+                Email must be type email.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="lastname">Password<span class="required-star"> *</span></label>
+            <input type="password" formControlName="password" class="form-control" placeholder="Enter Password" required>
+            <div *ngIf="f.password.invalid && (f.password.errors.dirty || f.password.errors.touched)" class="alert alert-danger">
+              <div *ngIf="f.password.errors.required">
+                Password is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-12">
+          <div class="form-group">
+            <button [disabled]="loading" class="btn btn-warning" (click)="login()">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              Login
+            </button>
+            <p>or, login with</p>
+            <button class="btn btn-danger">
+              <i class="fa fa-google-plus mr-2"></i>
+              Login with Google
+            </button>
+            <h5>Don't have account? <a [routerLink]="['/register']" routerLinkActive="router-link-active">Register here</a></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -9,8 +9,7 @@ import { Product } from '../models/product.model';
 @Injectable({
   providedIn: 'root'
 })
-export class
-Service {
+export class ProductService {
   private currentUserSubject: BehaviorSubject<Login>
   public currentUser: Observable<Login>
 
