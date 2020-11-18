@@ -8,6 +8,7 @@ export class Product {
   description: string;
   originPrice: number;
   image: string;
+  covers?: string[];
   categories: Category[];
   promotions: Promotion[];
 }
