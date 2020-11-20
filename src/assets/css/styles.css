@@ -1311,7 +1311,7 @@ header .cart .quntity {
 
 .product-sec .slider-content ul {
   list-style: none;
-  width: 320px;
+  width: 100%;
   margin-bottom: 40px;
   float: left;
 }
@@ -1348,7 +1348,6 @@ header .cart .quntity {
 }
 
 .product-sec .slider-content ul li span.save-cost {
-  text-align: right;
   width: 100%;
   font-weight: 600;
   font-style: italic;
