@@ -20,8 +20,8 @@ export class ProductService {
   }
 
   public getAllProducts() {
-    return this.http.get<any>(`${Constant.PRODUCT_URL}`)
-              .pipe(map((product: Product) => this.setProductCovers(product)));
+    return this.http.get<Product[]>(`${Constant.PRODUCT_URL}`);
+              // .pipe(map((product: Product) => this.setProductCovers(product)));
   }
 
   public getProductById(bookId: number): Observable<Product> {

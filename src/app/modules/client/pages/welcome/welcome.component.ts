@@ -20,7 +20,13 @@ export class WelcomeComponent implements OnInit {
     this.productService.getAllProducts().subscribe((res: Product[]) => {
       console.log(res);
       this.products = res;
+      this.products.map((product: Product) => this.setProductCovers(product));
     })
+  }
+
+  private setProductCovers(product: Product): Product {
+    product.covers = product.image.split(',');
+    return product;
   }
 
 }
