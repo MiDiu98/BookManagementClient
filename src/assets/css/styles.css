@@ -347,14 +347,18 @@ header .cart .quntity {
 
 .recomended-sec .item {
   border: 1px solid #d5d5d5;
-  padding: 36px 10px;
-  cursor: pointer;
+  <<<<<<< Updated upstream padding: 36px 10px;
+  =======padding: 20px 15px;
+  >>>>>>>Stashed changes cursor: pointer;
   position: relative;
 }
 
 .recomended-sec .item img {
   margin-bottom: 15px;
-  max-width: 100%;
+  <<<<<<< Updated upstream max-width: 100%;
+  =======width: 100%;
+  height: 260px;
+  >>>>>>>Stashed changes
 }
 
 .recomended-sec .item h3 {
@@ -420,6 +424,8 @@ header .cart .quntity {
 .recomended-sec .item:hover .hover {
   visibility: visible;
   opacity: 1;
+  <<<<<<< Updated upstream=======box-shadow: 2px 3px gray;
+  >>>>>>>Stashed changes
 }
 
 .recomended-sec .item:hover span {
@@ -526,8 +532,10 @@ header .cart .quntity {
 
 .recent-book-sec .item img {
   margin-bottom: 15px;
-  max-width: 100%;
-  cursor: pointer;
+  <<<<<<< Updated upstream max-width: 100%;
+  =======width: 100%;
+  height: 240px;
+  >>>>>>>Stashed changes cursor: pointer;
 }
 
 .recent-book-sec .item img:hover+h3 {
@@ -1298,10 +1306,14 @@ header .cart .quntity {
 }
 
 .product-sec .slider-content p {
-  font-size: 16px;
+  <<<<<<< Updated upstream font-size: 16px;
   font-weight: 200;
   line-height: 30px;
-  margin-bottom: 25px;
+  =======color: #252525;
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 32px;
+  >>>>>>>Stashed changes margin-bottom: 25px;
 }
 
 .product-sec .slider-content ul {
