@@ -1,5 +1,6 @@
 import { Category } from './category.model';
 import { Promotion } from './promotion.model';
+import { Review } from './review.model';
 
 export class Product {
   id: number;
@@ -11,4 +12,5 @@ export class Product {
   covers?: string[];
   categories: Category[];
   promotions: Promotion[];
+  reviews: Review[];
 }

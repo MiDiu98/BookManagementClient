@@ -57,3 +57,45 @@ input[type=number] {
   border-left: none;
   border-radius: 0 5px 5px 0;
 }
+
+.detail-infor-product {
+  font-family: inherit;
+  width: 180px !important;
+}
+
+.value-infor-product {
+  font-family: inherit;
+}
+
+.card-question {
+  display: block;
+}
+
+.qna-form {
+  display: inherit;
+  margin-top: 30px;
+  height: 25px;
+}
+
+.input-question-product {
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 4px;
+  float: left;
+  height: 40px;
+  width: 860px;
+  padding: 0 10px;
+}
+
+.btn-question-product {
+  border-radius: 4px;
+  float: right;
+  font-size: 13px;
+  width: 154px;
+  height: 40px;
+}
+
+.qna-list {
+  display: inherit;
+  padding-top: 30px;
+  color: #646464;
+}
