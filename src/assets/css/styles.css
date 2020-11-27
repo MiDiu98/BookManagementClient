@@ -1017,12 +1017,14 @@ header .cart .quntity {
   font-weight: 200;
   color: #000;
   font-size: 14px;
+  display: flex;
 }
 
 .breadcrumb .breadcrumb-item.active {
   color: #000;
   font-size: 14px;
   font-weight: 300;
+  display: flex;
 }
 
 .about-sec h1 {
