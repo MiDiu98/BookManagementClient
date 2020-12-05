@@ -9,12 +9,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ProfileComponent,
-      },
-      {
-        path: 'edit',
         component: ProfileEditComponent,
-      },
+      }
     ],
   },
 ];

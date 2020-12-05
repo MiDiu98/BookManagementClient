@@ -476,6 +476,7 @@ header .cart .quntity {
   font-size: 16px;
   line-height: 28px;
   margin-bottom: 30px;
+  color: #070707;
 }
 
 .about-sec .about-content .btn-sec {
@@ -484,16 +485,7 @@ header .cart .quntity {
 
 .about-sec .about-content .btn-sec .btn {
   margin-right: 10px;
-}
-
-.about-sec .about-content .btn-sec .black {
-  background: #252525;
-  border: 2px solid #252525;
-}
-
-.about-sec .about-content .btn-sec .black:hover {
-  background: transparent;
-  color: #252525;
+  color: white;
 }
 
 .recent-book-sec {
@@ -584,18 +576,17 @@ header .cart .quntity {
   margin-top: 20px;
 }
 
-.features-sec {
-  margin-bottom: 100px;
-}
+.features-sec {}
 
 .features-sec ul li {
   text-align: center;
   padding: 0 20px 60px;
   border: 1px solid #cacaca;
   float: left;
-  width: 33.333%;
+  width: 100%;
   list-style: none;
   border-left: 0;
+  background: #fff;
 }
 
 .features-sec ul li:first-child {
