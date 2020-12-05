@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
@@ -8,12 +12,11 @@ import { AlertifyService } from 'src/app/shared/services/alertify.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
-  submitted = false;
   returnUrl: string;
 
   constructor(
@@ -24,43 +27,44 @@ export class LoginComponent implements OnInit {
     private alertify: AlertifyService
   ) {
     if (this.authenticationService.currentUserValue) {
-        this.router.navigate(['/']);
+      this.router.navigate(['/']);
     }
   }
 
   ngOnInit(): void {
-      this.initForm();
+    this.initForm();
   }
 
   public initForm(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(/.*@.*\.com$/)]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  // convinience getter for easy access to form fields
-  get f() { return this.loginForm.controls; }
+  get f() {
+    return this.loginForm.controls;
+  }
 
   public login(): void {
-      this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
 
-      // stop here if form is invalid
-      if (this.loginForm.invalid) {
-        return;
-      }
-
-      this.loading = true;
-      this.authenticationService.login(this.f.email.value, this.f.password.value)
-          .pipe(first())
-          .subscribe(
-              data => {
-                this.alertify.success('Login successful!');
-                this.router.navigate([this.returnUrl]); },
-              error => {
-                this.alertify.error('Email or Password is incorrect!');
-                this.loading = false;
-              });
+    this.loading = true;
+    this.authenticationService
+      .login(this.f.email.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        (_) => {
+          this.alertify.success('Login successful!');
+          this.router.navigate([this.returnUrl]);
+        },
+        (_) => {
+          this.alertify.error('Email or Password is incorrect!');
+          this.loading = false;
+        }
+      );
   }
 }

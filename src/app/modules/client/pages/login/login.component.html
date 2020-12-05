@@ -41,14 +41,12 @@
         </div>
         <div class="row">
           <div class="d-flex flex-column col-md-5">
-            <div class="mb-3 d-flex align-items-center">
-              <button type="submit" [disabled]="loading" class="btn btn-warning">
-                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                Login
-              </button>
-              <p class="mb-0 ml-2">or, login with</p>
-            </div>
-            <button type="button" class="btn btn-danger">
+            <button type="submit" [disabled]="loading" class="btn btn--primary">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              Login
+            </button>
+            <br>
+            <button type="button" class="btn btn--secondary">
               <i class="fa fa-google-plus mr-2"></i>
               Login with Google
             </button>
