@@ -9,12 +9,10 @@
     <h1>Đăng kí</h1>
     <div class="form">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-          <div class="col-md-5">
-            <div class="form-group">
-              <label for="email">Email<span class="required-star"> *</span></label>
-              <input type="email" formControlName="email" class="form-control" placeholder="Enter your email" required>
-            </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email<span class="required-star"> *</span></label>
+            <input type="email" formControlName="email" class="form-control" placeholder="Enter your email" required>
           </div>
         </div>
         <div class="col-md-6">
