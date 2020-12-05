@@ -9,12 +9,26 @@
 @import "buttons.scss";
 
 /* BASE */
+
+
 /* Font family */
+
+
 /* color */
+
+
 /* Font size */
+
+
 /* mixin */
+
+
 /* modules */
+
+
 /* layouts */
+
+
 /*# sourceMappingURL=styles.css.map */
 
 .container {
@@ -22,6 +36,7 @@
   padding: 0 50px;
   max-width: 1200px;
 }
+
 section {
   float: left;
   width: 100%;
@@ -83,6 +98,7 @@ img {
     background: #ff9700;
   }
 }
+
 .recomended-sec {
   text-align: center;
   margin-bottom: 80px;
@@ -187,6 +203,7 @@ img {
     }
   }
 }
+
 .about-sec {
   margin-bottom: 80px;
   background: #f7f4f0;
@@ -256,6 +273,7 @@ img {
     width: 100%;
   }
 }
+
 .recent-book-sec {
   text-align: center;
   margin-bottom: 130px;
@@ -285,7 +303,7 @@ img {
       width: 100%;
       height: 240px;
       cursor: pointer;
-      &:hover + h3 {
+      &:hover+h3 {
         text-decoration: underline;
       }
     }
@@ -328,15 +346,16 @@ img {
     margin-top: 20px;
   }
 }
+
 .features-sec {
-  margin-bottom: 100px;
   ul {
     li {
+      background-color: white;
       text-align: center;
       padding: 0 20px 60px;
       border: 1px solid #cacaca;
       float: left;
-      width: 33.333%;
+      width: 100%;
       list-style: none;
       border-left: 0;
       &:first-child {
@@ -382,6 +401,7 @@ img {
     }
   }
 }
+
 .offers-sec {
   padding: 90px 0;
   background-position: center !important;
@@ -429,6 +449,7 @@ img {
     top: 0;
   }
 }
+
 .testimonial-sec {
   padding: 80px 0;
   position: relative;
@@ -479,6 +500,7 @@ img {
     right: 50px;
   }
 }
+
 .breadcrumb {
   background: transparent;
   border: 1px solid #ccc;
@@ -499,6 +521,7 @@ img {
     display: flex;
   }
 }
+
 .static {
   h1 {
     font-size: 30px;
@@ -608,9 +631,11 @@ img {
     }
   }
 }
+
 .static.about-sec {
   background: transparent;
 }
+
 .product-sec {
   margin-bottom: 100px;
   h1 {
@@ -636,7 +661,7 @@ img {
       display: block;
       margin-right: 0;
       width: 115px;
-      > li {
+      >li {
         width: 100%;
         margin-left: 0;
         height: initial;
@@ -647,7 +672,7 @@ img {
           cursor: pointer;
         }
       }
-      > li.active {
+      >li.active {
         img {
           opacity: 0.7;
           outline: 1px solid #ff0000;
@@ -722,6 +747,7 @@ img {
     }
   }
 }
+
 .related-books {
   h2 {
     font-size: 36px;
@@ -793,6 +819,7 @@ img {
     }
   }
 }
+
 @media only screen and (max-width: 800px) {
   .recomended-sec {
     h2 {
@@ -866,6 +893,7 @@ img {
     max-width: 100%;
   }
 }
+
 @media only screen and (max-width: 640px) {
   .slider {
     .slide {
@@ -986,7 +1014,7 @@ img {
         float: left;
         width: 100%;
         margin: 0 -5px;
-        > li {
+        >li {
           width: 33.33%;
           margin-left: 0;
           display: block;
@@ -1006,6 +1034,7 @@ img {
     }
   }
 }
+
 @media only screen and (max-width: 480px) {
   .container {
     padding: 0 15px;
@@ -1085,6 +1114,7 @@ img {
     }
   }
 }
+
 @media only screen and (max-width: 320px) {
   .slider {
     .owl-dots {
