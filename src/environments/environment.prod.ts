@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  backendIP: 'http://localhost',
-  backendPort: '8092',
+  backendUrl: 'https://mini-bookstore-api.herokuapp.com'
 };
