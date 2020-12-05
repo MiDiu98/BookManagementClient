@@ -26,11 +26,15 @@
             </li>
             <li class="navbar-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                My Account
-              </a>
+                 My Account
+               </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/my-account/profile">My profile</a>
+                <a class="dropdown-item" href="/my-account/addresses">My addresses</a>
+              </div>
             </li>
             <li class="navbar-item">
-              <a [routerLink]="['/authentication/login']" routerLinkActive="router-link-active" class="nav-link">Login</a>
+              <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="nav-link">Login</a>
             </li>
             <li class="navbar-item">
               <a class="nav-link"><i class="fa fa-sign-out" aria-hidden="true">Logout</i></a>
