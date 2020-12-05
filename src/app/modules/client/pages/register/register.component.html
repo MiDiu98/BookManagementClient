@@ -4,39 +4,47 @@
     <span class="breadcrumb-item active">Register</span>
   </div>
 </div>
-<section class="static about-sec">
+<section class="static">
   <div class="container">
-    <h1>My Account / Register</h1>
-    <p>Register to create your book!</p>
+    <h1>Register</h1>
+    <p>Sign up to buy your books!</p>
     <div class="form">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="email">Email<span class="required-star"> *</span></label>
-            <input type="email" formControlName="email" class="form-control" placeholder="Enter your email" required>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="email">Email<span class="required-star"> *</span></label>
+              <input type="email" formControlName="email" class="form-control" placeholder="Enter your email" required>
+            </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="password">Password<span class="required-star"> *</span></label>
-            <input type="password" formControlName="password" class="form-control" placeholder="Enter password" required>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="password">Password<span class="required-star"> *</span></label>
+              <input type="password" formControlName="password" class="form-control" placeholder="Enter password" required>
+            </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="firstname">Firstname</label>
-            <input type="text" formControlName="firstname" class="form-control" placeholder="Enter your firstname">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="firstname">First name</label>
+              <input type="text" formControlName="firstname" class="form-control" placeholder="Enter your first name">
+            </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="lastname">Lastname</label>
-            <input type="text" formControlName="lastname" class="form-control" placeholder="Enter your lastname">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="lastname">Last name</label>
+              <input type="text" formControlName="lastname" class="form-control" placeholder="Enter your last name">
+            </div>
           </div>
         </div>
-        <div class="col-lg-6 col-md-12">
-          <div class="form-group">
-            <button class="btn btn-primary">Register</button>
+        <div class="row">
+          <div class="d-flex flex-column col-md-5">
+            <button class="btn btn--primary">Register</button>
             <h5>Registered? <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login here</a></h5>
           </div>
         </div>
