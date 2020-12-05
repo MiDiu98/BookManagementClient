@@ -4,10 +4,10 @@
       <div class="row">
         <div class="col-md-3"><a href="#" class="web-url">www.bookstore.com</a></div>
         <div class="col-md-6">
-          <h5>Free Shipping Over $99 + 3 Free Samples With Every Order</h5>
+          <h5>Miễn phí giao hàng trong phạm vi 5km</h5>
         </div>
         <div class="col-md-3">
-          <span class="ph-number">Call : 800 1234 5678</span>
+          <span class="ph-number">Gọi ngay : 800 1234 5678</span>
         </div>
       </div>
     </div>
@@ -22,18 +22,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="navbar-item active">
-              <a href="" class="nav-link">Home</a>
+              <a href="" class="nav-link">Trang chủ</a>
             </li>
             <li class="navbar-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                My Account
-              </a>
+                 Tài khoản
+               </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/my-account/profile">Thông tin tài khoản</a>
+                <a class="dropdown-item" href="/my-account/addresses">Quản lý địa chỉ</a>
+              </div>
             </li>
             <li class="navbar-item">
-              <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="nav-link">Login</a>
+              <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="nav-link">Đăng nhập</a>
             </li>
             <li class="navbar-item">
-              <a class="nav-link"><i class="fa fa-sign-out" aria-hidden="true">Logout</i></a>
+              <a class="nav-link"><i class="fa fa-sign-out" aria-hidden="true">Đăng xuất</i></a>
             </li>
           </ul>
           <div class="cart my-2 my-lg-0">
@@ -44,7 +48,7 @@
             </a>
           </div>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" placeholder="Bạn tìm kiếm gì?" aria-label="Search">
             <span class="fa fa-search"></span>
           </form>
         </div>
