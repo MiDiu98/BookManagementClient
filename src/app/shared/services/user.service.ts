@@ -11,6 +11,10 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  public getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${Constant.USER_URL}/${id}`);
+  }
+
   public getEnabledUser(): Observable<User[]> {
     return this.http.get<any>(Constant.USER_URL + '/enabled');
   }
