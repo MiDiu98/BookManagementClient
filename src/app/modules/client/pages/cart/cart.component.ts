@@ -36,13 +36,37 @@ export class CartComponent implements OnInit {
   public isCheckAll(): void {
     this.chooseAll = !this.chooseAll;
     console.log(this.chooseAll);
-
-    this.chooseAll === true ? this.setStateAllItem(true) : this.setStateAllItem(false);
+    this.setStateAllItem(this.chooseAll);
+    console.log(this.cartOrder);
   }
 
   private setStateAllItem(status: boolean) {
     this.cartProducts.forEach(item => item.status = status);
-    this.cartOrder = status === true ? this.cartProducts : [];
+    this.cartOrder = status ? this.cartProducts : [];
+  }
+
+  public changeCart(index: number, item: CartProduct): void {
+    item.status = !item.status;
+    console.log(index);
+
+    this.cartProducts.forEach(product => {
+      if (product.productId === item.productId) {
+        product.status = item.status;
+      }
+    })
+    console.log(this.cartProducts);
+
+    if (item.status === true) {
+      this.cartOrder.push(item);
+    } else if (item.status === false) {
+      const indexOrder = this.cartOrder.findIndex(order => order === item);
+      console.log(indexOrder);
+
+      this.cartOrder.splice(indexOrder, 1);
+    }
+
+    console.log(this.cartOrder);
+
   }
 
 }

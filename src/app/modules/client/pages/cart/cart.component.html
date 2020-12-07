@@ -13,10 +13,10 @@
           <label class="mb-0">CHỌN TẤT CẢ</label>
         </div>
         <div class="cart-list">
-          <div class="item" *ngFor="let item of cartProducts">
+          <div class="item" *ngFor="let item of cartProducts; let index=index;">
             <div class="cart-item">
               <div class="cart-item-left">
-                <input class="mr-5" type="checkbox" value="on" [checked]="item.status">
+                <input class="mr-5" type="checkbox" value="on" [checked]="item.status" (change)="changeCart(index, item)">
                 <img class="cart-product-img" src="{{item.productCover}}">
                 <div class="content">
                   <a id="item-title" href="">
