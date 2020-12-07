@@ -1,22 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { OrderProduct } from 'src/app/shared/models/order-product.model';
 import { Product } from 'src/app/shared/models/product.model';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
+import { CartService } from 'src/app/shared/services/cart.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
   productId: number;
   product: Product;
   index = 0;
+  quantityProduct = 1;
 
   constructor(
     private productService: ProductService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CartService,
+    private alertService: AlertifyService
   ) { }
 
   ngOnInit(): void {
@@ -36,8 +42,19 @@ export class ProductComponent implements OnInit {
     })
   }
 
-  public addToCart() {
-    this.router.navigate(['/cart']);
+  public addToCart(product: Product): void {
+    let orderProducts = new OrderProduct({
+      orderId: 0,
+      productId: product.id,
+      product: product.name,
+      price: product.originPrice,
+      quantity: this.quantityProduct
+    });
+
+    this.cartService.addToCart(orderProducts).subscribe(_ => {
+      this.alertService.success('Đã thêm vào giỏ hàng!');
+    })
   }
+
 
 }

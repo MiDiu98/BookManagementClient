@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BookFormComponent } from './components/book-form/book-form.component';
+import { AlertifyService } from './services/alertify.service';
 
 const modules = [
   FormsModule,
@@ -18,7 +19,7 @@ const modules = [
   ],
   exports: [
     ...modules,
-     BookFormComponent
+    BookFormComponent
   ]
 })
 export class SharedModule { }

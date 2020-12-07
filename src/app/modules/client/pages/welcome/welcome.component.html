@@ -63,7 +63,7 @@
             <img src="{{product.covers[0]}}" alt="img">
             <h3>{{product.name}}</h3>
           </a>
-          <h6><span class="price">{{product.originPrice}}</span> / <a href="" [routerLink]="['/cart']">Thêm vào giỏ</a></h6>
+          <h6><span class="price">{{product.originPrice}} vnđ</span> / <button class="btn-add-cart" (click)="addToCart(product)">Thêm vào giỏ</button></h6>
         </div>
       </div>
     </div>
