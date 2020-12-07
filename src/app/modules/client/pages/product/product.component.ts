@@ -51,7 +51,8 @@ export class ProductComponent implements OnInit {
       productCover:  product.covers[0],
       productDescription: product.description,
       price: product.originPrice,
-      quantity: this.quantityProduct
+      quantity: this.quantityProduct,
+      status: false
     });
 
     this.cartService.addToCart(cartProduct).subscribe(_ => {

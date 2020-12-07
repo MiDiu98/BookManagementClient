@@ -9,14 +9,14 @@
     <div class="row">
       <div class="cart-product col-md-8">
         <div class="cart-header">
-          <input class="mr-2" type="checkbox" value="on">
+          <input class="mr-2" type="checkbox" value="on" [checked]="chooseAll" (change)="isCheckAll()">
           <label class="mb-0">CHỌN TẤT CẢ</label>
         </div>
         <div class="cart-list">
           <div class="item" *ngFor="let item of cartProducts">
             <div class="cart-item">
               <div class="cart-item-left">
-                <input class="mr-5" type="checkbox" value="on">
+                <input class="mr-5" type="checkbox" value="on" [checked]="item.status">
                 <img class="cart-product-img" src="{{item.productCover}}">
                 <div class="content">
                   <a id="item-title" href="">

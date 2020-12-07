@@ -10,11 +10,15 @@ import { CartService } from 'src/app/shared/services/cart.service';
 })
 export class CartComponent implements OnInit {
   cartProducts: CartProduct[];
+  cartOrder: CartProduct[];
+  chooseAll: boolean;
 
   constructor(
     private router: Router,
     private cartService: CartService
-  ) { }
+  ) {
+    this.cartOrder = [];
+  }
 
   ngOnInit(): void {
     this.getCart();
@@ -25,8 +29,20 @@ export class CartComponent implements OnInit {
     console.log(this.cartProducts);
   }
 
-  goPayment() {
+  public goPayment(): void {
     this.router.navigate(['/payment']);
+  }
+
+  public isCheckAll(): void {
+    this.chooseAll = !this.chooseAll;
+    console.log(this.chooseAll);
+
+    this.chooseAll === true ? this.setStateAllItem(true) : this.setStateAllItem(false);
+  }
+
+  private setStateAllItem(status: boolean) {
+    this.cartProducts.forEach(item => item.status = status);
+    this.cartOrder = status === true ? this.cartProducts : [];
   }
 
 }

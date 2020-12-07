@@ -6,6 +6,7 @@ export class  CartProduct {
   productDescription: string;
   price: number;
   quantity: number;
+  status: boolean;
 
   constructor(init?: Partial<CartProduct>) {
     Object.assign(this, init);
