@@ -12,6 +12,8 @@ export class CartComponent implements OnInit {
   cartProducts: CartProduct[];
   cartOrder: CartProduct[];
   chooseAll: boolean;
+  provisionalPrice = 0;
+  totalPrice = 0;
 
   constructor(
     private router: Router,
@@ -44,24 +46,24 @@ export class CartComponent implements OnInit {
 
   public changeCart(index: number, item: CartProduct): void {
     item.status = !item.status;
-
-    this.cartProducts.forEach(product => {
-      if (product.productId === item.productId) {
-        product.status = item.status;
-      }
-    })
+    this.cartProducts[index] = item;
 
     if (item.status === true) {
       this.cartOrder.push(item);
+      this.provisionalPrice += item.price * item.quantity;
     } else if (item.status === false) {
       const indexOrder = this.cartOrder.findIndex(order => order === item);
       this.cartOrder.splice(indexOrder, 1);
+      this.provisionalPrice -= item.price * item.quantity;
     }
+    this.totalPrice = this.provisionalPrice;
   }
 
-  public deleteItem(index: number) {
+  public deleteItem(index: number, item: CartProduct) {
     this.cartProducts.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(this.cartProducts));
+    this.provisionalPrice -= item.price * item.quantity;
+    this.totalPrice = this.provisionalPrice;
   }
 
 }

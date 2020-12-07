@@ -37,7 +37,7 @@
                   </div>
                 </div>
                 <div class="delete-cart d-inline">
-                  <button class="btn-delete-item" (click)="deleteItem(index)"><i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
+                  <button class="btn-delete-item" (click)="deleteItem(index, item)"><i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
                 </div>
               </div>
             </div>
@@ -52,7 +52,7 @@
         <div class="detail-bill">
           <div class="temp-charge">
             <p id="temp-charge-title">Tạm tính</p>
-            <p id="temp-charge-price"><strong>175.450 vnđ</strong></p>
+            <p id="temp-charge-price"><strong>{{provisionalPrice}} vnđ</strong></p>
           </div>
           <div class="promotion-form">
             <input id="promotion-input" type="text" placeholder="Mã giảm giá (chỉ áp dụng 1 mã)" />
@@ -61,7 +61,7 @@
           <hr width="100%" align="center" />
           <div class="total-charge">
             <p id="charge-title">Tổng cộng</p>
-            <p id="charge-price">175.450 vnđ</p>
+            <p id="charge-price">{{totalPrice}} vnđ</p>
           </div>
           <div class="payment">
             <button class="pay-btn" (click)="goPayment()">THANH TOÁN</button>
