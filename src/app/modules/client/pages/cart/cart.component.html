@@ -13,70 +13,29 @@
           <label class="mb-0">CHỌN TẤT CẢ</label>
         </div>
         <div class="cart-list">
-          <div class="cart-item">
-            <div class="cart-item-left">
-              <input class="mr-5" type="checkbox" value="on">
-              <img class="cart-product-img" src="https://vnwriter.net/wp-content/uploads/2017/10/sach-hieu-ve-trai-tim.jpg">
-              <div class="content">
-                <a id="item-title" href="">
-                  Hiểu về trái tim
-                </a>
-                <a id="item-short-descrip" href="">Tác giả: Minh Niệm</a>
+          <div class="item" *ngFor="let item of cartProducts">
+            <div class="cart-item">
+              <div class="cart-item-left">
+                <input class="mr-5" type="checkbox" value="on">
+                <img class="cart-product-img" src="{{item.productCover}}">
+                <div class="content">
+                  <a id="item-title" href="">
+                    {{item.productName}}
+                  </a>
+                  <a id="item-short-descrip" href="">{{item.productDescription.substring(0, 30)}}...</a>
+                </div>
+              </div>
+              <div class="cart-item-right">
+                <label class="mb-0">Đơn giá:</label>
+                <p class="current-price mb-1">{{item.price}} vnđ</p>
+                <div class="quatity">
+                  <button class="btn-minus" (click)="item.quantity=item.quantity-1" [disabled]="item.quantity <= 1">-</button>
+                  <input type="number" class="quantity-input text-center" [(ngModel)]="item.quantity">
+                  <button class="btn-plus" (click)="item.quantity=item.quantity+1">+</button>
+                </div>
               </div>
             </div>
-            <div class="cart-item-right">
-              <label class="mb-0">Đơn giá:</label>
-              <p class="current-price mb-1">110.200 vnđ</p>
-              <div class="quatity">
-                <button class="btn-minus">-</button>
-                <input type="number" class="quantity-input text-center" placeholder="1">
-                <button class="btn-plus">+</button>
-              </div>
-            </div>
-          </div>
-          <hr width="100%" align="center" />
-          <div class="cart-item">
-            <div class="cart-item-left">
-              <input class="mr-5" type="checkbox" value="on">
-              <img class="cart-product-img" src="https://salt.tikicdn.com/cache/w1200/media/catalog/product/t/u/tuoi-tho-du-doi-a.jpg">
-              <div class="content">
-                <a id="item-title" href="">
-                  Tuổi thơ dữ dội
-                </a>
-                <a id="item-short-descrip" href="">Tác giả: Phùng Quán</a>
-              </div>
-            </div>
-            <div class="cart-item-right">
-              <label class="mb-0">Đơn giá:</label>
-              <p class="current-price mb-1">65.250 vnđ</p>
-              <div class="quatity">
-                <button class="btn-minus">-</button>
-                <input type="number" class="quantity-input text-center" placeholder="1">
-                <button class="btn-plus">+</button>
-              </div>
-            </div>
-          </div>
-          <hr width="100%" align="center" />
-          <div class="cart-item">
-            <div class="cart-item-left">
-              <input class="mr-5" type="checkbox" value="on">
-              <img class="cart-product-img" src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/g/i/giet_con_chim_nhai_tai_ban_2016_1_2018_08_04_10_46_53.JPG">
-              <div class="content">
-                <a id="item-title" href="">
-                  Giết con chim nhại
-                </a>
-                <a id="item-short-descrip" href="">Tác giả: Harper Lee</a>
-              </div>
-            </div>
-            <div class="cart-item-right">
-              <label class="mb-0">Đơn giá:</label>
-              <p class="current-price mb-1">89.640 vnđ</p>
-              <div class="quatity">
-                <button class="btn-minus">-</button>
-                <input type="number" class="quantity-input text-center" placeholder="1">
-                <button class="btn-plus">+</button>
-              </div>
-            </div>
+            <hr width="100%" align="center" />
           </div>
         </div>
       </div>
