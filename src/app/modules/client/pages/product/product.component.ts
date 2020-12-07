@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { CartProduct } from 'src/app/shared/models/cart-product.model';
 import { OrderProduct } from 'src/app/shared/models/order-product.model';
 import { Product } from 'src/app/shared/models/product.model';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
@@ -43,15 +44,17 @@ export class ProductComponent implements OnInit {
   }
 
   public addToCart(product: Product): void {
-    let orderProducts = new OrderProduct({
-      orderId: 0,
+    let cartProduct = new CartProduct({
+      cartId: 0,
       productId: product.id,
-      product: product.name,
+      productName: product.name,
+      productCover:  product.covers[0],
+      productDescription: product.description,
       price: product.originPrice,
       quantity: this.quantityProduct
     });
 
-    this.cartService.addToCart(orderProducts).subscribe(_ => {
+    this.cartService.addToCart(cartProduct).subscribe(_ => {
       this.alertService.success('Đã thêm vào giỏ hàng!');
     })
   }
