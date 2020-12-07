@@ -41,9 +41,30 @@
 
 .cart-item-right {
   margin-left: 20px;
-  vertical-align: middle;
   align-items: center;
   text-align: center;
+  display: flex;
+}
+
+.info-cart-right {
+  vertical-align: middle;
+}
+
+.delete-cart {
+  height: 100%;
+  vertical-align: top;
+}
+
+.btn-delete-item {
+  background: none;
+  margin-left: 20px;
+  border: none;
+  padding: 0;
+  color: gray;
+  font-size: 18px;
+   :hover {
+    color: darkred;
+  }
 }
 
 .current-price {

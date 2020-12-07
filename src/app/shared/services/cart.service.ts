@@ -20,13 +20,6 @@ export class CartService {
     cart.push(cartProduct);
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // let subject = new Subject<CartProduct>();
-    // if (localStorage.getItem('cart')) {
-    //   subject.complete();
-    // } else {
-    //   subject.error(new Error('Thêm vào giỏ hàng không thành công!'));
-    // }
-    // return subject;
     let cartSub = new BehaviorSubject(new CartProduct);
     cartSub.next(Object.assign(cartSub.value, cart));
     cartSub.complete();

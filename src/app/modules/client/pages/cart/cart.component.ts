@@ -26,7 +26,6 @@ export class CartComponent implements OnInit {
 
   private getCart(): void {
     this.cartProducts = this.cartService.getCart()
-    console.log(this.cartProducts);
   }
 
   public goPayment(): void {
@@ -35,9 +34,7 @@ export class CartComponent implements OnInit {
 
   public isCheckAll(): void {
     this.chooseAll = !this.chooseAll;
-    console.log(this.chooseAll);
     this.setStateAllItem(this.chooseAll);
-    console.log(this.cartOrder);
   }
 
   private setStateAllItem(status: boolean) {
@@ -47,26 +44,24 @@ export class CartComponent implements OnInit {
 
   public changeCart(index: number, item: CartProduct): void {
     item.status = !item.status;
-    console.log(index);
 
     this.cartProducts.forEach(product => {
       if (product.productId === item.productId) {
         product.status = item.status;
       }
     })
-    console.log(this.cartProducts);
 
     if (item.status === true) {
       this.cartOrder.push(item);
     } else if (item.status === false) {
       const indexOrder = this.cartOrder.findIndex(order => order === item);
-      console.log(indexOrder);
-
       this.cartOrder.splice(indexOrder, 1);
     }
+  }
 
-    console.log(this.cartOrder);
-
+  public deleteItem(index: number) {
+    this.cartProducts.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(this.cartProducts));
   }
 
 }
