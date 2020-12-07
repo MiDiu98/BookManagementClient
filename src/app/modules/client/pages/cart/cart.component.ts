@@ -27,22 +27,23 @@ export class CartComponent implements OnInit {
   }
 
   private getCart(): void {
-    this.cartProducts = this.cartService.getCart()
+    this.cartProducts = this.cartService.getCart();
+    this.calculProductPrice();
   }
 
   public goPayment(): void {
     this.router.navigate(['/payment']);
   }
 
-  public isCheckAll(): void {
-    this.chooseAll = !this.chooseAll;
-    this.setStateAllItem(this.chooseAll);
-  }
+  // public isCheckAll(): void {
+  //   this.chooseAll = !this.chooseAll;
+  //   this.setStateAllItem(this.chooseAll);
+  // }
 
-  private setStateAllItem(status: boolean) {
-    this.cartProducts.forEach(item => item.status = status);
-    this.cartOrder = status ? this.cartProducts : [];
-  }
+  // private setStateAllItem(status: boolean) {
+  //   this.cartProducts.forEach(item => item.status = status);
+  //   this.cartOrder = status ? this.cartProducts : [];
+  // }
 
   public changeCart(index: number, item: CartProduct): void {
     item.status = !item.status;
@@ -50,20 +51,40 @@ export class CartComponent implements OnInit {
 
     if (item.status === true) {
       this.cartOrder.push(item);
-      this.provisionalPrice += item.price * item.quantity;
     } else if (item.status === false) {
       const indexOrder = this.cartOrder.findIndex(order => order === item);
       this.cartOrder.splice(indexOrder, 1);
-      this.provisionalPrice -= item.price * item.quantity;
     }
-    this.totalPrice = this.provisionalPrice;
+    this.cartService.saveCart(this.cartProducts);
+    this.calculProductPrice();
   }
 
   public deleteItem(index: number, item: CartProduct) {
     this.cartProducts.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(this.cartProducts));
-    this.provisionalPrice -= item.price * item.quantity;
-    this.totalPrice = this.provisionalPrice;
+    this.cartService.saveCart(this.cartProducts);
+    this.calculProductPrice();
   }
 
+  public subQuantityItem(index: number, item: CartProduct) {
+    item.quantity -= 1;
+    this.cartProducts[index] = item;
+    this.cartService.saveCart(this.cartProducts);
+    this.calculProductPrice();
+  }
+
+  public addQuantityItem(index: number, item: CartProduct) {
+    item.quantity += 1;
+    this.cartProducts[index] = item;
+    this.cartService.saveCart(this.cartProducts);
+    this.calculProductPrice();
+  }
+
+  public calculProductPrice(): void {
+    this.provisionalPrice = 0;
+    this.cartProducts.forEach(item => {
+      if (item.status) this.provisionalPrice += item.price * item.quantity;
+    })
+    this.totalPrice = this.provisionalPrice;
+  }
 }

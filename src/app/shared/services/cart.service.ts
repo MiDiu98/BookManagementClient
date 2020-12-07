@@ -25,4 +25,8 @@ export class CartService {
     cartSub.complete();
     return cartSub;
   }
+
+  public saveCart(cartProduct: CartProduct[]): void {
+    localStorage.setItem('cart', JSON.stringify(cartProduct));
+  }
 }

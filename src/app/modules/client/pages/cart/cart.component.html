@@ -31,9 +31,9 @@
                   <label class="mb-0">Đơn giá:</label>
                   <p class="current-price mb-1">{{item.price}} vnđ</p>
                   <div class="quatity">
-                    <button class="btn-minus" (click)="item.quantity=item.quantity-1" [disabled]="item.quantity <= 1">-</button>
+                    <button class="btn-minus" (click)="subQuantityItem(index, item)" [disabled]="item.quantity <= 1">-</button>
                     <input type="number" class="quantity-input text-center" [(ngModel)]="item.quantity">
-                    <button class="btn-plus" (click)="item.quantity=item.quantity+1">+</button>
+                    <button class="btn-plus" (click)="addQuantityItem(index, item)">+</button>
                   </div>
                 </div>
                 <div class="delete-cart d-inline">
