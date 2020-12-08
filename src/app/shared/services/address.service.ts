@@ -73,4 +73,10 @@ export class AddressService {
       address
     );
   }
+
+  public deleteUserAddresses(userId: number, addressId: number) {
+    return this.http.delete<Address>(
+      `${Constant.USER_ADDRESS_URL}/user/${userId}/address/${addressId}`
+    );
+  }
 }
