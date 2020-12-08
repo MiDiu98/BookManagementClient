@@ -5,21 +5,17 @@ export class User {
   gender: boolean;
   birthday: Date;
   phone: string;
+  address: string;
 
-  constructor(user: User) {
-    this.id = user.id;
-    this.firstName = user.firstName;
-    this.lastName = user.lastName;
-    this.gender = user.gender;
-    this.birthday = user.birthday;
-    this.phone = user.phone;
+  constructor(init?: Partial<User>) {
+    Object.assign(this, init);
   }
 
-  get fullName(): string {
+  fullName(): string {
     return `${this.firstName} ${this.lastName}`;
   }
 
   getGender(): string {
-    return this.gender ? 'Male' : 'Female';
+    return this.gender ? 'Nữ' : 'Nam';
   }
 }
