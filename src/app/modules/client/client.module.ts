@@ -17,7 +17,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
     RegisterComponent,
     ProductComponent,
     CartComponent,
-    PaymentComponent
+    PaymentComponent,
   ],
   imports: [
     CommonModule,

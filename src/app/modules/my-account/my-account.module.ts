@@ -7,10 +7,14 @@ import {MatTableModule} from '@angular/material/table';
 import { MyAccountRoutingModule } from './my-account-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
+import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
+import { OrderListComponent } from './pages/order-list/order-list.component';
 
 @NgModule({
   declarations: [
-    ProfileEditComponent
+    ProfileEditComponent,
+    OrderListComponent,
+    OrderDetailComponent
   ],
   imports: [
     CommonModule,

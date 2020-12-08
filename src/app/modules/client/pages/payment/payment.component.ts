@@ -73,7 +73,6 @@ export class PaymentComponent implements OnInit {
   public payment(): void {
     this.paymentService.payment(this.order).subscribe(order => {
       console.log(order);
-
     })
   }
 
