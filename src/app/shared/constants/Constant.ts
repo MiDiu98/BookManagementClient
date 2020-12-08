@@ -15,6 +15,8 @@ export class Constant {
 
   public static USER_URL = [Constant.API_URL, 'users'].join('/');
 
+  public static USER_ADDRESS_URL = [Constant.API_URL, 'user-address'].join('/');
+
   public static COMMENT_URL = [Constant.API_URL, 'comments'].join('/');
 
 }

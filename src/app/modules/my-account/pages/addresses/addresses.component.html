@@ -1,0 +1,63 @@
+<div class="breadcrumb">
+  <div class="container">
+    <a class="breadcrumb-item" href="/">Trang chủ</a>
+    <a class="breadcrumb-item" href="my-account">Tài khoản</a>
+    <span class="breadcrumb-item active">Sổ địa chỉ</span>
+  </div>
+</div>
+<section class="static about-sec">
+  <div class="container">
+    <h1 class="d-inline-block">Danh sách địa chỉ</h1>
+    <button class="btn btn--primary float-right">Thêm địa chỉ</button>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Địa chỉ</th>
+          <th scope="col">Phường / Xã</th>
+          <th scope="col">Quận / Huyện</th>
+          <th scope="col">Tỉnh / Thành Phố</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>59B Nguyễn Chí Thanh</td>
+          <td>Thanh Bình</td>
+          <td>Hải Châu</td>
+          <td>Đà Nẵng</td>
+          <td><span class="badge badge-pill badge-primary">Mặc định</span></td>
+          <td>
+            <button class="btn btn-warning">
+              <i class="fa fa-pencil"></i>
+            </button>
+            <button class="btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngFor="let address of userAddresses">
+          <td>{{ address.streetNumber + " " + address.streetName }}</td>
+          <td>{{ address.ward }}</td>
+          <td>{{ address.district }}</td>
+          <td>{{ address.province }}</td>
+          <td>
+            <span
+              *ngIf="address.defaultAddress"
+              class="badge badge-pill badge-primary"
+              >Mặc định</span
+            >
+          </td>
+          <td>
+            <button class="btn btn-warning">
+              <i class="fa fa-pencil"></i>
+            </button>
+            <button class="btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
