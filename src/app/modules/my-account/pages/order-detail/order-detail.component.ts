@@ -12,6 +12,7 @@ import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.comp
   styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit {
+  processingState = StatusOrder.DANG_XU_LY;
   orderId: number;
   order: Order;
 

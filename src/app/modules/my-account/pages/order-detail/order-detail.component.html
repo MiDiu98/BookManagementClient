@@ -71,7 +71,9 @@
             <p id="charge-price">{{order.totalCharges | number:'3.0-5'}} vnđ</p>
           </div>
           <div class="payment">
-            <button class="pay-btn" (click)="cancelOrder()">HỦY ĐƠN HÀNG</button>
+            <button class="pay-btn" (click)="cancelOrder()" [disabled]="order.status !== processingState" [ngStyle]="{'background': order.status !== processingState ?
+              'linear-gradient(90deg, #ff98008f 0%, #f7695d 100%)' :
+              'linear-gradient(90deg, rgba(255, 152, 0, 1) 0%, rgba(247, 105, 93, 1) 100%)'}">HỦY ĐƠN HÀNG</button>
           </div>
         </div>
       </div>
