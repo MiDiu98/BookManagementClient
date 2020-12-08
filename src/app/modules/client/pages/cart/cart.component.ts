@@ -32,29 +32,15 @@ export class CartComponent implements OnInit {
   }
 
   public goPayment(): void {
-    this.router.navigate(['/payment']);
+    if (this.cartOrder.length > 0) {
+      localStorage.setItem('payment', JSON.stringify(this.cartOrder));
+      this.router.navigate(['/payment']);
+    }
   }
-
-  // public isCheckAll(): void {
-  //   this.chooseAll = !this.chooseAll;
-  //   this.setStateAllItem(this.chooseAll);
-  // }
-
-  // private setStateAllItem(status: boolean) {
-  //   this.cartProducts.forEach(item => item.status = status);
-  //   this.cartOrder = status ? this.cartProducts : [];
-  // }
 
   public changeCart(index: number, item: CartProduct): void {
     item.status = !item.status;
     this.cartProducts[index] = item;
-
-    if (item.status === true) {
-      this.cartOrder.push(item);
-    } else if (item.status === false) {
-      const indexOrder = this.cartOrder.findIndex(order => order === item);
-      this.cartOrder.splice(indexOrder, 1);
-    }
     this.cartService.saveCart(this.cartProducts);
     this.calculProductPrice();
   }
@@ -82,8 +68,12 @@ export class CartComponent implements OnInit {
 
   public calculProductPrice(): void {
     this.provisionalPrice = 0;
+    this.cartOrder = [];
     this.cartProducts.forEach(item => {
-      if (item.status) this.provisionalPrice += item.price * item.quantity;
+      if (item.status) {
+        this.provisionalPrice += item.price * item.quantity;
+        this.cartOrder.push(item);
+      }
     })
     this.totalPrice = this.provisionalPrice;
   }
