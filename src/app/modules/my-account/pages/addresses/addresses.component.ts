@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Address } from 'src/app/shared/models/address.model';
-import { User } from 'src/app/shared/models/user.model';
 import { AddressService } from 'src/app/shared/services/address.service';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
@@ -20,6 +19,8 @@ export class AddressesComponent implements OnInit {
     const currentAccount = this.authService.currentUserValue;
     this.addressService
       .getUserAddresses(currentAccount.userId)
-      .subscribe((addresses: Address[]) => (this.userAddresses = addresses));
+      .subscribe((addresses: Address[]) => {
+        this.userAddresses = addresses;
+      });
   }
 }

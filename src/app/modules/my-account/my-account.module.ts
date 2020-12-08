@@ -9,12 +9,16 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
+import { AddressesEditComponent } from './pages/addresses-edit/addresses-edit.component';
+import { AddressesComponent } from './pages/addresses/addresses.component';
 
 @NgModule({
   declarations: [
     ProfileEditComponent,
     OrderListComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    AddressesComponent,
+    AddressesEditComponent
   ],
   imports: [
     CommonModule,

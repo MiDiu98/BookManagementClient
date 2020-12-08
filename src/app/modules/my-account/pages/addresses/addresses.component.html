@@ -8,7 +8,7 @@
 <section class="static about-sec">
   <div class="container">
     <h1 class="d-inline-block">Danh sách địa chỉ</h1>
-    <button class="btn btn--primary float-right">Thêm địa chỉ</button>
+    <a class="btn btn--primary float-right" href="my-account/addresses/0/edit">Thêm địa chỉ</a>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -21,21 +21,6 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>59B Nguyễn Chí Thanh</td>
-          <td>Thanh Bình</td>
-          <td>Hải Châu</td>
-          <td>Đà Nẵng</td>
-          <td><span class="badge badge-pill badge-primary">Mặc định</span></td>
-          <td>
-            <button class="btn btn-warning">
-              <i class="fa fa-pencil"></i>
-            </button>
-            <button class="btn btn-danger">
-              <i class="fa fa-trash"></i>
-            </button>
-          </td>
-        </tr>
         <tr *ngFor="let address of userAddresses">
           <td>{{ address.streetNumber + " " + address.streetName }}</td>
           <td>{{ address.ward }}</td>
@@ -49,9 +34,9 @@
             >
           </td>
           <td>
-            <button class="btn btn-warning">
+            <a class="btn btn-warning" href="/my-account/addresses/{{address.addressId}}/edit">
               <i class="fa fa-pencil"></i>
-            </button>
+            </a>
             <button class="btn btn-danger">
               <i class="fa fa-trash"></i>
             </button>

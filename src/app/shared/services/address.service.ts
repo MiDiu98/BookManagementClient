@@ -13,32 +13,51 @@ export class AddressService {
   PROVINCE_LEVEL = 'TINH';
   DISTRICT_LEVEL = 'HUYEN';
   WARD_LEVEL = 'XA';
+  UPPER_UNIT_LEVEL = { HUYEN: this.PROVINCE_LEVEL, XA: this.DISTRICT_LEVEL };
 
-  public getSugestedProvinces() {
-    return addressData
-      .filter((data) => data.Cap === this.PROVINCE_LEVEL)
-      .map((data) => data.Ten);
+  public getSugestedProvinces(): string[] {
+    return this.getAdminUnits(this.PROVINCE_LEVEL);
   }
 
-  public getSugestedDistricts(provinceId: number) {
-    return addressData
-      .filter(
-        (data) =>
-          data.Cap === this.DISTRICT_LEVEL && data.CapTren === provinceId
-      )
-      .map((data) => data.Ten);
+  public getSugestedDistricts(province: string): string[] {
+    return this.getAdminUnits(this.DISTRICT_LEVEL, province);
   }
 
-  public getSugestedWards(districtId: number) {
+  public getSugestedWards(district: string): string[] {
+    return this.getAdminUnits(this.WARD_LEVEL, district);
+  }
+
+  public getAdminUnits(level: string, upperUnitName?: string): string[] {
+    if (level === this.PROVINCE_LEVEL) {
+      return addressData
+        .filter((data) => data.Cap === this.PROVINCE_LEVEL)
+        .map((data) => data.Ten)
+        .sort((a, b) => a.localeCompare(b));
+    }
+    if (!upperUnitName) {
+      return;
+    }
+    const upperUnit = addressData.find(
+      (data) =>
+        data.Ten === upperUnitName && data.Cap === this.UPPER_UNIT_LEVEL[level]
+    );
     return addressData
-      .filter(
-        (data) => data.Cap === this.WARD_LEVEL && data.CapTren === districtId
-      )
-      .map((data) => data.Ten);
+      .filter((data) => data.Cap === level && data.CapTren === upperUnit.MaDVHC)
+      .map((data) => data.Ten)
+      .sort((a, b) => a.localeCompare(b));
   }
 
   public getUserAddresses(id: number): Observable<Address[]> {
     return this.http.get<Address[]>(`${Constant.USER_ADDRESS_URL}/user/${id}`);
+  }
+
+  public getUserAddressById(
+    userId: number,
+    addressId: number
+  ): Observable<Address> {
+    return this.http.get<Address>(
+      `${Constant.USER_ADDRESS_URL}/user/${userId}/address/${addressId}`
+    );
   }
 
   public addUserAddresses(id: number, address: Address): Observable<Address> {
@@ -50,7 +69,7 @@ export class AddressService {
 
   public updateUserAddresses(userId: number, address: Address) {
     return this.http.put<Address>(
-      Constant.USER_ADDRESS_URL + '/' + userId,
+      `${Constant.USER_ADDRESS_URL}/user/${userId}/address/${address.addressId}`,
       address
     );
   }
