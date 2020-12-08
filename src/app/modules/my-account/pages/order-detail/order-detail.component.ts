@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { StatusOrder } from 'src/app/shared/constants/StatusOrder';
 import { Order } from 'src/app/shared/models/order.model';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
 
 @Component({
   selector: 'app-order-detail',
@@ -15,7 +18,8 @@ export class OrderDetailComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +40,18 @@ export class OrderDetailComponent implements OnInit {
   }
 
   public cancelOrder(): void {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      data: 'Bạn chắc chắn muốn hủy đơn hàng?'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        this.order.status = StatusOrder.HUY_DON;
+        this.orderService.update(this.order).subscribe(res => {
+          this.order = res;
+        })
+      }
+    });
   }
 
 }

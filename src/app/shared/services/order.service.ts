@@ -30,4 +30,8 @@ export class OrderService {
     return this.http.post<Order>(`${Constant.API_URL}/orders/user/${order.userId}`, order);
   }
 
+  public update(order: Order): Observable<Order> {
+    return this.http.put<Order>(`${Constant.API_URL}/orders/user/${order.userId}/order/${order.id}`, order);
+  }
+
 }
