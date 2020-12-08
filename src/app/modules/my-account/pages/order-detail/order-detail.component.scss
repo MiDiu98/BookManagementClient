@@ -195,3 +195,11 @@ input[type=number] {
   color: white !important;
   outline: none;
 }
+
+.enable {
+  background: linear-gradient(90deg, rgba(255, 152, 0, 1) 0%, rgba(247, 105, 93, 1) 100%);
+}
+
+.disabled {
+  background: linear-gradient(90deg, #ff980085 0%, #f7695d 100%);
+}
