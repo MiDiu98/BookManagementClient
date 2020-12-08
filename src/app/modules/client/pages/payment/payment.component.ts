@@ -3,7 +3,7 @@ import { CartProduct } from 'src/app/shared/models/cart-product.model';
 import { OrderProduct } from 'src/app/shared/models/order-product.model';
 import { Order } from 'src/app/shared/models/order.model';
 import { User } from 'src/app/shared/models/user.model';
-import { PaymentService } from 'src/app/shared/services/payment.service';
+import { OrderService } from 'src/app/shared/services/order.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class PaymentComponent implements OnInit {
   order: Order;
 
   constructor(
-    private paymentService: PaymentService,
+    private orderServer: OrderService,
     private userService: UserService
   ) { }
 
@@ -27,7 +27,7 @@ export class PaymentComponent implements OnInit {
   }
 
   public getOrderProduct(): void {
-    this.cartOrder = this.paymentService.getOrder();
+    this.cartOrder = this.orderServer.getOrder();
   }
 
   public getUser(): void {
@@ -71,7 +71,7 @@ export class PaymentComponent implements OnInit {
   }
 
   public payment(): void {
-    this.paymentService.payment(this.order).subscribe(order => {
+    this.orderServer.payment(this.order).subscribe(order => {
       console.log(order);
     })
   }

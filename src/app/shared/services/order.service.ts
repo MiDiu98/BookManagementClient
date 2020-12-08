@@ -8,11 +8,19 @@ import { Order } from '../models/order.model';
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentService {
+export class OrderService {
 
   constructor(
     private http: HttpClient
   ) { }
+
+  public getByUser(userId: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${Constant.API_URL}/orders/user/${userId}`);
+  }
+
+  public getById(id: number): Observable<Order> {
+    return this.http.get<Order>(`${Constant.API_URL}/orders/${id}`);
+  }
 
   public getOrder(): CartProduct[] {
     return JSON.parse(localStorage.getItem('payment'));
