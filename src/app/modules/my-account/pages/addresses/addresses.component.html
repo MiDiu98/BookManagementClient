@@ -1,8 +1,8 @@
-<div class="breadcrumb">
+<div class="breadcrumb d-flex">
   <div class="container">
-    <a class="breadcrumb-item" href="/">Trang chủ</a>
-    <a class="breadcrumb-item" href="my-account">Tài khoản</a>
-    <span class="breadcrumb-item active">Sổ địa chỉ</span>
+    <a class="breadcrumb-item d-inline" href="/">Trang chủ</a>
+    <a class="breadcrumb-item d-inline" href="my-account">Tài khoản</a>
+    <span class="breadcrumb-item d-inline active">Sổ địa chỉ</span>
   </div>
 </div>
 <section class="static about-sec">
@@ -27,17 +27,14 @@
           <td>{{ address.district }}</td>
           <td>{{ address.province }}</td>
           <td>
-            <span
-              *ngIf="address.defaultAddress"
-              class="badge badge-pill badge-primary"
-              >Mặc định</span
+            <span *ngIf="address.defaultAddress" class="badge badge-pill badge-primary">Mặc định</span
             >
           </td>
           <td>
             <a class="btn btn-warning" href="/my-account/addresses/{{address.addressId}}/edit">
               <i class="fa fa-pencil"></i>
             </a>
-            <button class="btn btn-danger" (click)="delete(address.addressId)">
+            <button class="btn btn-danger ml-2" (click)="delete(address.addressId)">
               <i class="fa fa-trash"></i>
             </button>
           </td>

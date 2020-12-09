@@ -22,10 +22,13 @@ const routes: Routes = [
       {
         path: '',
         component: OrderListComponent,
+      },
+      {
+        path: ':id',
+        component: OrderDetailComponent,
       }
     ],
   },
-  { path: 'orders/:id', component: OrderDetailComponent},
   {
     path: 'addresses',
     children: [

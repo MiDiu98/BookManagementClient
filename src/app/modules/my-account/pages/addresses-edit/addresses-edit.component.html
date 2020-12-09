@@ -1,8 +1,8 @@
-<div class="breadcrumb">
+<div class="breadcrumb d-flex">
   <div class="container">
-    <a class="breadcrumb-item" href="/">Trang chủ</a>
-    <a class="breadcrumb-item" href="my-account">Tài khoản</a>
-    <a class="breadcrumb-item" href="my-account/addresses">Sổ địa chỉ</a>
+    <a class="breadcrumb-item d-inline" href="/">Trang chủ</a>
+    <a class="breadcrumb-item d-inline" href="my-account">Tài khoản</a>
+    <a class="breadcrumb-item d-inline" href="my-account/addresses">Sổ địa chỉ</a>
   </div>
 </div>
 <section class="static about-sec">
@@ -10,38 +10,22 @@
     <h1>{{ pageTitle }}</h1>
     <form [formGroup]="addressForm" (ngSubmit)="save()">
       <div class="row">
-        <div class="col-md-1">
+        <div class="col-md-2">
           <div class="form-group">
             <label for="streetNumber">Số nhà</label>
-            <input
-              id="streetNumber"
-              type="text"
-              formControlName="streetNumber"
-              class="form-control"
-              required
-            />
+            <input id="streetNumber" type="text" formControlName="streetNumber" class="form-control" required />
           </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
           <div class="form-group">
             <label for="streetName">Tên đường</label>
-            <input
-              id="streetName"
-              type="text"
-              formControlName="streetName"
-              class="form-control"
-            />
+            <input id="streetName" type="text" formControlName="streetName" class="form-control" />
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <label for="province">Tỉnh / Thành Phố</label>
-            <select
-              id="province"
-              formControlName="province"
-              class="form-control"
-              (change)="handleSelectorsChange(PROVINCE_LEVEL)"
-            >
+            <select id="province" formControlName="province" class="form-control" (change)="handleSelectorsChange(PROVINCE_LEVEL)">
               <option value="">Chọn 1 tỉnh thành</option>
               <option *ngFor="let option of provinceOptions" value="{{ option }}">
                 {{ option }}
@@ -52,12 +36,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="district">Quận / Huyện</label>
-            <select
-              id="district"
-              formControlName="district"
-              class="form-control"
-              (change)="handleSelectorsChange(DISTRICT_LEVEL)"
-            >
+            <select id="district" formControlName="district" class="form-control" (change)="handleSelectorsChange(DISTRICT_LEVEL)">
               <option value="">Chọn 1 quận huyện</option>
               <option *ngFor="let option of districtOptions" value="{{ option }}">
                 {{ option }}
@@ -68,12 +47,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="ward">Phường / Xã</label>
-            <select
-              id="ward"
-              formControlName="ward"
-              class="form-control"
-              (change)="handleSelectorsChange(WARD_LEVEL)"
-            >
+            <select id="ward" formControlName="ward" class="form-control" (change)="handleSelectorsChange(WARD_LEVEL)">
               <option value="">Chọn 1 phường xã</option>
               <option *ngFor="let option of wardOptions" value="{{ option }}">
                 {{ option }}
@@ -89,7 +63,7 @@
             ></span>
             Lưu
           </button>
-          <a [routerLink]="['/my-account/addresses']" class="btn btn-secondary">Thoát</a>
+          <a [routerLink]="['/my-account/addresses']" class="btn btn-secondary ml-2">Thoát</a>
         </div>
       </div>
     </form>
