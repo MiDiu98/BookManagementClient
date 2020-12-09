@@ -7,8 +7,15 @@ import { CartProduct } from '../models/cart-product.model';
   providedIn: 'root'
 })
 export class CartService {
+  private cartSubject: BehaviorSubject<CartProduct[]>;
 
-  constructor() { }
+  constructor() {
+    this.cartSubject = new BehaviorSubject<CartProduct[]>(JSON.parse(localStorage.getItem('cart')));
+  }
+
+  public get getCartQuantity(): number {
+    return this.cartSubject.value.length;
+  }
 
   public getCart(): CartProduct[] {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];

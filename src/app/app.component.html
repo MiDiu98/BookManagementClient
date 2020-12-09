@@ -42,10 +42,10 @@
             </li>
           </ul>
           <div class="cart my-2 my-lg-0">
-            <a href="/cart">
+            <a [routerLink]="['/cart']">
               <span>
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
-              <span class="quntity">3</span>
+              <span class="quntity">{{cartQuantity}}</span>
             </a>
           </div>
           <form class="form-inline my-2 my-lg-0">
