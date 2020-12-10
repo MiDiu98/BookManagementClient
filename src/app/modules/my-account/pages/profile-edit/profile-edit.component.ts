@@ -43,24 +43,26 @@ export class ProfileEditComponent implements OnInit {
 
   ngOnInit(): void {
     const currentAccount = this.authService.currentUserValue;
+    this.userId = currentAccount.userId;
     this.userService
       .getUserById(currentAccount.userId)
       .subscribe((user: User) => {
         this.profileForm.patchValue(user);
-        this.userId = currentAccount.userId;
       });
   }
 
   public save(): void {
     this.loading = true;
+    console.log(this.profileForm.value);
     this.userService.updateUser(this.userId, this.profileForm.value).subscribe(
       (_) => {
-        this.alertService.success('Update success!');
+        this.alertService.success('Đã lưu thông tin!');
         this.router.navigate(['/my-account/profile']);
+        this.loading = false;
       },
       (_) => {
         this.loading = false;
-        this.alertService.error('Failed to update!');
+        this.alertService.error('Đã xảy ra lỗi!');
       }
     );
   }

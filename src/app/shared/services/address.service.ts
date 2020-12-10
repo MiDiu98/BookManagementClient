@@ -61,6 +61,7 @@ export class AddressService {
   }
 
   public addUserAddresses(id: number, address: Address): Observable<Address> {
+    address.country = "Việt Nam";
     return this.http.post<Address>(
       `${Constant.USER_ADDRESS_URL}/user/${id}`,
       address

@@ -5,6 +5,7 @@ import { Order } from 'src/app/shared/models/order.model';
 import { OrderService } from 'src/app/shared/services/order.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
+import { AlertifyService } from 'src/app/shared/services/alertify.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -20,7 +21,8 @@ export class OrderDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private orderService: OrderService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public alertService: AlertifyService
   ) { }
 
   ngOnInit(): void {
@@ -48,9 +50,15 @@ export class OrderDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
         this.order.status = StatusOrder.HUY_DON;
-        this.orderService.update(this.order).subscribe(res => {
-          this.order = res;
-        })
+        this.orderService.update(this.order).subscribe(
+          (order: Order) => {
+          this.order = order;
+          this.alertService.success('Đã hủy đơn hàng!');
+          },
+          (_) => {
+            this.alertService.error('Đơn hàng chưa được cập nhật!');
+          }
+        )
       }
     });
   }

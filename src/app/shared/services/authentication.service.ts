@@ -21,6 +21,10 @@ export class AuthenticationService {
       return this.currentUserSubject.value;
   }
 
+  public getCurrentUser(): Account {
+    return JSON.parse(localStorage.getItem('currentUser'));
+  }
+
   login(email: string, password: string) {
     return this.http.post<any>(Constant.LOGIN_URL, {email, password})
               .pipe(map((account: Account) => {
