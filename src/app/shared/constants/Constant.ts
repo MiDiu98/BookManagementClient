@@ -5,7 +5,7 @@ export class Constant {
 
   public static LOGIN_URL = [Constant.API_URL, 'auth', 'login'].join('/');
 
-  public static REGISTER_URL = [Constant.API_URL, 'auth', 'register'].join('/');
+  public static REGISTER_URL = [Constant.API_URL, 'auth', 'sign-up'].join('/');
 
   public static ADMIN_PRODUCT_URL = [Constant.API_URL, 'admin', 'books'].join('/');
 
