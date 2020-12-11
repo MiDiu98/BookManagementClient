@@ -31,6 +31,12 @@ export class ProductService {
           products.map((product:Product) => this.setProductCovers(product))));
   }
 
+  public searchProducts(name: string) {
+    return this.http.get<Product[]>(`${Constant.API_URL}/products/search?name=${name}`).pipe(
+          map((products: Product[]) =>
+          products.map((product:Product) => this.setProductCovers(product))));
+  }
+
   public getProductById(bookId: number): Observable<Product> {
     return this.http.get<any>(Constant.PRODUCT_URL + '/' + bookId)
                 .pipe(map((product: Product) => this.setProductCovers(product)));

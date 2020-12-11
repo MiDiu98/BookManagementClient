@@ -14,6 +14,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 export class WelcomeComponent implements OnInit {
   products: Product[];
   newProduct: Product[];
+  search: string;
 
   constructor(
     private productService: ProductService,
@@ -60,6 +61,14 @@ export class WelcomeComponent implements OnInit {
 
     this.cartService.addToCart(cartProduct).subscribe(_ => {
       this.alertService.success('Đã thêm vào giỏ hàng!');
+    })
+  }
+
+  public searchProduct(): void {
+    this.productService.searchProducts(this.search).subscribe((res: Product[]) => {
+      console.log(res);
+      this.products = res;
+      this.products.map((product: Product) => this.setProductCovers(product));
     })
   }
 
