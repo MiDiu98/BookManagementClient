@@ -13,6 +13,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 })
 export class WelcomeComponent implements OnInit {
   products: Product[];
+  newProduct: Product[];
 
   constructor(
     private productService: ProductService,
@@ -22,13 +23,21 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProduct();
+    this.getNewProduct();
   }
 
   public getAllProduct() {
     this.productService.getAllProducts().subscribe((res: Product[]) => {
-      console.log(res);
       this.products = res;
       this.products.map((product: Product) => this.setProductCovers(product));
+    })
+  }
+
+  public getNewProduct(): void {
+    this.productService.getNewProducts().subscribe((res: Product[]) => {
+      console.log(res);
+      this.newProduct = res;
+      this.newProduct.map((product: Product) => this.setProductCovers(product));
     })
   }
 

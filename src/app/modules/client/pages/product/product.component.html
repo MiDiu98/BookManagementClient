@@ -31,12 +31,12 @@
             </li>
             <li class="mb-1">
               <a id="carousel-selector-1" data-slide-to="1" data-target="#myCarousel">
-                <img src="{{product.covers[0]}}" [class.active]="index === 1" (click)="index = 1">
+                <img src="{{product.covers[1]}}" [class.active]="index === 1" (click)="index = 1">
               </a>
             </li>
             <li>
               <a id="carousel-selector-2" data-slide-to="2" data-target="#myCarousel">
-                <img src="{{product.covers[0]}}" [class.active]="index === 2" (click)="index = 2">
+                <img src="{{product.covers[2]}}" [class.active]="index === 2" (click)="index = 2">
               </a>
             </li>
           </ul>
@@ -45,7 +45,6 @@
       </div>
       <div class="col-md-6 slider-content d-flex flex-column">
         <h1>{{product.name}}</h1>
-        <p>{{product.description}}</p>
         <p>Bạn có biết mỗi một người trong chúng ta đều mang bên mình một thế giới riêng? Thế giới ấy là do bạn tạo dựng nên từ khi vừa được sinh ra. Giữa thế giới thực và thế giới riêng của bạn luôn tồn tại những điểm khác nhau. Đó là nơi bạn trú ngụ chiếc
           bóng chân thật của mình, nơi mà ít ai có quyền được biết đến. “Mỗi một người trên Trái Đất này đều mang bên mình một thế giới riêng. Đó là một khoảng trời riêng biệt, một cuộc đời của riêng bạn. Có thể, trong thế giới ấy sẽ có vô số người bước
           vào và đi ra, và những khoảng trống trong thế giới của bạn ngày một rộng lớn, để chứa đựng vô vàn người và để chừa chỗ cho vô vàn người…” Mỗi ngày chúng ta đều đi ngang qua rất nhiều người và tạm biệt cũng rất nhiều người. Có người sảy chân
@@ -53,14 +52,14 @@
         <ul class="mb-2">
           <li>
             <span class="name">Giá gốc</span><span class="clm">:</span>
-            <span class="price">{{product.originPrice}}vnđ</span>
+            <span class="price">{{132910 | number:'3.0-5'}}vnđ</span>
           </li>
           <li>
             <span class="name">Giá khuyến mãi</span><span class="clm">:</span>
-            <span class="price final">{{product.originPrice}}vnđ</span>
+            <span class="price final">{{product.originPrice | number:'3.0-5'}}vnđ</span>
           </li>
           <li class="text-center">
-            <span class="save-cost">Tiết kiệm đến {{0}}vnđ (69%)</span>
+            <span class="save-cost">Tiết kiệm đến {{(132910 - product.originPrice) | number:'2.0-5'}}vnđ ({{ ((132910 - product.originPrice)/132910*100) | number:'2.0-2' }}%)</span>
           </li>
         </ul>
         <hr>
@@ -72,13 +71,13 @@
         </div>
         <div class="btn-sec ml-5 mt-3">
           <button class="btn btn-warning" (click)="addToCart(product)">Thêm vào giỏ hàng</button>
-          <button class="btn btn-primary">Mua ngay</button>
+          <!-- <button class="btn btn-primary">Mua ngay</button> -->
         </div>
       </div>
     </div>
   </div>
 </section>
-<section class="related-books">
+<!-- <section class="related-books">
   <div class="container">
     <h2>SẢN PHẨM TƯƠNG TỰ</h2>
     <div class="recomended-sec">
@@ -96,7 +95,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <section class="product-sec">
   <div class="container">

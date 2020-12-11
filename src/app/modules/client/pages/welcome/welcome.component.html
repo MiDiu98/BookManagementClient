@@ -16,11 +16,11 @@
 <section class="recomended-sec">
   <div class="container">
     <div class="title">
-      <h2>Sản phẩm đang được mua nhiều nhất</h2>
+      <h2>Sản phẩm mới nhất</h2>
       <hr>
     </div>
     <div class="row">
-      <div class="col-lg-3 col-md-6" *ngFor="let product of products">
+      <div class="col-lg-3 col-md-6" *ngFor="let product of newProduct">
         <div class="item mb-4">
           <img src="{{product.covers[0]}}" alt="img">
           <h3>{{product.name}}</h3>

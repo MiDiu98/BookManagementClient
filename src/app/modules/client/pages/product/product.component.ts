@@ -36,10 +36,10 @@ export class ProductComponent implements OnInit {
     this.getBookById(this.productId);
   }
 
-  public getBookById(id: number) {
-    this.productService.getProductById(id).subscribe((res: Product) => {
-      this.product = res;
+  async getBookById(id: number) {
+    await this.productService.getProductById(id).subscribe((res: Product) => {
       console.log(this.product);
+      this.product = res;
     })
   }
 
