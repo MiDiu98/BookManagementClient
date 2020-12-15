@@ -6,6 +6,7 @@ import { OrderService } from 'src/app/shared/services/order.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
+import { ReviewFormComponent } from 'src/app/shared/components/review-form/review-form.component';
 
 @Component({
   selector: 'app-order-detail',
@@ -14,6 +15,8 @@ import { AlertifyService } from 'src/app/shared/services/alertify.service';
 })
 export class OrderDetailComponent implements OnInit {
   processingState = StatusOrder.DANG_XU_LY;
+  deliveredState = StatusOrder.DA_GIAO_HANG;
+  state = StatusOrder;
   orderId: number;
   order: Order;
 
@@ -61,6 +64,16 @@ export class OrderDetailComponent implements OnInit {
         )
       }
     });
+  }
+
+  public openReviewForm(productId: number): void {
+    const dialogRef = this.dialog.open(ReviewFormComponent, {
+      data: {productId: productId},
+      minHeight: '370px',
+      minWidth: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {});
   }
 
 }

@@ -1,0 +1,17 @@
+<div>
+  <h1 mat-dialog-title>Đánh giá sản phẩm</h1>
+  <div mat-dialog-content>
+    <div class="form-group">
+      <label class="mr-2">Điểm</label>
+      <ngb-rating [max]="5" [(rate)]="currentRate" [readonly]="false"></ngb-rating>
+    </div>
+    <div class="form-group">
+      <label>Nhận xét</label>
+      <textarea type="text" [(ngModel)]="content" rows="5" class="form-control" required></textarea>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button type="button" class="btn btn-info" mat-button (click)="save()">Lưu</button>
+    <button type="button" class="btn btn-success ml-2" mat-button (click)="cancel()">Thoát</button>
+  </div>
+</div>

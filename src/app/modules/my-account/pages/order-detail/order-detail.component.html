@@ -19,10 +19,10 @@
               <div class="cart-item-left">
                 <img class="cart-product-img" src="{{item.cover}}">
                 <div class="content">
-                  <a id="item-title" href="">
+                  <a id="item-title" [routerLink]="['/products/', item.productId]">
                     {{item.product}}
                   </a>
-                  <a id="item-short-descrip" href="">{{item.description.substring(0, 30)}}...</a>
+                  <a id="item-short-descrip" [routerLink]="['/products/', item.productId]">{{item.description.substring(0, 30)}}...</a>
                 </div>
               </div>
               <div class="cart-item-middle">
@@ -34,6 +34,7 @@
               <div class="cart-item-right">
                 <label>Thành tiền:</label>
                 <p class="total-item-price mb-1">{{item.price * item.quantity | number:'3.0-5'}} vnđ</p>
+                <button type="button" class="btn btn-link btn-review" *ngIf="order.status === deliveredState" (click)="openReviewForm(item.productId)">Viết đánh giá</button>
               </div>
             </div>
             <hr width="100%" align="center" />
@@ -70,7 +71,7 @@
             <p id="charge-title">Tổng cộng</p>
             <p id="charge-price">{{order.totalCharges | number:'3.0-5'}} vnđ</p>
           </div>
-          <div class="payment">
+          <div class="payment" *ngIf="order.status === processingState">
             <button class="pay-btn" (click)="cancelOrder()" [disabled]="order.status !== processingState" [ngClass]="order.status !== processingState? 'disabled' : 'enabled'">HỦY ĐƠN HÀNG</button>
           </div>
         </div>

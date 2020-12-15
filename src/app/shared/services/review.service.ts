@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ObservedValueOf, Observable } from 'rxjs';
 import { Constant } from '../constants/Constant';
+import { Review } from '../models/review.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,23 +12,23 @@ export class ReviewService {
   constructor(
     private http: HttpClient) { }
 
-  getAllComment(bookId: number) {
-    return this.http.get<any>(Constant.COMMENT_URL + '/' + bookId);
+  getAllReviewsByProduct(product: number) {
+    return this.http.get<any>(`${Constant.API_URL}/reviews/products/${product}`);
   }
 
-  getCommentById(commentId: number) {
-    return this.http.get<any>(Constant.COMMENT_URL + '/comment/' + commentId);
+  getReviewById(reviewId: number) {
+    return this.http.get<any>(`${Constant.API_URL}/reviews/${reviewId}`);
   }
 
-  postComment(bookId: number, message: string) {
-    return this.http.post<any>(Constant.COMMENT_URL + '/' + bookId, {message} );
+  postComment(review: Review) {
+    return this.http.post<any>(`${Constant.API_URL}/reviews/users/${review.userId}/products/${review.productId}`, review);
   }
 
-  updateComment(commentId: number, message: string) {
-    return this.http.put<any>(Constant.COMMENT_URL + '/' + commentId, {message} );
+  updateComment(review: Review) {
+    return this.http.put<any>(`${Constant.API_URL}/reviews/users/${review.userId}/review/${review.id}`, review);
   }
 
-  deleteComment(commentId: number) {
-    return this.http.delete<any>(Constant.COMMENT_URL + '/' + commentId);
+  deleteComment(review: Review) {
+    return this.http.delete<any>(`${Constant.API_URL}/reviews/users/${review.userId}/review/${review.id}`);
   }
 }
