@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StatusOrder } from 'src/app/shared/constants/StatusOrder';
 import { Order } from 'src/app/shared/models/order.model';
 import { OrderService } from 'src/app/shared/services/order.service';
 
@@ -9,6 +10,7 @@ import { OrderService } from 'src/app/shared/services/order.service';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
+  deliveredState = StatusOrder.DA_GIAO_HANG;
   orders: Order[];
 
   constructor(

@@ -29,7 +29,7 @@
             </td>
             <td class="text-center align-middle">{{order.orderDate | date: 'dd/MM/yyyy, hh:mm a'}}</td>
             <td class="text-center align-middle">{{order.totalCharges | number:'3.0-5'}} vnđ</td>
-            <td class="text-center align-middle"><span class="status-tag-label">{{order.status}}</span></td>
+            <td class="text-center align-middle"><span class="status-tag-label" [ngClass]="order.status === deliveredState? 'delivered' : 'non-delivered'">{{order.status}}</span></td>
             <td class="text-center align-middle">
               <button class="btn btn-outline-info btn-show" (click)="getDetailOrder(order.id)"><i class="fa fa-eye" aria-hidden="true"></i></button>
             </td>

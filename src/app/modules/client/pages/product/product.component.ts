@@ -57,6 +57,7 @@ export class ProductComponent implements OnInit {
 
     this.cartService.addToCart(cartProduct).subscribe(_ => {
       this.alertService.success('Đã thêm vào giỏ hàng!');
+      window.location.reload();
     })
   }
 
