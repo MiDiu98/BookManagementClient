@@ -25,9 +25,30 @@
               <a href="" class="nav-link">Trang chủ</a>
             </li>
             <li class="navbar-item dropdown">
+              <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Danh mục
+              </a>
+              <div class="dropdown-menu">
+
+                <div class="dropright">
+                  <button class="dropdown-item dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Dropdown button
+                   </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+                <!-- <div class="dropdown-menu">
+                    <a class="dropdown-item" href="" *ngFor="let childCate of parentCate.childCate">{{childCate.name}}</a>
+                  </div> -->
+              </div>
+            </li>
+            <li class="navbar-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                  Tài khoản
-               </a>
+              </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="/my-account/profile">Thông tin tài khoản</a>
                 <a class="dropdown-item" href="/my-account/addresses">Quản lý địa chỉ</a>
