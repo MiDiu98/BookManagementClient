@@ -173,8 +173,8 @@
           </div>
           <div class="card-body">
             <div class="qna-form">
-              <input class="input-question-product" placeholder="Hãy đặt câu hỏi liên quan đến sản phẩm...">
-              <button class="btn btn-warning btn-question-product ml-1">Đặt câu hỏi</button>
+              <input class="input-question-product" [(ngModel)]="question" placeholder="Hãy đặt câu hỏi liên quan đến sản phẩm...">
+              <button class="btn btn-warning btn-question-product ml-1" (click)="addQuestion()">Đặt câu hỏi</button>
             </div>
             <div class="qna-list">
               <ul>
@@ -189,12 +189,14 @@
               <div class="top">
                 <img src="{{question.avatar}}" class="avatar rounded-circle mr-2" alt="avatar">
                 <label class="mb-0 mt-2">{{question.username}}</label>
+                <span class="mt-2 ml-2 text-muted">{{question.createAt | date: 'dd/MM/yyyy, hh:mm a'}}</span>
               </div>
               <div class="question-content">
                 <p>{{question.question}}</p>
-                <div class="reply">
+                <div class="reply" *ngIf="question.answer">
                   <i class="fa fa-reply fa-rotate-180 i-reply"></i>
-                  <div class="answer" *ngIf="question.answer">
+                  <div class="answer">
+                    <p class="text-muted">{{question.updateAt | date: 'dd/MM/yyyy, hh:mm a'}}</p>
                     <p>{{question.answer}}</p>
                   </div>
                 </div>

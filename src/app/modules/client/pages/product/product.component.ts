@@ -23,6 +23,7 @@ export class ProductComponent implements OnInit {
   quantityProduct = 1;
   reviews: Review[];
   questions: Question[];
+  question: string;
 
   constructor(
     private productService: ProductService,
@@ -84,5 +85,24 @@ export class ProductComponent implements OnInit {
     })
   }
 
+  public addQuestion(): void {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.question);
+
+    if (!this.question) {
+      this.alertService.warning('Bạn chưa nhập câu hỏi.');
+      return;
+    }
+    else if (!user) {
+      this.alertService.warning('Bạn cần đăng nhập để đặt câu hỏi.');
+      return;
+    }
+
+    let question = new Question({question: this.question, createAt: new Date(), userId: user.id, productId: this.product.id});
+    this.questionService.postQuestion(question).subscribe((question: Question) => {
+      this.questions.unshift(question);
+      this.question = null;
+    })
+  }
 
 }

@@ -8,4 +8,8 @@ export class Question {
   username: string;
   avatar: string;
   productId: number;
+
+  constructor(init?: Partial<Question>) {
+    Object.assign(this, init);
+  }
 }
