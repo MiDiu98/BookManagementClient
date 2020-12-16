@@ -128,3 +128,35 @@ ngb-rating {
     }
   }
 }
+
+.question {
+  .top {
+    display: flex;
+    vertical-align: middle;
+    .avatar {
+      width: 32px;
+      height: 32px;
+    }
+  }
+  .question-content {
+    margin-left: 38px;
+    .reply {
+      display: flex;
+      color: #64646471;
+      position: relative;
+      .i-reply {
+        position: absolute;
+        left: 0;
+        top: 4px;
+        font-size: 18px;
+      }
+      .answer {
+        margin-left: 28px;
+        padding: 12px 10px 5px;
+        background: #6464642b;
+        border-radius: 12px;
+        color: black;
+      }
+    }
+  }
+}

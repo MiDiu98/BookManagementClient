@@ -3,10 +3,12 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CartProduct } from 'src/app/shared/models/cart-product.model';
 import { OrderProduct } from 'src/app/shared/models/order-product.model';
 import { Product } from 'src/app/shared/models/product.model';
+import { Question } from 'src/app/shared/models/question.model';
 import { Review } from 'src/app/shared/models/review.model';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { QuestionService } from 'src/app/shared/services/question.service';
 import { ReviewService } from 'src/app/shared/services/review.service';
 
 @Component({
@@ -20,6 +22,7 @@ export class ProductComponent implements OnInit {
   index = 0;
   quantityProduct = 1;
   reviews: Review[];
+  questions: Question[];
 
   constructor(
     private productService: ProductService,
@@ -27,7 +30,8 @@ export class ProductComponent implements OnInit {
     private route: ActivatedRoute,
     private cartService: CartService,
     private alertService: AlertifyService,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private questionService: QuestionService
   ) { }
 
   ngOnInit(): void {
@@ -45,13 +49,20 @@ export class ProductComponent implements OnInit {
       console.log(this.product);
       this.product = res;
       this.getAllReviewByProductId(this.product.id);
+      this.getAllQuestionsByProductId(this.product.id);
     })
   }
 
   getAllReviewByProductId(productId: number): void {
     this.reviewService.getAllReviewsByProduct(productId).subscribe((reviews: Review[]) => {
       this.reviews = reviews;
-      console.log(this.reviews);
+    })
+  }
+
+  getAllQuestionsByProductId(productId: number): void {
+    this.questionService.getAllQuestionsByProduct(productId).subscribe((questions: Question[]) => {
+      this.questions = questions;
+      console.log(this.questions);
     })
   }
 

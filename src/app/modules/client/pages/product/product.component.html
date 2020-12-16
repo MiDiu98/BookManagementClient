@@ -184,6 +184,22 @@
                 <li><i class="fa fa-hand-point-right"></i> Hiện có hình thức khuyến mãi gì cho sản phẩm không?</li>
               </ul>
             </div>
+            <div class="question" *ngFor="let question of questions">
+              <hr>
+              <div class="top">
+                <img src="{{question.avatar}}" class="avatar rounded-circle mr-2" alt="avatar">
+                <label class="mb-0 mt-2">{{question.username}}</label>
+              </div>
+              <div class="question-content">
+                <p>{{question.question}}</p>
+                <div class="reply">
+                  <i class="fa fa-reply fa-rotate-180 i-reply"></i>
+                  <div class="answer" *ngIf="question.answer">
+                    <p>{{question.answer}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

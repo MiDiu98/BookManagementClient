@@ -20,15 +20,15 @@ export class ReviewService {
     return this.http.get<any>(`${Constant.API_URL}/reviews/${reviewId}`);
   }
 
-  postComment(review: Review) {
+  postReview(review: Review) {
     return this.http.post<any>(`${Constant.API_URL}/reviews/users/${review.userId}/products/${review.productId}`, review);
   }
 
-  updateComment(review: Review) {
+  updateReview(review: Review) {
     return this.http.put<any>(`${Constant.API_URL}/reviews/users/${review.userId}/review/${review.id}`, review);
   }
 
-  deleteComment(review: Review) {
+  deleteReview(review: Review) {
     return this.http.delete<any>(`${Constant.API_URL}/reviews/users/${review.userId}/review/${review.id}`);
   }
 }

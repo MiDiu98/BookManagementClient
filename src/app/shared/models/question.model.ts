@@ -6,5 +6,6 @@ export class Question {
   updateAt: Date;
   userId: number;
   username: string;
+  avatar: string;
   productId: number;
 }

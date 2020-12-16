@@ -40,7 +40,7 @@ export class ReviewFormComponent implements OnInit {
       userId: JSON.parse(localStorage.getItem('currentUser')).userId,
       productId: this.message.productId
     });
-    this.reviewService.postComment(review).subscribe((review: Review) => {
+    this.reviewService.postReview(review).subscribe((review: Review) => {
       console.log(review);
       this.alertService.success('Cảm ơn bạn đã nhận xét :)');
       this.dialogRef.close();
