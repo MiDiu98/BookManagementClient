@@ -12,5 +12,4 @@ export class Product {
   covers?: string[];
   categories: Category[];
   promotions: Promotion[];
-  reviews: Review[];
 }

@@ -3,9 +3,11 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CartProduct } from 'src/app/shared/models/cart-product.model';
 import { OrderProduct } from 'src/app/shared/models/order-product.model';
 import { Product } from 'src/app/shared/models/product.model';
+import { Review } from 'src/app/shared/models/review.model';
 import { AlertifyService } from 'src/app/shared/services/alertify.service';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { ReviewService } from 'src/app/shared/services/review.service';
 
 @Component({
   selector: 'app-product',
@@ -17,13 +19,15 @@ export class ProductComponent implements OnInit {
   product: Product;
   index = 0;
   quantityProduct = 1;
+  reviews: Review[];
 
   constructor(
     private productService: ProductService,
     private router: Router,
     private route: ActivatedRoute,
     private cartService: CartService,
-    private alertService: AlertifyService
+    private alertService: AlertifyService,
+    private reviewService: ReviewService
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +44,14 @@ export class ProductComponent implements OnInit {
     await this.productService.getProductById(id).subscribe((res: Product) => {
       console.log(this.product);
       this.product = res;
+      this.getAllReviewByProductId(this.product.id);
+    })
+  }
+
+  getAllReviewByProductId(productId: number): void {
+    this.reviewService.getAllReviewsByProduct(productId).subscribe((reviews: Review[]) => {
+      this.reviews = reviews;
+      console.log(this.reviews);
     })
   }
 

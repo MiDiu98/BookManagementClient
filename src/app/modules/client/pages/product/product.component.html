@@ -141,9 +141,26 @@
             <h2 class="mb-0">KHÁCH HÀNG NHẬN XÉT</h2>
           </div>
           <div class="card-body">
-            <label *ngIf="!product.reviews || product.reviews.length === 0">
+            <label *ngIf="!reviews || reviews.length === 0">
               Chưa có nhận xét cho sản phẩm này
             </label>
+            <div class="review" *ngFor="let review of reviews">
+              <div class="top">
+                <img src="{{review.avatar}}" class="avatar rounded-circle mr-2" alt="avatar">
+                <label class="mb-0 mt-2">{{review.username}}</label>
+              </div>
+              <div class="review-content">
+                <div class="middle">
+                  <ngb-rating [max]="5" [(rate)]="+review.rating" [readonly]="true"></ngb-rating>
+                  <span class="verify ml-2">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <span class="ml-1">Chứng nhận đã mua hàng</span>
+                  </span>
+                </div>
+                <p>{{review.content}}</p>
+              </div>
+              <hr>
+            </div>
           </div>
         </div>
       </div>

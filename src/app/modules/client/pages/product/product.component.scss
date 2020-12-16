@@ -102,3 +102,29 @@ input[type=number] {
   padding-top: 30px;
   color: #646464;
 }
+
+ngb-rating {
+  font-size: 20px;
+  color: yellow;
+}
+
+.review {
+  .top {
+    display: flex;
+    vertical-align: middle;
+    .avatar {
+      width: 32px;
+      height: 32px;
+    }
+  }
+  .review-content {
+    margin-left: 30px;
+    .middle {
+      margin-bottom: 5px;
+      .verify {
+        color: #4caf50;
+        font-size: 12px;
+      }
+    }
+  }
+}
